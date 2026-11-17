@@ -1,136 +1,173 @@
 # MedConsults CRM
 
-Single-clinic CRM and Out-Patient Department (OPD) booking platform for MedConsults (Bandra West, Mumbai).
+MedConsults CRM is a single-clinic customer relationship management (CRM) and out-patient department (OPD) booking platform designed for a clinic located in Bandra West, Mumbai. This is a portfolio project using fictional demo data only and is not intended for real clinical use.
 
-## Project Overview
+## Project Status
 
-MedConsults CRM manages clinic operations across four distinct roles:
-1. **Patient**: Browse approved doctors, book appointment slots, receive digital OPD queue pass (token + QR), access shared consultation notes.
-2. **Doctor**: Manage daily consultation queue, appointments calendar, availability, and clinical notes.
-3. **Staff / Receptionist**: Manage leads pipeline (Kanban/List), walk-in patient token issuance, appointment check-ins, tasks, and follow-ups.
-4. **Admin**: Doctor approvals, user access management, clinic analytics, and audit logging.
+Backend foundation complete: Express and TypeScript API initialized in strict mode, cached MongoDB database connection established, liveness (/health) and readiness (/ready) endpoints implemented, and automated integration tests configured. Frontend currently a placeholder React single-page application. Data models, authentication, business logic modules, and user interface screens are planned for subsequent phases.
 
----
+## Planned Features
 
-## Tech Stack & Architecture
+- Leads Pipeline: Capture inquiries, stage transitions, and conversion to registered patients.
+- Patient 360: Comprehensive patient record, contact profile, and full interaction timeline.
+- Appointments and OPD Queue: Appointment booking with slot conflict prevention and digital sequential OPD queue tokens.
+- Tasks and Follow-ups: Task assignment, due date monitoring, and completion tracking.
+- Clinical and Consultation Notes: Tiered note visibility (author-only clinical notes, patient-shared notes, internal staff notes).
+- Reports: Operational metrics, lead sources, and doctor workload reporting.
+- Audit Log: Logging of critical actions, access changes, and patient data views.
+- Role-Based Access Control: Four distinct roles (patient, doctor, staff/receptionist, admin) with strict permission boundaries.
 
-- **Backend**: Node.js (Active LTS), Express 5, TypeScript (strict mode), Mongoose, Zod.
-- **Frontend**: React, Vite, TypeScript, Tailwind CSS, React Router.
-- **Database**: MongoDB Atlas (`medconsults_crm` for development, `medconsults_crm_test` for testing).
-- **Security**: Helmet, CORS with strict origin validation, express-mongo-sanitize, express-rate-limit, 10kb JSON payload cap, Zod environment validation.
-- **Testing**: Vitest + Supertest for automated API tests.
+## Technology Stack
 
----
+- Runtime: Node.js (Active LTS)
+- Backend: Express, TypeScript, Mongoose, Zod
+- Security and Utilities: Helmet, CORS, Express Rate Limit, Express Mongo Sanitize
+- Frontend: React, Vite, TypeScript, Tailwind CSS, React Router
+- Database: MongoDB Atlas
+- Testing: Vitest, Supertest
 
-## Directory Structure
+## Architecture
+
+The project is structured as a monorepo consisting of:
+- Backend API: Express 5 application written in TypeScript providing RESTful JSON endpoints.
+- Frontend SPA: React single-page application built with Vite and Tailwind CSS.
+- Databases: Two separate MongoDB Atlas databases on a single cluster:
+  - Development database: medconsults_crm
+  - Test database: medconsults_crm_test (isolated; tests never touch development data)
+
+## Folder Structure
 
 ```text
 CRM_MedConsults/
-├── backend/
-│   ├── src/
-│   │   ├── config/          # env.ts (Zod validation), db.ts (cached Mongoose connection)
-│   │   ├── middleware/      # Auth, role guard, validation, error handler (empty placeholders)
-│   │   ├── modules/         # Feature modules (empty placeholders)
-│   │   ├── services/        # Service layer (empty placeholders)
-│   │   ├── utils/           # Helper utilities (empty placeholders)
-│   │   ├── app.ts           # Express app, middleware pipeline, health endpoints
-│   │   └── server.ts        # Server entrypoint and graceful shutdown
-│   ├── scripts/             # Database seed scripts (empty placeholder)
-│   ├── tests/               # API tests (health & readiness checks)
-│   ├── .env                 # Backend environment variables (git-ignored)
-│   ├── .env.example         # Template for environment configuration
-│   └── package.json
-├── frontend/
-│   ├── src/
-│   │   ├── lib/             # env.ts (Vite env validation)
-│   │   ├── App.tsx          # App router and placeholder home screen
-│   │   ├── main.tsx         # React root mounting
-│   │   └── index.css        # Tailwind CSS imports
-│   ├── .env                 # Frontend environment variables (git-ignored)
-│   ├── .env.example         # Template for frontend environment
-│   └── package.json
-├── design/stitch/           # Extracted design assets and UI reference
-├── docs/
-│   └── PROJECT_SPEC.md      # Full Product Requirements & Technical Specification
-├── .gitignore
-├── .cursorignore
-└── README.md
+├── backend/            Express and TypeScript API, configuration, tests, and scripts
+├── design/ui-reference/ UI reference specifications, color tokens, and layout references
+├── docs/               Detailed technical specification and architecture documentation
+├── frontend/           React and Vite single-page application
+├── .gitignore          Root Git ignore rules for secrets, dependencies, and build artifacts
+└── README.md           Project overview, setup instructions, and architecture guide
 ```
 
----
+## Getting Started
 
-## Getting Started & Configuration
+### Prerequisites
 
-### 1. Fill in Backend Environment Variables
+- Node.js (Active LTS version)
+- Git
+- MongoDB Atlas cluster account (or local MongoDB instance)
 
-Open `backend/.env`:
-- `JWT_ACCESS_SECRET` and `JWT_REFRESH_SECRET` have been pre-generated as two distinct, secure 64-character hexadecimal values.
-- You **must** provide your MongoDB connection strings:
-  - Replace `MONGODB_URI=PASTE_MY_URI_HERE` with your Atlas development database URI (e.g., `mongodb+srv://<user>:<password>@cluster.mongodb.net/medconsults_crm?retryWrites=true&w=majority`).
-  - Replace `MONGODB_URI_TEST=PASTE_MY_URI_HERE` with your Atlas test database URI (e.g., `mongodb+srv://<user>:<password>@cluster.mongodb.net/medconsults_crm_test?retryWrites=true&w=majority`).
+### Installation and Setup
 
-> **Note:** The server and test runner validate environment variables using Zod at startup and will reject the placeholder string `PASTE_MY_URI_HERE` with a clear configuration error.
-
-### 2. Frontend Environment Variables
-
-`frontend/.env` is pre-configured with:
-```env
-VITE_API_BASE_URL=http://localhost:5000
+1. Clone the repository:
+```bash
+git clone https://github.com/Tapas7t/CRM_MedConsults.git
+cd CRM_MedConsults
 ```
 
----
+2. Install backend and frontend dependencies:
+```bash
+npm --prefix backend install
+npm --prefix frontend install
+```
 
-## Running the Application
+3. Configure environment files:
+- Copy backend template:
+  ```bash
+  cp backend/.env.example backend/.env
+  ```
+- Copy frontend template:
+  ```bash
+  cp frontend/.env.example frontend/.env
+  ```
 
-### Backend Commands
+4. Populate environment variables:
+- Open backend/.env and configure your MongoDB connection string and JWT secrets.
+- Open frontend/.env and verify the API base URL.
 
-Run from the repository root:
+### Running the Application
 
-- **Start in development mode (hot reload):**
+Execute these commands from the project root:
+
+- Start backend development server:
   ```bash
   npm --prefix backend run dev
   ```
-- **Typecheck:**
+- Start frontend development server:
   ```bash
-  npm --prefix backend run typecheck
+  npm --prefix frontend run dev
   ```
-- **Build TypeScript:**
-  ```bash
-  npm --prefix backend run build
-  ```
-- **Start compiled server:**
-  ```bash
-  npm --prefix backend start
-  ```
-- **Run API tests:**
+- Run backend integration tests:
   ```bash
   npm --prefix backend test
   ```
 
-### Frontend Commands
+## Environment Variables
 
-Run from the repository root:
+### Backend (backend/.env)
 
-- **Start Vite dev server:**
-  ```bash
-  npm --prefix frontend run dev
-  ```
-  Opens at `http://localhost:5173`.
-- **Typecheck:**
-  ```bash
-  npm --prefix frontend run typecheck
-  ```
-- **Build production bundle:**
-  ```bash
-  npm --prefix frontend run build
-  ```
+| Variable | Purpose |
+| --- | --- |
+| NODE_ENV | Runtime environment (development, test, production) |
+| PORT | Port on which the Express server listens |
+| MONGODB_URI | MongoDB connection string for development |
+| MONGODB_URI_TEST | MongoDB connection string for automated testing |
+| JWT_ACCESS_SECRET | Secret key for signing short-lived access tokens (minimum 32 characters) |
+| JWT_REFRESH_SECRET | Secret key for signing long-lived refresh tokens (minimum 32 characters) |
+| JWT_ACCESS_EXPIRES_IN | Expiration duration for access tokens |
+| JWT_REFRESH_EXPIRES_IN | Expiration duration for refresh tokens |
+| CLIENT_URL | URL of the frontend application for redirection |
+| CORS_ORIGINS | Comma-separated list of allowed origins for CORS |
 
----
+### Frontend (frontend/.env)
 
-## Health & Readiness Endpoints
+| Variable | Purpose |
+| --- | --- |
+| VITE_API_BASE_URL | Base URL of the backend API |
 
-- **Liveness probe**: `GET http://localhost:5000/health`
-  - Returns `200 OK` with `{ status: "ok", timestamp: ... }`. Does not query the database.
-- **Readiness probe**: `GET http://localhost:5000/ready`
-  - Returns `200 OK` with `{ status: "ready", database: "connected" }` when MongoDB is connected.
-  - Returns `503 Service Unavailable` with `{ status: "not ready", database: "disconnected" }` when disconnected.
+## Scripts
+
+### Backend Scripts
+
+| Script | Command | Purpose |
+| --- | --- | --- |
+| dev | tsx watch src/server.ts | Runs the development server with live reload |
+| build | tsc | Compiles TypeScript into JavaScript in dist/ |
+| start | node dist/server.js | Runs the compiled production server |
+| test | vitest run | Executes automated API test suite |
+| typecheck | tsc --noEmit | Validates TypeScript types across the backend |
+
+### Frontend Scripts
+
+| Script | Command | Purpose |
+| --- | --- | --- |
+| dev | vite | Starts the Vite local development server |
+| build | tsc -b && vite build | Compiles TypeScript and builds production bundle |
+| preview | vite preview | Previews the production build locally |
+| typecheck | tsc -b --noEmit | Validates TypeScript types across the frontend |
+
+## Testing
+
+Backend integration tests are executed using Vitest and Supertest. All tests run against the dedicated test database (medconsults_crm_test) and clean up after execution. Tests never connect to or modify development data.
+
+## Security Notes
+
+- Secrets, credentials, and private keys reside exclusively in environment files (.env) and are excluded from version control by .gitignore.
+- All patient, practitioner, appointment, and contact data used in this project is strictly fictional demo data.
+
+## Documentation
+
+For full product requirements, data models, business rules, and API specifications, refer to:
+[docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md)
+
+## Roadmap
+
+- [x] Phase 0: Repository, git initialization, environment setup
+- [x] Phase 1: Backend skeleton, configuration, database connection, health endpoints, tests
+- [ ] Phase 2: MongoDB schemas, models, and indexing
+- [ ] Phase 3: Authentication, role verification, email validation, account lockout
+- [ ] Phase 4: Core modules (doctors, patients, leads, appointments, OPD queue)
+- [ ] Phase 5: Secondary modules (notes, tasks, activities, notifications, reports, audit log)
+- [ ] Phase 6: Frontend design tokens, layout shell, routing, authentication state
+- [ ] Phase 7: Role-specific screen implementations wired to API
+- [ ] Phase 8: Live OPD queue via WebSockets and automated reminder service
+- [ ] Phase 9: Accessibility review, layout optimization, polish
+- [ ] Phase 10: Production deployment and end-to-end verification

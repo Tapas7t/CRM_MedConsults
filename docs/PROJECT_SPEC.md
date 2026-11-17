@@ -12,7 +12,7 @@ MedConsults began as an in-clinic doctor booking app. It becomes a CRM for ONE c
 - G2: A leads pipeline, Patient 360 page, tasks and follow-ups, and an activity timeline.
 - G3: Appointment booking with no double-booking and a digital OPD queue token.
 - G4: Every API endpoint documented and tested (success, validation, 401, 403, 404, 409).
-- G5: UI that matches the Stitch designs in `design/stitch/`.
+- G5: UI that matches the UI reference designs in `design/ui-reference/`.
 
 **Non-goals**
 
@@ -59,7 +59,7 @@ Decision: a monorepo with a separate Express API (`backend/`) and a React SPA (`
 
 **Version safety rule:** never copy version numbers from this document or memory into `package.json`. For every dependency, search for the latest stable release and security advisories, confirm with `npm show <pkg> version`, use `^` ranges, then run `npm audit`. State what was verified. Check every package name on npmjs.com before installing.
 
-**Design system:** `design/stitch/clinical_prestige/DESIGN.md` (navy `#0B1F3A`, teal `#0E7C86`, blue-to-cyan gradient buttons, porcelain `#F4F7FA`, Plus Jakarta Sans, Inter, Newsreader italic for accents).
+**Design system:** `design/ui-reference/clinical_prestige/DESIGN.md` (navy `#0B1F3A`, teal `#0E7C86`, blue-to-cyan gradient buttons, porcelain `#F4F7FA`, Plus Jakarta Sans, Inter, Newsreader italic for accents).
 
 ## 4. Repository structure
 
@@ -82,12 +82,12 @@ medconsults-crm/
   frontend/
     src/ main.tsx App.tsx lib/ auth/ components/ features/ pages/
     .env.example
-  design/stitch/        UI reference (read only)
+  design/ui-reference/  UI reference (read only)
   docs/ PROJECT_SPEC.md
-  .gitignore  .cursorignore  README.md
+  .gitignore  README.md
 ```
 
-`.gitignore` must cover `node_modules/`, `.env`, `.env.*` (except `.env.example`), keys, `dist/`, `build/`, logs and coverage. Commit lockfiles. `.cursorignore` mirrors the secret paths so they are never indexed into AI context. Never paste real secrets or connection strings into any AI chat.
+`.gitignore` must cover `node_modules/`, `.env`, `.env.*` (except `.env.example`), keys, `dist/`, `build/`, logs and coverage. Commit lockfiles. Never paste real secrets or connection strings into third-party tools or chat systems.
 
 ## 5. Environment variables
 
@@ -200,7 +200,7 @@ Each endpoint is documented with: purpose, auth, role, request, responses (200, 
 
 ## 10. Screens and routes
 
-Reference folders are under `design/stitch/`. Recreate them as React components; do not copy the HTML.
+Reference folders are under `design/ui-reference/`. Recreate them as React components; do not copy the HTML.
 
 | Area | Screens | Source folders |
 | --- | --- | --- |
@@ -217,7 +217,7 @@ Choose one home page variant and one patient dashboard variant before building t
 
 ## 11. Security and privacy requirements
 
-- Secrets only in `.env`; never committed; never in AI chat. Env validated with Zod at startup.
+- Secrets only in `.env`; never committed. Env validated with Zod at startup.
 - Middleware order: request logging, helmet, cors (explicit list), body limit (10 kb), mongo-sanitize, global rate limit, stricter auth limit, routes, central error handler.
 - bcrypt for passwords (cost 10 or more) and refresh tokens; `timingSafeEqual` for token comparison; access token kept in memory on the client, never localStorage.
 - Zod on every route. Ownership or role check in every controller. Generic auth messages to prevent account enumeration.

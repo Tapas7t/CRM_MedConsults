@@ -1,3 +1,15 @@
+import dns from 'node:dns';
+
+// Force Node.js to use public DNS for MongoDB Atlas SRV resolution
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+  if (dns.setDefaultResultOrder) {
+    dns.setDefaultResultOrder('ipv4first');
+  }
+} catch {
+  // Ignore
+}
+
 import { app } from './app.js';
 import { env } from './config/env.js';
 import { connectDB, disconnectDB } from './config/db.js';

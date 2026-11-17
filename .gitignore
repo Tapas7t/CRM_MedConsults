@@ -1,13 +1,29 @@
+# Dependencies
 node_modules/
+
+# Environment files and keys
 .env
 .env.*
 !.env.example
 *.pem
 *.key
+
+# Build outputs
 dist/
 build/
 *.tsbuildinfo
+
+# Logs and coverage
 *.log
 coverage/
+
+# Archives
+*.zip
+
+# Operating system files
 .DS_Store
 Thumbs.db
+
+# Editor settings folders
+.vscode/
+.idea/

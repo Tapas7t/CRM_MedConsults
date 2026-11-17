@@ -1,5 +1,16 @@
+import dns from 'node:dns';
 import mongoose from 'mongoose';
 import { env } from './env.js';
+
+// Force Node.js to use Google and Cloudflare Public DNS for MongoDB SRV lookups
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+  if (dns.setDefaultResultOrder) {
+    dns.setDefaultResultOrder('ipv4first');
+  }
+} catch {
+  // Ignore if custom DNS is not permitted
+}
 
 interface MongooseCache {
   conn: typeof mongoose | null;
