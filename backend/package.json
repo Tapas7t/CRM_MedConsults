@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:indexes": "tsx scripts/syncIndexes.ts"
   },
   "dependencies": {
     "cors": "^2.8.6",
