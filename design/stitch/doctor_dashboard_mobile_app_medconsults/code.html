@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>MedConsults Doctor Portal</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#004f56", "inverse-on-surface": "#eef1f4", "primary-fixed": "#d6e3ff", "inverse-surface": "#2d3133", "surface-dim": "#d7dadd", "on-tertiary-fixed": "#001453", "surface-container": "#ebeef1", "background": "#f7fafd", "secondary-container": "#96eef9", "surface-container-lowest": "#ffffff", "secondary": "#006972", "on-surface": "#181c1e", "surface-tint": "#4d5f7d", "primary": "#000615", "on-tertiary-container": "#5b7dff", "surface": "#f7fafd", "primary-fixed-dim": "#b5c7ea", "secondary-fixed-dim": "#7cd4df", "surface-bright": "#f7fafd", "inverse-primary": "#b5c7ea", "secondary-fixed": "#98f0fb", "tertiary-fixed": "#dde1ff", "surface-container-low": "#f1f4f7", "primary-container": "#0b1f3a", "on-error-container": "#93000a", "on-secondary-fixed": "#001f23", "tertiary-container": "#00175b", "on-primary-fixed": "#071c36", "surface-container-highest": "#e0e3e6", "surface-variant": "#e0e3e6", "on-primary-container": "#7587a7", "surface-container-high": "#e5e8eb", "on-secondary": "#ffffff", "on-secondary-container": "#006d77", "on-primary-fixed-variant": "#364764", "error": "#ba1a1a", "tertiary": "#000420", "outline-variant": "#c4c6ce", "on-primary": "#ffffff", "on-tertiary-fixed-variant": "#0037b8", "on-error": "#ffffff", "tertiary-fixed-dim": "#b7c4ff", "on-surface-variant": "#44474d", "on-background": "#181c1e", "outline": "#75777e" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "margin-mobile": "1.25rem", "space-sm": "0.75rem", "space-lg": "2rem", "space-xs": "0.375rem", "margin": "3rem", "gutter-mobile": "1rem", "space-md": "1.25rem", "space-xl": "3.5rem" }, fontFamily: { "body-md": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "editorial-accent": ["Newsreader"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "display-hero": ["Plus Jakarta Sans"], "label-sm": ["Inter"] }, fontSize: { "body-md": ["16px", { lineHeight: "26px", letterSpacing: "-0.005em", fontWeight: "400" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }], "display-hero-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.025em", fontWeight: "700" }], "editorial-accent": ["22px", { lineHeight: "32px", letterSpacing: "0em", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }], "display-hero": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "700" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.03em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-secondary-container selection:text-on-secondary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><img alt="MedConsults EKG Healthcare Logo.png" class="h-8 w-auto object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/ALJJyrAS0BooVlk1FS0nYRMAyMP6keClrAC1ev791PChrPs-fwbadZKandphuFYVV_frsXYCrpDr_AF3D5Q5ZA1SiFSG4ogUgpWzma_6_L2ep_1rlczQFKTnWgXeYZhQINspy8PZO3kQz7hMAZs9W9MK3nBEfPkyO-R4RxrDcjkiHf9dIDMm2xZehQKTtgDGvzT7bbW2F3-Z9y0clw6KdF_iKDd1Sns9t5eVPgokyJFGSI4GSkAF3RyPyuVeoyM"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-headline-sm text-primary tracking-tight truncate leading-none">Doctor Portal</span><span class="px-1.5 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider font-semibold ring-0">Demo</span></div><span class="font-label-sm text-label-sm text-on-surface-variant truncate font-normal leading-tight">Today</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors relative" type="button"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-24 px-margin-mobile flex flex-col"><div class="flex flex-col w-full pb-6 space-y-4">
+<!-- Email Verification Alert Banner -->
+<div class="w-full bg-secondary-container/30 rounded-2xl p-space-sm flex flex-col gap-2.5 shadow-sm">
+<div class="flex items-start gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary/15 flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[18px]">mark_email_unread</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<p class="font-headline-sm text-[13px] leading-tight text-on-surface font-semibold">Verify doctor credentials email</p>
+<p class="font-body-sm text-[13px] leading-snug text-on-surface-variant mt-0.5">Please confirm your institutional email to unlock external specialist referral memos.</p>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="min-h-[44px] px-3.5 py-2 rounded-xl bg-secondary text-on-secondary font-label-md text-[13px] tracking-wide inline-flex items-center gap-1.5 shadow-sm active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span>Send a new verification link</span>
+</button>
+</div>
+</div>
+<!-- Warm Editorial Greeting -->
+<div class="flex flex-col gap-1 px-1">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight font-semibold flex items-center gap-1.5">
+        Good morning, Dr. user_dr1
+        <span class="inline-block animate-pulse">👋</span>
+</h1>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-secondary">calendar_clock</span>
+<span>Thursday, Oct 24</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="inline-flex items-center gap-1 font-label-md text-[13px] text-primary">
+<span class="material-symbols-outlined text-[15px] text-secondary">meeting_room</span>
+        Cabin 3B
+      </span>
+</div>
+</div>
+<!-- Summary Metric Strip -->
+<div class="grid grid-cols-3 gap-2.5">
+<div class="bg-surface-container-lowest rounded-[20px] p-3 flex flex-col items-center justify-center text-center shadow-sm">
+<span class="font-headline-md text-[24px] font-bold text-primary leading-none">14</span>
+<span class="font-label-sm text-[13px] text-on-surface-variant mt-1.5 font-medium">Scheduled</span>
+</div>
+<div class="bg-surface-container-lowest rounded-[20px] p-3 flex flex-col items-center justify-center text-center shadow-sm">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-headline-md text-[24px] font-bold text-secondary leading-none">3</span>
+</div>
+<span class="font-label-sm text-[13px] text-secondary font-semibold mt-1.5">Waiting</span>
+</div>
+<div class="bg-surface-container-lowest rounded-[20px] p-3 flex flex-col items-center justify-center text-center shadow-sm">
+<span class="font-headline-md text-[24px] font-bold text-on-surface leading-none">6</span>
+<span class="font-label-sm text-[13px] text-on-surface-variant mt-1.5 font-medium">Done</span>
+</div>
+</div>
+<!-- Today's OPD Queue Card -->
+<div class="bg-surface-container-lowest rounded-[20px] p-4 shadow-sm flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">supervisor_account</span>
+</div>
+<h2 class="font-headline-sm text-[17px] text-primary font-bold">Today's OPD Queue</h2>
+</div>
+<span class="font-label-sm text-[13px] px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-medium">Live Chamber</span>
+</div>
+<!-- Active Patient Highlighted Card -->
+<div class="bg-surface-container-low rounded-2xl p-3.5 flex flex-col gap-3">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-secondary/15 flex flex-col items-center justify-center text-secondary font-bold font-headline-sm text-sm shrink-0">
+<span class="text-[10px] uppercase tracking-wider font-semibold">TKN</span>
+<span class="text-base leading-none">07</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-[15px] font-bold text-primary truncate">Rahul Sharma</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant">(34M)</span>
+</div>
+<p class="font-body-sm text-[13px] text-on-surface-variant truncate">Follow-up checkup • Routine vitals</p>
+</div>
+</div>
+<span class="shrink-0 px-2.5 py-1 rounded-full bg-secondary-container/70 text-on-secondary-container font-label-sm text-[12px] font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          In consultation
+        </span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="min-h-[44px] px-3 rounded-xl bg-surface-container-lowest text-primary font-label-md text-[13px] inline-flex items-center justify-center gap-1.5 active:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-[17px] text-secondary">stylus_note</span>
+<span>Open Notes</span>
+</button>
+<button class="min-h-[44px] px-3 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary font-label-md text-[13px] inline-flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[17px]">task_alt</span>
+<span>Mark done</span>
+</button>
+</div>
+</div>
+<!-- Next in Queue List -->
+<div class="flex flex-col divide-y divide-transparent space-y-2 pt-1">
+<!-- Patient 08 -->
+<div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm text-xs shrink-0">
+            #08
+          </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<p class="font-headline-sm text-[14px] font-semibold text-primary truncate">Pooja Verma</p>
+<span class="font-body-sm text-[13px] text-on-surface-variant">(29F)</span>
+</div>
+<p class="font-body-sm text-[13px] text-on-surface-variant">10:45 AM • Waiting</p>
+</div>
+</div>
+<button class="min-h-[44px] min-w-[44px] px-3.5 rounded-xl bg-surface-container-low text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-[13px] inline-flex items-center justify-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Call in</span>
+</button>
+</div>
+<!-- Patient 09 -->
+<div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm text-xs shrink-0">
+            #09
+          </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<p class="font-headline-sm text-[14px] font-semibold text-primary truncate">Anil Deshmukh</p>
+<span class="font-body-sm text-[13px] text-on-surface-variant">(52M)</span>
+</div>
+<p class="font-body-sm text-[13px] text-on-surface-variant">11:00 AM • Waiting</p>
+</div>
+</div>
+<button class="min-h-[44px] min-w-[44px] px-3.5 rounded-xl bg-surface-container-low text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-[13px] inline-flex items-center justify-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Call in</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Consultation Note Card -->
+<div class="bg-surface-container-lowest rounded-[20px] p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</div>
+<h2 class="font-headline-sm text-[16px] text-primary font-bold">Quick Consultation Note</h2>
+</div>
+<span class="font-label-sm text-[12px] text-on-surface-variant inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">lock</span>
+        Private &amp; encrypted
+      </span>
+</div>
+<div class="flex flex-col gap-2">
+<textarea class="w-full rounded-xl bg-surface-container-low p-3 font-body-sm text-[13px] text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container transition-all resize-none" placeholder="Document clinical observations, prescribed lab tests, or follow-up protocol..." rows="3"></textarea>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-[12px] text-on-surface-variant">Auto-appends to Token #07 record</span>
+<button class="min-h-[44px] px-4 rounded-xl bg-primary text-on-primary font-label-md text-[13px] inline-flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[16px]">save</span>
+<span>Save note</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Weekly Availability Quick Card -->
+<div class="bg-surface-container-lowest rounded-[20px] p-4 shadow-sm flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</div>
+<h2 class="font-headline-sm text-[16px] text-primary font-bold">Weekly OPD Roster</h2>
+</div>
+<span class="font-headline-sm text-[14px] text-primary font-bold px-2.5 py-1 rounded-full bg-surface-container-low">Fee ₹800</span>
+</div>
+<!-- Mini Day Toggles -->
+<div class="flex items-center justify-between gap-1">
+<button class="w-10 h-11 rounded-xl bg-primary text-on-primary font-label-md text-[13px] flex flex-col items-center justify-center shadow-sm" type="button">
+<span class="text-[10px] font-normal opacity-80">M</span>
+<span class="font-bold leading-none">ON</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-primary text-on-primary font-label-md text-[13px] flex flex-col items-center justify-center shadow-sm" type="button">
+<span class="text-[10px] font-normal opacity-80">T</span>
+<span class="font-bold leading-none">ON</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-primary text-on-primary font-label-md text-[13px] flex flex-col items-center justify-center shadow-sm" type="button">
+<span class="text-[10px] font-normal opacity-80">W</span>
+<span class="font-bold leading-none">ON</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-primary text-on-primary font-label-md text-[13px] flex flex-col items-center justify-center shadow-sm" type="button">
+<span class="text-[10px] font-normal opacity-80">T</span>
+<span class="font-bold leading-none">ON</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-primary text-on-primary font-label-md text-[13px] flex flex-col items-center justify-center shadow-sm" type="button">
+<span class="text-[10px] font-normal opacity-80">F</span>
+<span class="font-bold leading-none">ON</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-[13px] flex flex-col items-center justify-center opacity-70" type="button">
+<span class="text-[10px] font-normal">S</span>
+<span class="font-bold leading-none">OFF</span>
+</button>
+<button class="w-10 h-11 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-[13px] flex flex-col items-center justify-center opacity-70" type="button">
+<span class="text-[10px] font-normal">S</span>
+<span class="font-bold leading-none">OFF</span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-[13px] text-on-surface-variant">Slot window: 10:00 AM - 02:00 PM</span>
+<button class="min-h-[44px] px-4 rounded-xl bg-secondary text-on-secondary font-label-md text-[13px] inline-flex items-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Save</span>
+</button>
+</div>
+</div>
+<!-- Profile Status Card -->
+<div class="bg-surface-container-lowest rounded-[20px] p-4 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-[15px] font-bold text-primary">Doctor Profile</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-[11px] font-bold uppercase tracking-wider">
+            Approved
+          </span>
+</div>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Specialist Directory Active</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="font-headline-sm text-[15px] font-bold text-primary">95%</span>
+<p class="font-label-sm text-[11px] text-on-surface-variant">Complete</p>
+</div>
+</div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(11,31,58,0.05)]" data-active-classes="text-secondary font-bold"><div class="h-16 px-space-xs flex items-center justify-around"><a aria-current="page" class="min-w-[44px] min-h-[44px] flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors text-secondary font-bold" data-path="today" href="#"><span class="material-symbols-outlined text-[22px]">calendar_today</span><span class="font-label-sm text-label-sm text-[11px] leading-tight">Today</span></a><a class="min-w-[44px] min-h-[44px] flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="appointments" href="#"><span class="material-symbols-outlined text-[22px]">event_available</span><span class="font-label-sm text-label-sm text-[11px] leading-tight">Appointments</span></a><a class="min-w-[44px] min-h-[44px] flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="availability" href="#"><span class="material-symbols-outlined text-[22px]">more_time</span><span class="font-label-sm text-label-sm text-[11px] leading-tight">Availability</span></a><a class="min-w-[44px] min-h-[44px] flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="clinical-notes" href="#"><span class="material-symbols-outlined text-[22px]">clinical_notes</span><span class="font-label-sm text-label-sm text-[11px] leading-tight">Notes</span></a><a class="min-w-[44px] min-h-[44px] flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="doctor-profile" href="#"><span class="material-symbols-outlined text-[22px]">account_circle</span><span class="font-label-sm text-label-sm text-[11px] leading-tight">Profile</span></a></div></nav></body></html>

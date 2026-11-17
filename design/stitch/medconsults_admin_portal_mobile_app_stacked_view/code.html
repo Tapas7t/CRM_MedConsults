@@ -1,0 +1,418 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><title>MedConsults Admin</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,wght@0,400;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error": "#ffffff", "on-primary-fixed": "#071c36", "surface-container": "#ebeef1", "surface-container-lowest": "#ffffff", "on-primary-container": "#7587a7", "on-primary": "#ffffff", "surface-variant": "#e0e3e6", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#001453", "surface": "#f7fafd", "tertiary-fixed": "#dde1ff", "surface-bright": "#f7fafd", "outline": "#75777e", "secondary-container": "#96eef9", "on-tertiary-container": "#5b7dff", "on-secondary-container": "#006d77", "outline-variant": "#c4c6ce", "on-background": "#181c1e", "inverse-on-surface": "#eef1f4", "surface-dim": "#d7dadd", "tertiary-fixed-dim": "#b7c4ff", "on-tertiary": "#ffffff", "secondary-fixed": "#98f0fb", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#0037b8", "secondary": "#006972", "error": "#ba1a1a", "primary-fixed-dim": "#b5c7ea", "on-secondary-fixed-variant": "#004f56", "surface-tint": "#4d5f7d", "primary-fixed": "#d6e3ff", "on-secondary-fixed": "#001f23", "on-primary-fixed-variant": "#364764", "on-surface-variant": "#44474d", "primary-container": "#0b1f3a", "surface-container-low": "#f1f4f7", "tertiary": "#000420", "error-container": "#ffdad6", "inverse-primary": "#b5c7ea", "on-surface": "#181c1e", "on-secondary": "#ffffff", "primary": "#000615", "background": "#f7fafd", "tertiary-container": "#00175b", "surface-container-highest": "#e0e3e6", "surface-container-high": "#e5e8eb", "secondary-fixed-dim": "#7cd4df" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter-mobile": "1rem", "space-lg": "2rem", "space-md": "1.25rem", "space-sm": "0.75rem", "space-xl": "3.5rem", "margin": "3rem", "space-xs": "0.375rem", "margin-mobile": "1.25rem", "gutter": "1.5rem" }, fontFamily: { "display-hero": ["Plus Jakarta Sans"], "body-md": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-sm": ["Inter"], "label-sm": ["Inter"], "editorial-accent": ["Newsreader"], "headline-sm": ["Plus Jakarta Sans"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-md": ["Inter"] }, fontSize: { "display-hero": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "700" }], "body-md": ["16px", { lineHeight: "26px", letterSpacing: "-0.005em", fontWeight: "400" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.025em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }], "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.03em", fontWeight: "600" }], "editorial-accent": ["22px", { lineHeight: "32px", letterSpacing: "0em", fontWeight: "400" }], "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "display-hero-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { min-height: 100%; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><img alt="MedConsults EKG Healthcare Logo.png" class="h-8 w-auto object-contain mix-blend-multiply flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrAS0BooVlk1FS0nYRMAyMP6keClrAC1ev791PChrPs-fwbadZKandphuFYVV_frsXYCrpDr_AF3D5Q5ZA1SiFSG4ogUgpWzma_6_L2ep_1rlczQFKTnWgXeYZhQINspy8PZO3kQz7hMAZs9W9MK3nBEfPkyO-R4RxrDcjkiHf9dIDMm2xZehQKTtgDGvzT7bbW2F3-Z9y0clw6KdF_iKDd1Sns9t5eVPgokyJFGSI4GSkAF3RyPyuVeoyM"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary-container tracking-tight truncate">MedConsults</span><span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-[10px] uppercase tracking-wider font-semibold">Admin</span></div><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Overview</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-semibold tracking-wide">Demo</span><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-primary-container hover:bg-surface-container transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full">
+<!-- Content Canvas Container -->
+<div class="px-gutter-mobile py-space-sm space-y-space-md">
+<!-- Ops Bar / Date Greeting -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-container/40 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">calendar_today</span>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-[13px] leading-tight text-primary-container font-semibold truncate">Thursday, Oct 24</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse inline-block"></span>
+            All 6 Regional Hubs Online
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">HIPAA Sync</span>
+</div>
+</div>
+<!-- 2x2 Metric Cards Grid -->
+<section aria-label="Key Operational Metrics" class="grid grid-cols-2 gap-space-xs">
+<!-- Total Patients -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-[12px] text-on-surface-variant font-medium">Total Patients</span>
+<div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+</div>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary-container tracking-tight">12,480</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">trending_up</span>
+<span class="font-label-sm text-[11px] text-secondary font-semibold">+142 enrolled</span>
+</div>
+</div>
+</div>
+<!-- Total Doctors -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-[12px] text-on-surface-variant font-medium">Total Doctors</span>
+<div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]">stethoscope</span>
+</div>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary-container tracking-tight">342</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px] text-on-surface-variant">check_circle</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant font-medium">Active rosters • 18 online</span>
+</div>
+</div>
+</div>
+<!-- Pending Approvals (Amber Alert) -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-3 -top-3 w-12 h-12 rounded-full bg-error-container/30 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-[12px] text-primary-container font-medium">Approvals</span>
+<div class="w-7 h-7 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<p class="font-headline-md text-headline-md text-error tracking-tight font-bold">18</p>
+<span class="font-label-sm text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container">Action Req</span>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant mt-1">12 urgent reviews</p>
+</div>
+</div>
+<!-- Appointments Today -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-[12px] text-on-surface-variant font-medium">Appts Today</span>
+<div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]">event_available</span>
+</div>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary-container tracking-tight">184</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+<span class="font-label-sm text-[11px] text-secondary font-semibold">92% slot intake</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Doctor Approvals Segment -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between px-0.5">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary-container font-semibold">Doctor Approvals</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">18 credential verifications logged</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline" type="button">View All</button>
+</div>
+<!-- Segment Filter Pills -->
+<div class="flex items-center gap-1.5 p-1 bg-surface-container rounded-full" id="approval-tabs" role="tablist">
+<button aria-selected="true" class="flex-1 py-1.5 px-3 rounded-full text-center font-label-sm text-[12px] font-semibold bg-primary-container text-on-primary shadow-sm transition-all tab-btn" data-filter="pending" role="tab" type="button">
+          Pending (12)
+        </button>
+<button aria-selected="false" class="flex-1 py-1.5 px-3 rounded-full text-center font-label-sm text-[12px] font-semibold text-on-surface-variant hover:text-primary-container transition-all tab-btn" data-filter="approved" role="tab" type="button">
+          Approved (4)
+        </button>
+<button aria-selected="false" class="flex-1 py-1.5 px-3 rounded-full text-center font-label-sm text-[12px] font-semibold text-on-surface-variant hover:text-primary-container transition-all tab-btn" data-filter="rejected" role="tab" type="button">
+          Rejected (2)
+        </button>
+</div>
+<!-- Approvals List: Stacked Touch Cards -->
+<div class="space-y-space-xs" id="approval-cards-container">
+<!-- Card 1: Dr. Rajeshree Patel -->
+<article class="approval-card bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm space-y-space-xs" data-doc-id="doc-1" data-status="pending">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a confident female cardiologist in medical scrubs with stethoscope, shot in soft studio clinical light against a clean neutral hospital backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTN3jZ-EhJmPmsylLVXNrwqNC2YPxnzr84BcxNjdJh9xzZKt7cVLhVyTvm8BMtHus7gKlwuuw8VtjYoczcrJGtsZRqQs-PlkpaT45OJfL7_75zIAJvoNtGrXunKAsI7cKXShHZKfrmPFscq1OdT7nqAlZUzBDsD2z27tJKFMQTnPqR1n1XXA2QL4nUH9QuF7_Jzpsx8eTyavtv7ZhPal10UYzhfBmZ85SNs1jGSJU">
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Dr. Rajeshree Patel</h3>
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate font-mono">MMC-2016-1182</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-semibold tracking-wide flex-shrink-0">
+              Pending
+            </span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-xl text-on-surface-variant font-label-sm text-[12px] space-y-0.5">
+<div class="flex items-center gap-1 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[15px] text-secondary">cardiology</span>
+<span>Cardiology</span>
+</div>
+<p class="text-[11px] text-on-surface-variant truncate">Apex Heart Center, Bandra West</p>
+<p class="text-[10px] text-on-surface-variant/80">Submitted today • 09:15 AM</p>
+</div>
+<!-- Touch Actions (min 44px height targets) -->
+<div class="grid grid-cols-3 gap-1.5 pt-0.5">
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2.5 rounded-xl bg-secondary text-on-secondary font-label-sm text-[12px] font-semibold hover:opacity-95 transition-opacity active:scale-[0.98]" onclick="triggerAction('approve', 'Dr. Rajeshree Patel')" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Approve</span>
+</button>
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2.5 rounded-xl bg-surface-container text-error font-label-sm text-[12px] font-semibold hover:bg-error-container transition-colors active:scale-[0.98]" onclick="triggerAction('reject', 'Dr. Rajeshree Patel')" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Reject</span>
+</button>
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2 rounded-xl bg-surface-container-low text-primary-container font-label-sm text-[12px] font-medium hover:bg-surface-container transition-colors active:scale-[0.98]" onclick="triggerAction('view', 'Dr. Rajeshree Patel')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>View</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Dr. Amitav Ghosh -->
+<article class="approval-card bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm space-y-space-xs" data-doc-id="doc-2" data-status="pending">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male physician in his late forties wearing modern rimless glasses and a crisp white lab coat in an ambient consultation lounge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRODA1mBC0VAthLCaqf0dmRDMwrsC60_4UGYYzfOSKSvXIKEMGqRSyJp0toif5qWphBFvt94ZWJXsy-S2CA5MvWDnDCXg4tdtrXOZZZbWE31HrD6KGZC8CxdLW3KCLYvCJHnFNSYNfC4fgfPSDciR0hpwQFsb2iYjMe6fjjnAZqQlI6V2Gl0VlJ15fNdjcKdvsCVRiJg0IetuXtM67N7wn5GBeB_9C2MK6anRZing">
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Dr. Amitav Ghosh</h3>
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate font-mono">MMC-2012-0941</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-semibold tracking-wide flex-shrink-0">
+              Pending
+            </span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-xl text-on-surface-variant font-label-sm text-[12px] space-y-0.5">
+<div class="flex items-center gap-1 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[15px] text-secondary">medical_services</span>
+<span>General Medicine</span>
+</div>
+<p class="text-[11px] text-on-surface-variant truncate">Metro Care Clinic, Andheri</p>
+<p class="text-[10px] text-on-surface-variant/80">Submitted today • 08:30 AM</p>
+</div>
+<div class="grid grid-cols-3 gap-1.5 pt-0.5">
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2.5 rounded-xl bg-secondary text-on-secondary font-label-sm text-[12px] font-semibold hover:opacity-95 transition-opacity active:scale-[0.98]" onclick="triggerAction('approve', 'Dr. Amitav Ghosh')" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Approve</span>
+</button>
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2.5 rounded-xl bg-surface-container text-error font-label-sm text-[12px] font-semibold hover:bg-error-container transition-colors active:scale-[0.98]" onclick="triggerAction('reject', 'Dr. Amitav Ghosh')" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Reject</span>
+</button>
+<button class="min-h-[44px] flex items-center justify-center gap-1 px-2 rounded-xl bg-surface-container-low text-primary-container font-label-sm text-[12px] font-medium hover:bg-surface-container transition-colors active:scale-[0.98]" onclick="triggerAction('view', 'Dr. Amitav Ghosh')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>View</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Dr. Sunita Kulkarni -->
+<article class="approval-card bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm space-y-space-xs" data-doc-id="doc-3" data-status="approved">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Warm smiling female pediatrician in teal scrub top standing in front of softly blurred playful pediatric clinic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApuVP-mwYuoFIOnTZ4xpY-oFTUvLywc9RT53eng8vXmv0Q-QiIaEsUYprvCK7G8TyOhUud9mFe52wtrXfh_OlYO9cfx4H_SnzgBuLBi0W6D-Rl7W5Tw07N0BWThBRgh0j7f76CiVLs6BfcI8gN-8kisilKsbaAc_Dii6hPkczl8Wg6vWbXrzuoifdI-r2NRiNfHMf6LpvDVzssKdsYtBJFbwqcXOyTn1Dn51isLqw">
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Dr. Sunita Kulkarni</h3>
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate font-mono">KMC-2015-4421</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold tracking-wide flex-shrink-0">
+              Approved
+            </span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-xl text-on-surface-variant font-label-sm text-[12px] space-y-0.5">
+<div class="flex items-center gap-1 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[15px] text-secondary">child_care</span>
+<span>Pediatrics</span>
+</div>
+<p class="text-[11px] text-on-surface-variant truncate">Fortis Hiranandani Hospital, Vashi</p>
+<p class="text-[10px] text-on-surface-variant/80">Processed by Admin • 07:45 AM</p>
+</div>
+<div class="flex items-center justify-between pt-0.5">
+<span class="font-label-sm text-[11px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Verified Certificate
+            </span>
+<button class="min-h-[44px] px-4 rounded-xl bg-surface-container-low text-primary-container font-label-sm text-[12px] font-medium hover:bg-surface-container transition-colors active:scale-[0.98]" onclick="triggerAction('view', 'Dr. Sunita Kulkarni')" type="button">
+              View Dossier
+            </button>
+</div>
+</article>
+</div>
+</section>
+<!-- Recent Appointments List Section -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between px-0.5">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary-container font-semibold">Recent Appointments</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Live clinical check-in tokens</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline" type="button">Full Schedule</button>
+</div>
+<div class="space-y-space-xs">
+<!-- Appointment Card 1 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-primary-container text-on-primary flex flex-col items-center justify-center flex-shrink-0">
+<span class="font-label-sm text-[9px] uppercase tracking-wider text-on-primary-container">TOKEN</span>
+<span class="font-headline-sm text-[14px] font-bold leading-none">#42</span>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Ananya Rao</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate">Dr. Meera Joshi • Teleconsult</p>
+<div class="flex items-center gap-1 text-[11px] text-secondary font-medium mt-0.5">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>10:30 AM (In 15m)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold">
+              Confirmed
+            </span>
+<button class="min-h-[44px] min-w-[44px] flex items-center justify-center text-primary-container hover:bg-surface-container rounded-full transition-colors" onclick="triggerAction('view-appt', 'Token #42')" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Appointment Card 2 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-surface-container text-primary-container flex flex-col items-center justify-center flex-shrink-0">
+<span class="font-label-sm text-[9px] uppercase tracking-wider text-on-surface-variant">TOKEN</span>
+<span class="font-headline-sm text-[14px] font-bold leading-none">#43</span>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Vikramaditya Sen</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate">Dr. Rajeshree Patel • In-Person</p>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-medium mt-0.5">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>11:00 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] font-semibold">
+              Checked In
+            </span>
+<button class="min-h-[44px] min-w-[44px] flex items-center justify-center text-primary-container hover:bg-surface-container rounded-full transition-colors" onclick="triggerAction('view-appt', 'Token #43')" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Appointment Card 3 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-[20px] shadow-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-2xl bg-surface-container text-primary-container flex flex-col items-center justify-center flex-shrink-0">
+<span class="font-label-sm text-[9px] uppercase tracking-wider text-on-surface-variant">TOKEN</span>
+<span class="font-headline-sm text-[14px] font-bold leading-none">#44</span>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-[14px] text-primary-container font-semibold truncate">Kavita Swaminathan</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant truncate">Dr. Sunita Kulkarni • Clinical OPD</p>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-medium mt-0.5">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>11:30 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-[10px] font-semibold">
+              Pre-Vitals
+            </span>
+<button class="min-h-[44px] min-w-[44px] flex items-center justify-center text-primary-container hover:bg-surface-container rounded-full transition-colors" onclick="triggerAction('view-appt', 'Token #44')" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Demo Mode Restriction Notice Banner -->
+<div class="bg-surface-container-low p-space-sm rounded-[20px] flex items-start gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container/60 text-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</div>
+<div class="space-y-0.5 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-[13px] text-primary-container font-semibold">Demo Sandbox Environment</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[9px] font-semibold uppercase">Read Only</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+          Demo Mode: User modification &amp; deletion is restricted to read-only simulation. Production write access requires authenticated multi-factor hardware key.
+        </p>
+</div>
+</div>
+</div>
+<!-- Interactive Demo Toast Notification -->
+<aside aria-live="assertive" class="fixed bottom-20 inset-x-4 z-50 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none" id="demo-toast" role="alert">
+<div class="bg-primary-container text-on-primary p-3 rounded-2xl shadow-xl flex items-center justify-between gap-3 mx-auto max-w-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px] flex-shrink-0" id="toast-icon">lock</span>
+<span class="font-label-sm text-[12px] font-medium leading-tight truncate" id="toast-message">Simulation mode active.</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container/20 text-on-primary font-label-sm text-[10px] tracking-wider uppercase font-semibold flex-shrink-0">Demo</span>
+</div>
+</aside>
+<!-- Interactive Filter & Feedback Scripts -->
+<script>
+    // Tab Filter Interaction
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const cards = document.querySelectorAll('.approval-card');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => {
+          btn.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+          btn.classList.add('text-on-surface-variant');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        button.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+        button.classList.remove('text-on-surface-variant');
+        button.setAttribute('aria-selected', 'true');
+
+        const filter = button.getAttribute('data-filter');
+        cards.forEach(card => {
+          const status = card.getAttribute('data-status');
+          if (filter === 'pending' && status === 'pending') {
+            card.style.display = 'block';
+          } else if (filter === 'approved' && status === 'approved') {
+            card.style.display = 'block';
+          } else if (filter === 'rejected' && status === 'rejected') {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Toast Feedback for simulation
+    let toastTimeout;
+    function triggerAction(actionType, targetName) {
+      const toast = document.getElementById('demo-toast');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      if (actionType === 'approve') {
+        toastMsg.textContent = 'Simulated Approval: ' + targetName;
+        toastIcon.textContent = 'check_circle';
+      } else if (actionType === 'reject') {
+        toastMsg.textContent = 'Simulated Rejection: ' + targetName;
+        toastIcon.textContent = 'cancel';
+      } else if (actionType === 'view') {
+        toastMsg.textContent = 'Viewing Dossier: ' + targetName;
+        toastIcon.textContent = 'description';
+      } else if (actionType === 'view-appt') {
+        toastMsg.textContent = 'Opening appointment ticket ' + targetName;
+        toastIcon.textContent = 'badge';
+      }
+
+      toast.classList.remove('translate-y-32', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-32', 'opacity-0');
+      }, 2600);
+    }
+  </script>
+</div></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(11,31,58,0.05)]" data-active-classes="text-primary-container font-bold"><div class="h-16 px-2 flex items-center justify-around"><a aria-current="page" class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 transition-colors text-primary-container font-bold" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-[11px] leading-tight text-center">Overview</span></a><a class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary-container transition-colors" data-path="approvals" href="#"><span class="material-symbols-outlined text-[22px]">verified</span><span class="font-label-sm text-[11px] leading-tight text-center">Approvals</span></a><a class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary-container transition-colors relative" data-path="doctors" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">stethoscope</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface animate-pulse"></span></div><span class="font-label-sm text-[11px] leading-tight text-center">Doctors</span></a><a class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary-container transition-colors" data-path="users" href="#"><span class="material-symbols-outlined text-[22px]">group</span><span class="font-label-sm text-[11px] leading-tight text-center">Users</span></a><a class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary-container transition-colors" data-path="appointments" href="#"><span class="material-symbols-outlined text-[22px]">event_available</span><span class="font-label-sm text-[11px] leading-tight text-center">Appointments</span></a><a class="flex-1 min-w-[56px] min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary-container transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[22px]">tune</span><span class="font-label-sm text-[11px] leading-tight text-center">Settings</span></a></div></nav>
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span></body></html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Newsreader:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#0b1f3a","surface-container":"#ebeef1","on-tertiary-container":"#5b7dff","surface-container-high":"#e5e8eb","on-secondary-container":"#006d77","inverse-primary":"#b5c7ea","secondary-fixed":"#98f0fb","on-tertiary-fixed-variant":"#0037b8","primary":"#000615","on-secondary-fixed-variant":"#004f56","surface-variant":"#e0e3e6","on-surface-variant":"#44474d","surface-dim":"#d7dadd","inverse-on-surface":"#eef1f4","on-secondary":"#ffffff","surface":"#f7fafd","outline-variant":"#c4c6ce","surface-container-lowest":"#ffffff","on-tertiary":"#ffffff","secondary-container":"#96eef9","surface-tint":"#4d5f7d","surface-container-highest":"#e0e3e6","tertiary-container":"#00175b","on-primary-fixed-variant":"#364764","tertiary":"#000420","secondary":"#006972","surface-bright":"#f7fafd","outline":"#75777e","surface-container-low":"#f1f4f7","on-primary-fixed":"#071c36","on-primary-container":"#7587a7","secondary-fixed-dim":"#7cd4df","primary-fixed-dim":"#b5c7ea","background":"#f7fafd","tertiary-fixed-dim":"#b7c4ff","on-tertiary-fixed":"#001453","primary-fixed":"#d6e3ff","on-error":"#ffffff","on-error-container":"#93000a","on-secondary-fixed":"#001f23","error-container":"#ffdad6","error":"#ba1a1a","on-primary":"#ffffff","tertiary-fixed":"#dde1ff","on-surface":"#181c1e","inverse-surface":"#2d3133","on-background":"#181c1e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"gutter-mobile":"1rem","space-xs":"0.375rem","margin-mobile":"1.25rem","space-sm":"0.75rem",margin:"3rem","space-md":"1.25rem",gutter:"1.5rem","space-xl":"3.5rem","space-lg":"2rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"editorial-accent":["Newsreader"],"body-md":["Inter"],"headline-md":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"body-lg":["Inter"]},fontSize:{"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.025em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-md":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.03em",fontWeight:"600"}],"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"700"}],"editorial-accent":["22px",{lineHeight:"32px",letterSpacing:"0em",fontWeight:"400"}],"body-md":["16px",{lineHeight:"26px",letterSpacing:"-0.005em",fontWeight:"400"}],"headline-md":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-hero-mobile":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"display-hero":["56px",{lineHeight:"64px",letterSpacing:"-0.03em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-primary-container z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center gap-space-sm bg-primary/20"><img alt="MedConsults EKG Healthcare Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAS0BooVlk1FS0nYRMAyMP6keClrAC1ev791PChrPs-fwbadZKandphuFYVV_frsXYCrpDr_AF3D5Q5ZA1SiFSG4ogUgpWzma_6_L2ep_1rlczQFKTnWgXeYZhQINspy8PZO3kQz7hMAZs9W9MK3nBEfPkyO-R4RxrDcjkiHf9dIDMm2xZehQKTtgDGvzT7bbW2F3-Z9y0clw6KdF_iKDd1Sns9t5eVPgokyJFGSI4GSkAF3RyPyuVeoyM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-primary leading-tight">MedConsults</span><span class="font-label-sm text-label-sm text-on-primary-container tracking-wider uppercase">Clinical Admin</span></div></div><div class="px-space-md pt-space-lg pb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-container">Clinical Modules</span></div><nav class="flex flex-col gap-space-xs px-space-sm" data-active-classes="bg-secondary text-on-secondary font-label-md"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-surface-tint/20 hover:text-on-primary transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-label-md text-label-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-surface-tint/20 hover:text-on-primary transition-colors" data-path="doctors" href="#"><span class="material-symbols-outlined text-[20px]">stethoscope</span><span class="font-label-md text-label-md">Doctors</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-surface-tint/20 hover:text-on-primary transition-colors" data-path="users" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span class="font-label-md text-label-md">Users</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-surface-tint/20 hover:text-on-primary transition-colors" data-path="appointments" href="#"><span class="material-symbols-outlined text-[20px]">event</span><span class="font-label-md text-label-md">Appointments</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-colors bg-secondary text-on-secondary font-label-md" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-md text-label-md">Reports</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-surface-tint/20 hover:text-on-primary transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-md text-label-md">Settings</span></a></nav></div><div class="p-space-md m-space-sm rounded-xl bg-primary/40"><div class="flex items-center gap-space-sm"><div class="w-2.5 h-2.5 rounded-full bg-secondary-container animate-pulse"></div><span class="font-label-sm text-label-sm text-on-primary">Bandra Central Hub</span></div><p class="mt-space-xs font-body-sm text-body-sm text-on-primary-container">Connected to Mumbai Regional Health Gateway</p></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-[20px] text-secondary">location_on</span><span class="font-label-md text-label-md">Bandra West Clinic, Mumbai</span></div><span class="px-space-sm py-space-xs rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm">Demo — sample data</span></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="font-label-md text-label-md font-mono">11:45 AM IST</span></div><div class="flex items-center gap-space-sm pl-space-md"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface">Dr. Rajesh Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant">Medical Director / Admin</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background px-space-lg py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Navigation & Action Toolbar -->
+<div class="flex flex-col gap-space-md mb-space-lg">
+<!-- Breadcrumb & Clinic Scope Status -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Admin Portal</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Analytics &amp; Performance</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-secondary font-label-md">Clinic Reports</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono uppercase tracking-wider">Scope: Bandra West OPD #01</span>
+</div>
+</div>
+<!-- Main Title & Controls Header -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
+<div class="flex flex-col max-w-3xl">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Executive Clinic Reports &amp; Performance Analytics</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Comprehensive patient acquisition, conversion velocity, doctor consultation yields, and front-desk operational metrics.
+        </p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px] text-secondary">mark_email_read</span>
+<span class="font-label-md text-label-md">Schedule Digest</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-gradient-to-r from-primary-container to-secondary text-on-primary shadow-md hover:shadow-lg hover:scale-[1.01] transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="font-label-md text-label-md font-medium">Export CSV</span>
+</button>
+<button class="p-2.5 rounded-xl bg-surface-container-lowest text-on-surface-variant shadow-sm hover:text-primary hover:bg-surface-container transition-all" title="Print Dossier">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+</div>
+</div>
+<!-- Secondary Filter & Date Range Segment -->
+<div class="bg-surface-container-lowest p-space-sm rounded-2xl shadow-sm flex flex-wrap items-center justify-between gap-space-md">
+<!-- Date Presets -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-xl">
+<button class="px-space-sm py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">Last 7 Days</button>
+<button class="px-space-sm py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm font-semibold">Last 30 Days</button>
+<button class="px-space-sm py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">This Month</button>
+<button class="px-space-sm py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">Last Quarter</button>
+<button class="px-space-sm py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">Custom Range</button>
+</div>
+<!-- Calendar Picker & Specialty Dropdown -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-sm py-2 rounded-xl bg-surface-container-low text-on-surface text-label-sm font-label-sm cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">calendar_today</span>
+<span class="font-mono">01 Oct 2024 – 31 Oct 2024</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</div>
+<div class="flex items-center gap-space-xs px-space-sm py-2 rounded-xl bg-surface-container-low text-on-surface text-label-sm font-label-sm cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">medical_services</span>
+<span>All Specialties (Cardio, Ortho, Derm...)</span>
+<span class="material-symbols-outlined text-[16px] text-outline">tune</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Four Key Executive KPI Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1: Total Leads -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Total Inbound Leads</span>
+<div class="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display-hero-mobile text-display-hero-mobile text-primary font-bold">284</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Leads</span>
+</div>
+<div class="mt-space-xs flex items-center gap-1.5">
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +18.4%
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs last month</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 px-space-sm py-2 rounded-xl flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> 198 Digital</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary-container"></span> 86 Walk-in/Call</span>
+</div>
+</div>
+<!-- Card 2: Conversion Rate -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">OPD Conversion Rate</span>
+<div class="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display-hero-mobile text-display-hero-mobile text-primary font-bold">46.8%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Overall</span>
+</div>
+<div class="mt-space-xs flex items-center gap-1.5">
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +5.2%
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs last month</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 px-space-sm py-2 rounded-xl flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Target: &gt;42%</span>
+<span class="text-on-secondary-container font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Target Met
+        </span>
+</div>
+</div>
+<!-- Card 3: Total Appointments & Revenue -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Completed Consultations</span>
+<div class="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display-hero-mobile text-display-hero-mobile text-primary font-bold">412</span>
+<span class="font-label-md text-label-md text-on-surface-variant">OPD Visits</span>
+</div>
+<div class="mt-space-xs flex items-center gap-1.5">
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +12.1%
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs last month</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 px-space-sm py-2 rounded-xl flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Rev:</span>
+<span class="font-semibold text-primary font-mono">₹9,88,400 Collected</span>
+</div>
+</div>
+<!-- Card 4: No-Show Rate -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">No-Show &amp; Abandonment</span>
+<div class="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">event_busy</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display-hero-mobile text-display-hero-mobile text-primary font-bold">6.4%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Rate</span>
+</div>
+<div class="mt-space-xs flex items-center gap-1.5">
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+            -2.8%
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">improved variance</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 px-space-sm py-2 rounded-xl flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>28 missed / 440</span>
+<span class="font-mono text-secondary font-medium">BMR: ~12%</span>
+</div>
+</div>
+</div>
+<!-- Charts & Analytics Grid (2x2 Balanced Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg mb-space-lg">
+<!-- Chart Card 1 (Top-Left): Leads by Source -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Leads by Channel Source</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Acquisition channel distribution for Bandra West</p>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-mono">284 Total Leads</span>
+</div>
+<!-- Donut Chart & Legend Visual -->
+<div class="mt-space-lg grid grid-cols-1 sm:grid-cols-12 gap-space-md items-center">
+<!-- Donut Graphic Representation (SVG) -->
+<div class="sm:col-span-5 flex justify-center relative">
+<svg class="w-44 h-44 -rotate-90" viewbox="0 0 120 120">
+<!-- Background Circle -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#F1F4F7" stroke-width="16"></circle>
+<!-- WhatsApp: 42% (stroke-dasharray ~ 121 / 289) -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#006972" stroke-dasharray="121 289" stroke-dashoffset="0" stroke-width="16"></circle>
+<!-- In-Clinic Walk-in: 24% (~ 69 / 289) -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#0B1F3A" stroke-dasharray="69 289" stroke-dashoffset="-121" stroke-width="16"></circle>
+<!-- Website In-take: 18% (~ 52 / 289) -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#7CD4DF" stroke-dasharray="52 289" stroke-dashoffset="-190" stroke-width="16"></circle>
+<!-- Inbound Phone: 11% (~ 32 / 289) -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#4D5F7D" stroke-dasharray="32 289" stroke-dashoffset="-242" stroke-width="16"></circle>
+<!-- Doctor Referral: 5% (~ 15 / 289) -->
+<circle cx="60" cy="60" fill="none" r="46" stroke="#E2E8EB" stroke-dasharray="15 289" stroke-dashoffset="-274" stroke-width="16"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-headline-md text-headline-md font-bold text-primary">284</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant -mt-1">Inquiries</span>
+</div>
+</div>
+<!-- Channel Legend breakdown -->
+<div class="sm:col-span-7 flex flex-col gap-2">
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface">WhatsApp Direct</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm">
+<span class="font-bold text-primary">42%</span>
+<span class="text-on-surface-variant">(119)</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="font-label-md text-label-md text-on-surface">In-Clinic Walk-in</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm">
+<span class="font-bold text-primary">24%</span>
+<span class="text-on-surface-variant">(68)</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary-fixed-dim"></span>
+<span class="font-label-md text-label-md text-on-surface">Website Intake</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm">
+<span class="font-bold text-primary">18%</span>
+<span class="text-on-surface-variant">(51)</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-tint"></span>
+<span class="font-label-md text-label-md text-on-surface">Inbound Call Desk</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm">
+<span class="font-bold text-primary">11%</span>
+<span class="text-on-surface-variant">(31)</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-xl bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-container-highest"></span>
+<span class="font-label-md text-label-md text-on-surface">Doctor Referrals</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm">
+<span class="font-bold text-primary">5%</span>
+<span class="text-on-surface-variant">(15)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Actionable Insight Pill -->
+<div class="mt-space-md p-space-sm rounded-xl bg-secondary-container/20 flex items-center gap-space-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm"><strong>Key Driver:</strong> WhatsApp automated response delivers highest conversion (58% confirmed within 3 hours).</span>
+</div>
+</div>
+<!-- Chart Card 2 (Top-Right): Leads & Bookings over Time -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Leads &amp; Bookings Velocity</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">30-day temporal trajectory (Oct 01 – Oct 31, 2024)</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-medium">Daily</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-primary font-label-sm text-label-sm">Weekly</button>
+</div>
+</div>
+<!-- Legend indicators -->
+<div class="mt-space-sm flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface">
+<span class="w-3 h-1 rounded bg-secondary"></span> Inbound Leads
+          </div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface">
+<span class="w-3 h-1 rounded bg-primary-container"></span> Confirmed Bookings
+          </div>
+<div class="ml-auto hidden sm:flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span>Diwali Special Camp (Oct 23)</span>
+</div>
+</div>
+<!-- Line Chart SVG Canvas -->
+<div class="mt-space-md w-full relative">
+<svg class="w-full h-48 overflow-visible" preserveaspectratio="none" viewbox="0 0 520 180">
+<defs>
+<lineargradient id="leadGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#006972" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#006972" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#E5E8EB" stroke-dasharray="3 3" x1="0" x2="520" y1="30" y2="30"></line>
+<line stroke="#E5E8EB" stroke-dasharray="3 3" x1="0" x2="520" y1="75" y2="75"></line>
+<line stroke="#E5E8EB" stroke-dasharray="3 3" x1="0" x2="520" y1="120" y2="120"></line>
+<line stroke="#E5E8EB" x1="0" x2="520" y1="165" y2="165"></line>
+<!-- Y Axis indicators -->
+<text fill="#75777E" font-family="Inter" font-size="10" x="6" y="28">20</text>
+<text fill="#75777E" font-family="Inter" font-size="10" x="6" y="73">15</text>
+<text fill="#75777E" font-family="Inter" font-size="10" x="6" y="118">10</text>
+<text fill="#75777E" font-family="Inter" font-size="10" x="6" y="163">0</text>
+<!-- Shaded Area for Leads -->
+<path d="M 30,120 Q 90,135 150,90 T 260,110 T 360,35 T 440,75 T 510,55 L 510,165 L 30,165 Z" fill="url(#leadGrad)"></path>
+<!-- Line 1: Inbound Leads (Teal) -->
+<path d="M 30,120 Q 90,135 150,90 T 260,110 T 360,35 T 440,75 T 510,55" fill="none" stroke="#006972" stroke-linecap="round" stroke-width="3"></path>
+<!-- Line 2: Confirmed Bookings (Navy) -->
+<path d="M 30,145 Q 90,150 150,125 T 260,135 T 360,75 T 440,110 T 510,95" fill="none" stroke="#0B1F3A" stroke-dasharray="0" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Focal Point Oct 23 Peak -->
+<circle cx="360" cy="35" fill="#006972" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="360" cy="75" fill="#0B1F3A" r="4" stroke="#FFFFFF" stroke-width="2"></circle>
+<line stroke="#006972" stroke-dasharray="2 2" stroke-width="1.5" x1="360" x2="360" y1="35" y2="165"></line>
+</svg>
+<!-- X Axis Dates -->
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm font-mono mt-2 px-4">
+<span>Oct 01</span>
+<span>Oct 06</span>
+<span>Oct 11</span>
+<span>Oct 16</span>
+<span>Oct 21</span>
+<span>Oct 26</span>
+<span>Oct 31</span>
+</div>
+</div>
+</div>
+<!-- Peak Annotation Callout -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Peak Surge: <strong>Oct 23</strong> — 19 leads logged during Senior Wellness Camp</span>
+</div>
+<span class="font-mono text-label-sm text-on-surface-variant font-medium">84.2% Converted</span>
+</div>
+</div>
+<!-- Chart Card 3 (Bottom-Left): Appointments per Doctor -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Doctor Consultation Yields</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">OPD slot fulfillment &amp; chamber capacity utilization</p>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm font-mono font-bold">412 Consults</span>
+</div>
+<!-- Doctor Utilization Bars List -->
+<div class="mt-space-lg flex flex-col gap-space-md">
+<!-- Doctor 1: Dr. Rajiv Menon -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold font-headline-sm text-[12px]">RM</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold leading-tight">Dr. Rajiv Menon</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cardiology • Chamber 102</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold font-mono">142 visits</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container ml-1.5 font-bold">94%</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-container rounded-full" style="width: 94%"></div>
+</div>
+</div>
+<!-- Doctor 2: Dr. Rajeshree Patel -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold font-headline-sm text-[12px]">RP</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold leading-tight">Dr. Rajeshree Patel</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dermatology &amp; Cosmetology • Chamber 104</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold font-mono">118 visits</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container ml-1.5 font-bold">88%</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-fixed-dim to-secondary rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<!-- Doctor 3: Dr. Farhan Mehta -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-surface-tint text-on-primary flex items-center justify-center font-bold font-headline-sm text-[12px]">FM</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold leading-tight">Dr. Farhan Mehta</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Orthopedics &amp; Joint Care • Chamber 106</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold font-mono">86 visits</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1.5 font-bold">76%</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-surface-tint rounded-full" style="width: 76%"></div>
+</div>
+</div>
+<!-- Doctor 4: Dr. Sunita Kulkarni -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold font-headline-sm text-[12px]">SK</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold leading-tight">Dr. Sunita Kulkarni</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pediatrics &amp; Child Health • Chamber 101</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold font-mono">66 visits</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1.5 font-bold">68%</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-tint rounded-full" style="width: 68%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Capacity Footnote -->
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">info</span>
+          Chamber capacity modeled at 6 days/week, 30-min standard OPD slots
+        </span>
+<button class="text-secondary font-semibold hover:underline">Chamber Allocations →</button>
+</div>
+</div>
+<!-- Chart Card 4 (Bottom-Right): Pipeline Conversion Funnel -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Patient Pipeline Velocity</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">End-to-end inquiry to treatment completion drop-off</p>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-mono">Oct Cohort</span>
+</div>
+<!-- Stepped Funnel Graphic -->
+<div class="mt-space-lg flex flex-col gap-2.5">
+<!-- Step 1: Inbound Intake -->
+<div class="flex items-center gap-space-sm">
+<div class="w-28 text-right font-label-sm text-label-sm text-on-surface font-semibold truncate">1. Inbound Leads</div>
+<div class="flex-1 bg-surface-container rounded-lg h-7 overflow-hidden relative flex items-center">
+<div class="h-full bg-primary-container rounded-lg flex items-center px-space-sm" style="width: 100%">
+<span class="font-label-sm text-label-sm text-on-primary font-bold font-mono">284 Inquiries (100%)</span>
+</div>
+</div>
+<span class="w-16 font-mono text-label-sm text-on-surface-variant text-right">Base</span>
+</div>
+<!-- Step 2: Triaged -->
+<div class="flex items-center gap-space-sm">
+<div class="w-28 text-right font-label-sm text-label-sm text-on-surface font-semibold truncate">2. Triaged &amp; Verified</div>
+<div class="flex-1 bg-surface-container rounded-lg h-7 overflow-hidden relative flex items-center">
+<div class="h-full bg-secondary rounded-lg flex items-center px-space-sm" style="width: 81.7%">
+<span class="font-label-sm text-label-sm text-on-secondary font-bold font-mono">232 Contacted</span>
+</div>
+</div>
+<span class="w-16 font-mono text-label-sm text-error text-right">-18.3%</span>
+</div>
+<!-- Step 3: Booked -->
+<div class="flex items-center gap-space-sm">
+<div class="w-28 text-right font-label-sm text-label-sm text-on-surface font-semibold truncate">3. Confirmed Slot</div>
+<div class="flex-1 bg-surface-container rounded-lg h-7 overflow-hidden relative flex items-center">
+<div class="h-full bg-secondary-fixed-dim rounded-lg flex items-center px-space-sm" style="width: 54.9%">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed font-bold font-mono">156 Booked</span>
+</div>
+</div>
+<span class="w-16 font-mono text-label-sm text-on-surface-variant text-right">67.2% v2</span>
+</div>
+<!-- Step 4: Consulted -->
+<div class="flex items-center gap-space-sm">
+<div class="w-28 text-right font-label-sm text-label-sm text-on-surface font-semibold truncate">4. Consult Completed</div>
+<div class="flex-1 bg-surface-container rounded-lg h-7 overflow-hidden relative flex items-center">
+<div class="h-full bg-primary-container rounded-lg flex items-center px-space-sm" style="width: 51.4%">
+<span class="font-label-sm text-label-sm text-on-primary font-bold font-mono">146 Attended</span>
+</div>
+</div>
+<span class="w-16 font-mono text-label-sm text-on-secondary-container font-semibold text-right">93.6%</span>
+</div>
+<!-- Step 5: Follow-up -->
+<div class="flex items-center gap-space-sm">
+<div class="w-28 text-right font-label-sm text-label-sm text-on-surface font-semibold truncate">5. Care Rx Closed</div>
+<div class="flex-1 bg-surface-container rounded-lg h-7 overflow-hidden relative flex items-center">
+<div class="h-full bg-surface-tint rounded-lg flex items-center px-space-sm" style="width: 46.8%">
+<span class="font-label-sm text-label-sm text-on-primary font-bold font-mono">133 Rx Followed</span>
+</div>
+</div>
+<span class="w-16 font-mono text-label-sm text-on-secondary-container font-semibold text-right">91.1%</span>
+</div>
+</div>
+</div>
+<!-- Funnel Efficiency Summary -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[18px] text-secondary">donut_large</span>
+<span>Lead-to-Completed Conversion: <strong class="font-mono text-secondary">46.8%</strong></span>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">Beat Target by +4.8%</span>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Front-Desk Operations & Staff Efficiency Table -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm mb-space-lg">
+<!-- Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Front-Desk Coordinator Productivity &amp; Triage</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Response latency, conversion velocity, and patient intake clearance</p>
+</div>
+<button class="inline-flex items-center gap-1.5 text-secondary font-label-md text-label-md font-semibold hover:underline">
+<span class="material-symbols-outlined text-[16px]">table_chart</span>
+        Export Staff Audit Log
+      </button>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md rounded-l-xl">Staff Member</th>
+<th class="py-3 px-space-sm text-center">Leads Handled</th>
+<th class="py-3 px-space-sm text-center">Avg Response Time</th>
+<th class="py-3 px-space-sm text-center">Booking Conversion</th>
+<th class="py-3 px-space-sm text-center">Follow-ups Cleared</th>
+<th class="py-3 px-space-sm text-right">Revenue Attributed</th>
+<th class="py-3 px-space-md rounded-r-xl text-center">Performance Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: Pooja Sawant -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-label-md">PS</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold">Pooja Sawant</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Senior Front Desk Lead</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-mono font-bold text-primary">124</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-secondary-container font-semibold">4.2 mins</span>
+<div class="text-[11px] text-on-surface-variant">SLA &lt;10m</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono font-bold text-primary">52.4%</span>
+<div class="w-16 h-1.5 bg-surface-container mx-auto rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-secondary" style="width: 52.4%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-surface">98 / 102</span>
+<span class="text-[11px] text-secondary font-semibold ml-1">(96%)</span>
+</td>
+<td class="py-space-md px-space-sm text-right font-mono font-bold text-primary">
+              ₹4,42,800
+            </td>
+<td class="py-space-md px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">workspace_premium</span>
+                Top Performer
+              </span>
+</td>
+</tr>
+<!-- Row 2: Riya Sen -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-label-md">RS</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold">Riya Sen</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">OPD Coordinator &amp; Billing</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-mono font-bold text-primary">98</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-surface font-semibold">6.8 mins</span>
+<div class="text-[11px] text-on-surface-variant">SLA &lt;10m</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono font-bold text-primary">44.8%</span>
+<div class="w-16 h-1.5 bg-surface-container mx-auto rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-primary-container" style="width: 44.8%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-surface">84 / 90</span>
+<span class="text-[11px] text-primary font-semibold ml-1">(93%)</span>
+</td>
+<td class="py-space-md px-space-sm text-right font-mono font-bold text-primary">
+              ₹3,26,400
+            </td>
+<td class="py-space-md px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">star</span>
+                Consistent
+              </span>
+</td>
+</tr>
+<!-- Row 3: Sneha Kadam -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-label-md">SK</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold">Sneha Kadam</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Evening &amp; Weekend Receptionist</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center font-mono font-bold text-primary">62</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-surface-variant font-semibold">8.5 mins</span>
+<div class="text-[11px] text-on-surface-variant">SLA &lt;10m</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono font-bold text-primary">38.7%</span>
+<div class="w-16 h-1.5 bg-surface-container mx-auto rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-surface-tint" style="width: 38.7%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-sm text-center">
+<span class="font-mono text-on-surface">51 / 58</span>
+<span class="text-[11px] text-on-surface-variant font-semibold ml-1">(88%)</span>
+</td>
+<td class="py-space-md px-space-sm text-right font-mono font-bold text-primary">
+              ₹2,19,200
+            </td>
+<td class="py-space-md px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                Standard
+              </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Summary Footer Banner -->
+<div class="mt-space-md pt-space-md bg-surface-container-low p-space-md rounded-xl flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">timer</span>
+          Clinic Response Latency Benchmark: <strong class="text-primary font-mono ml-0.5">5.8 mins</strong>
+</span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">task_alt</span>
+          Overall Follow-up Completion: <strong class="text-primary font-mono ml-0.5">93.2%</strong>
+</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md">
+<span class="text-on-surface-variant">Total OPD Desk Collections:</span>
+<span class="font-mono font-bold text-primary text-headline-sm">₹9,88,400</span>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error": "#ffffff", "on-primary-fixed": "#071c36", "surface-container": "#ebeef1", "surface-container-lowest": "#ffffff", "on-primary-container": "#7587a7", "on-primary": "#ffffff", "surface-variant": "#e0e3e6", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#001453", "surface": "#f7fafd", "tertiary-fixed": "#dde1ff", "surface-bright": "#f7fafd", "outline": "#75777e", "secondary-container": "#96eef9", "on-tertiary-container": "#5b7dff", "on-secondary-container": "#006d77", "outline-variant": "#c4c6ce", "on-background": "#181c1e", "inverse-on-surface": "#eef1f4", "surface-dim": "#d7dadd", "tertiary-fixed-dim": "#b7c4ff", "on-tertiary": "#ffffff", "secondary-fixed": "#98f0fb", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#0037b8", "secondary": "#006972", "error": "#ba1a1a", "primary-fixed-dim": "#b5c7ea", "on-secondary-fixed-variant": "#004f56", "surface-tint": "#4d5f7d", "primary-fixed": "#d6e3ff", "on-secondary-fixed": "#001f23", "on-primary-fixed-variant": "#364764", "on-surface-variant": "#44474d", "primary-container": "#0b1f3a", "surface-container-low": "#f1f4f7", "tertiary": "#000420", "error-container": "#ffdad6", "inverse-primary": "#b5c7ea", "on-surface": "#181c1e", "on-secondary": "#ffffff", "primary": "#000615", "background": "#f7fafd", "tertiary-container": "#00175b", "surface-container-highest": "#e0e3e6", "surface-container-high": "#e5e8eb", "secondary-fixed-dim": "#7cd4df" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-lg": "2rem", "space-md": "1.25rem", "space-sm": "0.75rem", "space-xl": "3.5rem", "margin": "3rem", "space-xs": "0.375rem", "margin-mobile": "1.25rem", "gutter": "1.5rem" }, "fontFamily": { "display-hero": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "label-sm": [ "Inter" ], "editorial-accent": [ "Newsreader" ], "headline-sm": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ] }, "fontSize": { "display-hero": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "body-md": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" } ], "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" } ], "editorial-accent": [ "22px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background text-on-surface font-body-md text-body-md min-h-screen"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_12px_rgba(11,31,58,0.04)]"><div class="p-space-md"><div class="flex items-center gap-space-xs pb-space-md mb-space-md"><img alt="MedConsults EKG Healthcare Logo.png" class="h-8 w-auto object-contain [mix-blend-mode:multiply]" src="https://lh3.googleusercontent.com/aida/ALJJyrAS0BooVlk1FS0nYRMAyMP6keClrAC1ev791PChrPs-fwbadZKandphuFYVV_frsXYCrpDr_AF3D5Q5ZA1SiFSG4ogUgpWzma_6_L2ep_1rlczQFKTnWgXeYZhQINspy8PZO3kQz7hMAZs9W9MK3nBEfPkyO-R4RxrDcjkiHf9dIDMm2xZehQKTtgDGvzT7bbW2F3-Z9y0clw6KdF_iKDd1Sns9t5eVPgokyJFGSI4GSkAF3RyPyuVeoyM"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold leading-none">MedConsults</span><div class="flex items-center gap-1.5 mt-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Admin Portal</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[10px] font-semibold leading-none">PRO</span></div></div></div><nav class="flex flex-col gap-1.5" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_4px_14px_rgba(11,31,58,0.12)]"><a class="flex items-center justify-between px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Overview</a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="doctor-approvals" href="#"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-[20px]">verified_user</span>Doctor approvals</div><span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">4</span></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="doctors" href="#"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-[20px]">stethoscope</span><span>Doctors</span></div><span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>18 Live</span></a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="users" href="#"><span class="material-symbols-outlined text-[20px]">groups</span>Users</a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="appointments" href="#"><span class="material-symbols-outlined text-[20px]">calendar_today</span>Appointments</a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md bg-primary-container text-on-primary font-semibold shadow-[0_4px_14px_rgba(11,31,58,0.12)] transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span>Settings</a></nav></div><div class="p-space-md"><div class="bg-surface-container-low p-space-sm rounded-xl mb-3 flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Clinical Node: US-East</span></div><span class="font-label-sm text-label-sm font-semibold text-secondary">Active</span></div><a class="flex items-center gap-2.5 px-space-sm py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span>Log out</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(11,31,58,0.03)] z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-lg"><div class="hidden md:flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Portal</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="hover:text-on-surface cursor-pointer">Admin Console</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="font-semibold text-primary">Overview</span></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-outline pointer-events-none">search</span><input class="w-72 lg:w-96 pl-9 pr-space-sm py-1.5 bg-surface-container-lowest rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all shadow-sm" placeholder="Search doctors, users, records..." type="text" fdprocessedid="wv4tq8"></div></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[15px]">science</span>Demo — sample data</div><button class="relative p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button" fdprocessedid="40gufo"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span></button><div class="flex items-center gap-2.5 pl-2 py-1"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden lg:flex flex-col text-left"><div class="flex items-center gap-1.5"><span class="font-label-md text-label-md font-bold text-primary leading-none">Demo Admin</span><span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px] font-semibold leading-none">SUPER</span></div><span class="font-label-sm text-label-sm text-outline leading-tight mt-0.5">Administrator</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = document.querySelectorAll("aside nav a");
+      navLinks.forEach((link) => {
+        if (link.getAttribute("data-path") === "settings") {
+          link.className = "flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md bg-primary-container text-on-primary font-semibold shadow-[0_4px_14px_rgba(11,31,58,0.12)] transition-all";
+        } else {
+          link.classList.remove("bg-primary-container", "text-on-primary", "font-semibold", "shadow-[0_4px_14px_rgba(11,31,58,0.12)]");
+          if (!link.classList.contains("text-on-surface-variant")) {
+            link.classList.add("text-on-surface-variant");
+          }
+        }
+      });
+    });
+  </script>
+<!-- Top Context Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>Portal</span>
+<span class="material-symbols-outlined text-[13px] text-outline">chevron_right</span>
+<span>Admin Console</span>
+<span class="material-symbols-outlined text-[13px] text-outline">chevron_right</span>
+<span class="font-semibold text-secondary">Settings &amp; Compliance</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">Settings &amp; Audit Log</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Configure clinical governance rules, practitioner credentialing guardrails, and inspect tamper-evident cryptographic event records.
+      </p>
+</div>
+<div class="flex items-center gap-3 self-start md:self-auto">
+<div class="relative group">
+<button class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-lowest text-primary font-label-md text-label-md font-semibold shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all" id="exportBtn" type="button" fdprocessedid="ycd7jm">
+<span class="material-symbols-outlined text-[19px] text-secondary">download</span>
+<span>Export Audit Log</span>
+<span class="material-symbols-outlined text-[15px] text-outline">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-48 bg-surface-container-lowest rounded-xl shadow-xl p-1.5 z-20" id="exportMenu">
+<button class="w-full text-left px-3 py-2 text-primary font-label-sm text-label-sm rounded-lg hover:bg-surface-container-low flex items-center justify-between" onclick="triggerToast('Cryptographic JSON export initiated (SHA-256 signed)')" type="button">
+<span>JSON Ledger</span>
+<span class="font-label-sm text-secondary font-bold">.json</span>
+</button>
+<button class="w-full text-left px-3 py-2 text-primary font-label-sm text-label-sm rounded-lg hover:bg-surface-container-low flex items-center justify-between" onclick="triggerToast('CSV Ledger export initiated')" type="button">
+<span>Audit Sheet</span>
+<span class="font-label-sm text-secondary font-bold">.csv</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-[0_4px_14px_rgba(0,80,255,0.22)] hover:bg-primary-container transition-all" onclick="triggerToast('Sandbox Protection: Changes simulated in memory only (Read-Only Demo Mode)')" type="button" fdprocessedid="4vlzhu">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">save</span>
+<span>Save Policy</span>
+</button>
+<span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-[10px] font-bold shadow-sm">
+          READ-ONLY
+        </span>
+</div>
+</div>
+</div>
+<!-- Operational Health & Audit Integrity Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-3 -bottom-3 w-20 h-20 bg-secondary-container/20 rounded-full blur-xl group-hover:scale-125 transition-transform"></div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Audit Ledger</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[19px]">verified</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">24,891</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">Events</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>100% SHA-256 Verified</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Credentialing Rules</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[19px]">clinical_notes</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">4 Stages</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-bold">STRICT</span>
+</div>
+<p class="mt-1 text-on-surface-variant font-body-sm text-body-sm">
+          Active SMC license check enforced
+        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">OPD Queue Policy</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[19px]">schedule</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">15 / 30m</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Slots</span>
+</div>
+<p class="mt-1 text-on-surface-variant font-body-sm text-body-sm">
+          Max 4 emergency walk-in buffers
+        </p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-primary-container text-on-primary rounded-2xl p-space-md shadow-md flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/20 rounded-full blur-2xl"></div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-wider font-semibold">Admin Protection</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed font-label-sm text-[10px] font-bold">
+          DEMO MODE
+        </span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-primary">
+          Write Guard Active
+        </div>
+<div class="flex items-center gap-1.5 mt-1 text-on-primary-container font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">shield_lock</span>
+<span>Mutations reverted on reload</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1">
+<button class="tab-btn active px-4 py-2 rounded-xl font-label-md text-label-md font-semibold bg-primary text-on-primary transition-all shadow-sm flex items-center gap-2" type="button" fdprocessedid="esufmo">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Audit Trail &amp; Event Logs</span>
+<span class="px-2 py-0.2 rounded-full bg-on-primary/20 text-on-primary font-label-sm text-[11px]">24.8k</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl font-label-md text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-2" onclick="triggerToast('Switched to Clinical Governance policy editor')" type="button" fdprocessedid="ckqq8e">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+<span>Clinical Governance</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl font-label-md text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-2" onclick="triggerToast('Switched to Credentialing Policies')" type="button" fdprocessedid="r634em">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Credentialing Policies</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl font-label-md text-label-md font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-2" onclick="triggerToast('Switched to Security &amp; Access Controls')" type="button" fdprocessedid="l7bpkf">
+<span class="material-symbols-outlined text-[18px]">security</span>
+<span>Security &amp; Access</span>
+</button>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- Main Audit Trail Table Card (8 Columns Desktop) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<!-- Card Header & Filters -->
+<div class="p-space-md flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Immutable Audit Ledger</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Append-only log recording doctor approvals, rejections, queue overrides, and policy updates.
+              </p>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span>SHA-256 Signatures Valid</span>
+</div>
+</div>
+<!-- Controls Toolbar -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-2.5">
+<!-- Search -->
+<div class="md:col-span-5 relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[18px] text-outline pointer-events-none">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" id="auditSearchInput" placeholder="Filter by practitioner, admin, MMC or token..." type="text" fdprocessedid="g43zae5">
+</div>
+<!-- Event Type Filter -->
+<div class="md:col-span-3">
+<select class="w-full px-3 py-2 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all cursor-pointer" id="eventTypeFilter" fdprocessedid="hrtnur">
+<option value="ALL">All Event Types</option>
+<option value="APPROVAL">Doctor Approved</option>
+<option value="REJECTION">Doctor Rejected</option>
+<option value="OVERRIDE">Slot Buffer Override</option>
+<option value="SECURITY">Security / Access Block</option>
+<option value="SYNC">Queue Re-sync</option>
+</select>
+</div>
+<!-- Date Range -->
+<div class="md:col-span-2">
+<select class="w-full px-3 py-2 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all cursor-pointer" fdprocessedid="39lbzi">
+<option>Today</option>
+<option selected="">Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>Custom Range</option>
+</select>
+</div>
+<!-- Actor -->
+<div class="md:col-span-2">
+<select class="w-full px-3 py-2 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all cursor-pointer" fdprocessedid="m5zqz7">
+<option>All Actors</option>
+<option>Demo Admin</option>
+<option>System Cron</option>
+<option>Reception Desk</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="auditTable">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold">Timestamp</th>
+<th class="py-3 px-4 font-semibold">Actor</th>
+<th class="py-3 px-4 font-semibold">Event &amp; Action</th>
+<th class="py-3 px-4 font-semibold">Target Entity</th>
+<th class="py-3 px-4 font-semibold">Node / IP</th>
+<th class="py-3 px-4 font-semibold text-center">Status</th>
+<th class="py-3 px-4 font-semibold text-right">Details</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Log Entry 1: Doctor Approved -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 24, 2024</div>
+<div class="text-[12px] text-outline font-mono">11:14:02 AM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-[10px]">
+                      DA
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">Demo Admin</div>
+<div class="text-[11px] text-outline">ADM-01 (Super)</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">how_to_reg</span>
+                    DOCTOR_APPROVED
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">Dr. Sunita Kulkarni</div>
+<div class="text-[12px] text-outline font-mono">MMC-2015-4421 • Cardiology</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">US-East Node</div>
+<div class="text-[11px] font-mono text-outline">10.14.22.8</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-secondary font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    Committed
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89214', 'DOCTOR_APPROVED', 'Dr. Sunita Kulkarni (MMC-2015-4421)', 'Status changed: PENDING_VERIFICATION → ACTIVE_PRACTITIONER. Validated with SMC Registry API token: #V881-A2.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+<!-- Log Entry 2: Credential Rejected -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 24, 2024</div>
+<div class="text-[12px] text-outline font-mono">10:48:30 AM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-[10px]">
+                      DA
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">Demo Admin</div>
+<div class="text-[11px] text-outline">ADM-01 (Super)</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                    CREDENTIAL_REJECTED
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">Dr. Rajeshree Patel</div>
+<div class="text-[12px] text-error font-mono">MMC-2016-1182 (Expired)</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">US-East Node</div>
+<div class="text-[11px] font-mono text-outline">10.14.22.8</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px] text-error">gavel</span>
+                    Actioned
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89213', 'CREDENTIAL_REJECTED', 'Dr. Rajeshree Patel (MMC-2016-1182)', 'Application declined. SMC registration validation returned Expired on 2024-03-31. Formal rejection notice generated and locked in compliance storage.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+<!-- Log Entry 3: Emergency Walk-In Buffer Opened -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 24, 2024</div>
+<div class="text-[12px] text-outline font-mono">09:15:11 AM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-[10px]">
+                      OP
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">Desk Lead (P-03)</div>
+<div class="text-[11px] text-outline">OPD Reception Desk</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">more_time</span>
+                    SLOT_BUFFER_OPENED
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">Rahul Sharma</div>
+<div class="text-[12px] text-outline font-mono">Token #07 • Urgent Triage</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">Clinic Edge LAN</div>
+<div class="text-[11px] font-mono text-outline">192.168.1.104</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-secondary font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    Committed
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89210', 'SLOT_BUFFER_OPENED', 'Rahul Sharma (Token #07)', 'Walk-in emergency priority slot 07 injected into Dr. Kulkarni 09:30 AM queue block with supervisor approval token.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+<!-- Log Entry 4: Security Account Lock Attempt -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 24, 2024</div>
+<div class="text-[12px] text-outline font-mono">08:02:44 AM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-[10px]">
+                      SEC
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">Auth Engine</div>
+<div class="text-[11px] text-outline">Automated Daemon</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/60 text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+                    ACCOUNT_LOCK_ATTEMPT
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">demo-consultant-44</div>
+<div class="text-[12px] text-error font-mono">5 Failed PIN attempts</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">Gateway Proxy</div>
+<div class="text-[11px] font-mono text-outline">198.51.100.24</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-error font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">shield</span>
+                    Blocked
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89209', 'ACCOUNT_LOCK_ATTEMPT', 'demo-consultant-44', 'IP 198.51.100.24 isolated after multiple threshold password mismatches. 15-minute cool-down enforced on practitioner console.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+<!-- Log Entry 5: Queue Auto-Sync -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 24, 2024</div>
+<div class="text-[12px] text-outline font-mono">07:00:00 AM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold text-[10px]">
+                      SYS
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">System Cron</div>
+<div class="text-[11px] text-outline">OPD Schedule Sync</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                    ROSTER_SYNCHRONIZED
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">All Active Doctors (32)</div>
+<div class="text-[12px] text-outline font-mono">Session: Morning OPD</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">Internal Bus</div>
+<div class="text-[11px] font-mono text-outline">127.0.0.1:9092</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-secondary font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    Committed
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89201', 'ROSTER_SYNCHRONIZED', 'Morning OPD Daily Schedule', 'Broadcasted active practitioner time allocations to 4 waiting area digital display panels and reception check-in kiosks.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+<!-- Log Entry 6: Verification Policy Enforced -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-primary">Oct 23, 2024</div>
+<div class="text-[12px] text-outline font-mono">04:30:19 PM EDT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-[10px]">
+                      DA
+                    </div>
+<div>
+<div class="font-medium text-primary leading-tight">Demo Admin</div>
+<div class="text-[11px] text-outline">ADM-01 (Super)</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+                    RULE_MODIFIED
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-semibold text-primary truncate max-w-[190px]">License Expiry Threshold</div>
+<div class="text-[12px] text-outline font-mono">Changed to 60 Days</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="text-primary text-[13px] font-medium">US-East Node</div>
+<div class="text-[11px] font-mono text-outline">10.14.22.8</div>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 text-secondary font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    Committed
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-all" onclick="openDiffModal('DIFF-89198', 'RULE_MODIFIED', 'License Expiry Threshold Policy', 'Parameter SMC_EXPIRY_WARNING_DAYS updated: 30 → 60 days. Automated reminders will trigger 60 days prior to registration lapse.')" type="button">
+                    Diff
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-space-md bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span>Showing <strong class="text-primary font-semibold">1 – 6</strong> of <strong class="text-primary font-semibold">24,891</strong> immutable audit events</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-outline cursor-not-allowed font-label-sm text-label-sm font-semibold flex items-center gap-1" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              Previous
+            </button>
+<span class="px-3 py-1 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">1</span>
+<button class="px-2.5 py-1 rounded-lg hover:bg-surface-container-low font-label-sm text-label-sm font-semibold text-primary" onclick="triggerToast('Loading audit ledger page 2...')" type="button" fdprocessedid="29nry">2</button>
+<button class="px-2.5 py-1 rounded-lg hover:bg-surface-container-low font-label-sm text-label-sm font-semibold text-primary" onclick="triggerToast('Loading audit ledger page 3...')" type="button" fdprocessedid="bybvwk">3</button>
+<span class="text-outline">...</span>
+<button class="px-2.5 py-1 rounded-lg hover:bg-surface-container-low font-label-sm text-label-sm font-semibold text-primary" onclick="triggerToast('Loading audit ledger page 4,148...')" type="button" fdprocessedid="dpopbc">4148</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" onclick="triggerToast('Loading next page of audit logs')" type="button" fdprocessedid="dzq1a">
+              Next
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Governance & Policy Side Panel (4 Columns Desktop) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Card 1: Doctor Verification & Credentialing Rules -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary">Credentialing Rules</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[10px] font-bold">ACTIVE</span>
+</div>
+<div class="flex flex-col gap-space-sm text-body-sm font-body-sm text-on-surface">
+<!-- Policy Item 1 -->
+<div class="flex items-start justify-between gap-3 p-3 rounded-xl bg-surface-container-low">
+<div class="flex flex-col gap-0.5">
+<span class="font-semibold text-primary">State Medical Council (SMC) Check</span>
+<span class="text-on-surface-variant text-[13px]">Mandate verifiable active registration certificate before listing</span>
+</div>
+<div class="relative inline-flex items-center cursor-not-allowed" title="Core compliance rule is permanently locked">
+<input checked="" class="sr-only peer" disabled="" type="checkbox">
+<div class="w-11 h-6 bg-secondary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</div>
+<!-- Policy Item 2: Dropdown -->
+<div class="flex flex-col gap-1.5 p-3 rounded-xl bg-surface-container-low">
+<label class="font-semibold text-primary">License Expiry Warning Horizon</label>
+<p class="text-on-surface-variant text-[13px]">Notify admin and pause schedule auto-bookings if certificate nears lapse.</p>
+<select class="mt-1 w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/40" fdprocessedid="ww3f2u">
+<option>30 days before expiration</option>
+<option selected="">60 days before expiration (Standard)</option>
+<option>90 days before expiration (Strict)</option>
+</select>
+</div>
+<!-- Policy Item 3: Toggle -->
+<label class="flex items-start justify-between gap-3 p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<span class="font-semibold text-primary">Mandate Rejection Justification</span>
+<span class="text-on-surface-variant text-[13px]">Require written clinical notes before declining doctor applications</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+<!-- Policy Item 4: Toggle -->
+<label class="flex items-start justify-between gap-3 p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<span class="font-semibold text-primary">Roster Auto-Pause</span>
+<span class="text-on-surface-variant text-[13px]">Instantly halt bookings during credential dispute or audit review</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+</div>
+</div>
+<!-- Card 2: OPD Queue & Slot Scheduling Guardrails -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[22px]">hourglass_top</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary">OPD Slot Guardrails</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline">v2.4</span>
+</div>
+<div class="flex flex-col gap-space-sm text-body-sm font-body-sm">
+<!-- Setting 1: Duration Selector -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-primary">Default Slot Interval</span>
+<span class="font-label-sm text-secondary font-bold">15 min standard</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<button class="py-1.5 text-center rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold shadow-sm" type="button" fdprocessedid="g4pimi9">
+                15 Minutes
+              </button>
+<button class="py-1.5 text-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-sm text-label-sm font-medium transition-colors" type="button" fdprocessedid="oeqfq">
+                30 Minutes
+              </button>
+</div>
+</div>
+<!-- Setting 2: Emergency walk-in limit -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Max Emergency Buffers</span>
+<span class="text-on-surface-variant text-[13px]">Unscheduled triage tokens allowed</span>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-14 text-center py-1 bg-surface-container-lowest rounded-lg font-bold text-primary font-body-sm focus:outline-none focus:ring-2 focus:ring-secondary/40" max="10" min="1" type="number" value="4" fdprocessedid="okypw">
+</div>
+</div>
+<!-- Setting 3: Cancellation policy -->
+<label class="flex items-start justify-between gap-3 p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<span class="font-semibold text-primary">Same-Day Desk Cancellation</span>
+<span class="text-on-surface-variant text-[13px]">Allow clinic front-desk supervisor to void walk-in queues</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+<!-- Setting 4: Kiosk Sync -->
+<label class="flex items-start justify-between gap-3 p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<span class="font-semibold text-primary">Waiting Area Kiosk Realtime Sync</span>
+<span class="text-on-surface-variant text-[13px]">Push token status updates to waiting room displays within 250ms</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+</div>
+</div>
+<!-- Card 3: Security & Demo Sandbox Safeguards -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm border-l-4 border-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">security_update_good</span>
+<h4 class="font-label-md text-label-md font-bold text-primary uppercase tracking-wider">Demo Sandbox Guardrail</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          This portal runs on simulated operational parameters. Mutation calls to clinical databases require cryptographic hardware tokens (YubiKey/FIDO2). Any simulated policy edits are sandboxed and will auto-reset upon session termination.
+        </p>
+<div class="flex items-center justify-between pt-2 text-on-surface-variant font-label-sm text-label-sm">
+<span>Session Inactivity Lock</span>
+<span class="font-semibold text-primary font-mono">30 mins</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Metadata Diff Inspection Modal -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm transition-opacity" id="diffModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-space-md shadow-2xl flex flex-col gap-space-md transform transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/40 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-mono font-bold text-primary text-[14px]" id="diffModalId">DIFF-89214</span>
+<span class="px-2 py-0.2 rounded-full bg-surface-container-high text-primary font-label-sm text-[11px] font-bold" id="diffModalEvent">EVENT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium" id="diffModalTarget">Target Entity</p>
+</div>
+</div>
+<button class="p-1 rounded-lg text-outline hover:text-primary hover:bg-surface-container transition-colors" onclick="closeDiffModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 font-mono text-[12px] flex flex-col gap-2 overflow-x-auto text-primary">
+<div class="flex items-center justify-between text-outline pb-1">
+<span>SIGNATURE: sha256:4f8e...c120</span>
+<span>COMPLIANCE STATE: IMMUTABLE</span>
+</div>
+<div class="leading-relaxed bg-surface-container-lowest p-3 rounded-lg text-on-surface" id="diffModalContent">
+          Diff payload details here.
+        </div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="px-3 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold flex items-center gap-1.5 transition-colors" onclick="triggerToast('Cryptographic signature re-verified: VALID')" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+          Verify Ledger Hash
+        </button>
+<button class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-container transition-colors" onclick="closeDiffModal()" type="button">
+          Done
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification Trigger -->
+<div class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-4 py-3 rounded-xl bg-primary text-on-primary shadow-2xl transition-all" id="toastNotification">
+<span class="material-symbols-outlined text-secondary-container text-[20px]">info</span>
+<span class="font-body-sm text-body-sm font-medium" id="toastMessage">Notification triggered</span>
+</div>
+<script>
+    // Export dropdown toggle
+    const exportBtn = document.getElementById("exportBtn");
+    const exportMenu = document.getElementById("exportMenu");
+    if (exportBtn && exportMenu) {
+      exportBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        exportMenu.classList.toggle("hidden");
+      });
+      document.addEventListener("click", () => {
+        exportMenu.classList.add("hidden");
+      });
+    }
+
+    // Modal behavior
+    function openDiffModal(id, eventType, target, diffText) {
+      document.getElementById("diffModalId").textContent = id;
+      document.getElementById("diffModalEvent").textContent = eventType;
+      document.getElementById("diffModalTarget").textContent = target;
+      document.getElementById("diffModalContent").innerHTML = diffText;
+      const modal = document.getElementById("diffModal");
+      modal.classList.remove("hidden");
+    }
+
+    function closeDiffModal() {
+      const modal = document.getElementById("diffModal");
+      modal.classList.add("hidden");
+    }
+
+    // Toast behavior
+    let toastTimer;
+    function triggerToast(message) {
+      const toast = document.getElementById("toastNotification");
+      const msgElem = document.getElementById("toastMessage");
+      msgElem.textContent = message;
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 3500);
+    }
+
+    // Live search filtering on the audit table
+    const searchInput = document.getElementById("auditSearchInput");
+    const eventFilter = document.getElementById("eventTypeFilter");
+    const tableBody = document.querySelector("#auditTable tbody");
+
+    function filterTable() {
+      const query = (searchInput.value || "").toLowerCase().trim();
+      const eventVal = eventFilter.value;
+      const rows = tableBody.querySelectorAll("tr");
+
+      rows.forEach((row) => {
+        const text = row.innerText.toLowerCase();
+        const matchesQuery = query === "" || text.includes(query);
+
+        let matchesEvent = true;
+        if (eventVal === "APPROVAL") matchesEvent = text.includes("doctor_approved");
+        else if (eventVal === "REJECTION") matchesEvent = text.includes("credential_rejected");
+        else if (eventVal === "OVERRIDE") matchesEvent = text.includes("slot_buffer_opened");
+        else if (eventVal === "SECURITY") matchesEvent = text.includes("account_lock_attempt");
+        else if (eventVal === "SYNC") matchesEvent = text.includes("roster_synchronized");
+
+        if (matchesQuery && matchesEvent) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    if (searchInput) searchInput.addEventListener("input", filterTable);
+    if (eventFilter) eventFilter.addEventListener("change", filterTable);
+  </script>
+</div></main></div>
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>

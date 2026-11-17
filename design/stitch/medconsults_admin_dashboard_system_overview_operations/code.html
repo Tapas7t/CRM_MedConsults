@@ -1,0 +1,769 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error": "#ffffff", "on-primary-fixed": "#071c36", "surface-container": "#ebeef1", "surface-container-lowest": "#ffffff", "on-primary-container": "#7587a7", "on-primary": "#ffffff", "surface-variant": "#e0e3e6", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#001453", "surface": "#f7fafd", "tertiary-fixed": "#dde1ff", "surface-bright": "#f7fafd", "outline": "#75777e", "secondary-container": "#96eef9", "on-tertiary-container": "#5b7dff", "on-secondary-container": "#006d77", "outline-variant": "#c4c6ce", "on-background": "#181c1e", "inverse-on-surface": "#eef1f4", "surface-dim": "#d7dadd", "tertiary-fixed-dim": "#b7c4ff", "on-tertiary": "#ffffff", "secondary-fixed": "#98f0fb", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#0037b8", "secondary": "#006972", "error": "#ba1a1a", "primary-fixed-dim": "#b5c7ea", "on-secondary-fixed-variant": "#004f56", "surface-tint": "#4d5f7d", "primary-fixed": "#d6e3ff", "on-secondary-fixed": "#001f23", "on-primary-fixed-variant": "#364764", "on-surface-variant": "#44474d", "primary-container": "#0b1f3a", "surface-container-low": "#f1f4f7", "tertiary": "#000420", "error-container": "#ffdad6", "inverse-primary": "#b5c7ea", "on-surface": "#181c1e", "on-secondary": "#ffffff", "primary": "#000615", "background": "#f7fafd", "tertiary-container": "#00175b", "surface-container-highest": "#e0e3e6", "surface-container-high": "#e5e8eb", "secondary-fixed-dim": "#7cd4df" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-lg": "2rem", "space-md": "1.25rem", "space-sm": "0.75rem", "space-xl": "3.5rem", "margin": "3rem", "space-xs": "0.375rem", "margin-mobile": "1.25rem", "gutter": "1.5rem" }, "fontFamily": { "display-hero": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "label-sm": [ "Inter" ], "editorial-accent": [ "Newsreader" ], "headline-sm": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ] }, "fontSize": { "display-hero": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "body-md": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" } ], "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" } ], "editorial-accent": [ "22px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background text-on-surface font-body-md text-body-md min-h-screen"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_12px_rgba(11,31,58,0.04)]"><div class="p-space-md"><div class="flex items-center gap-space-xs pb-space-md mb-space-md"><img alt="MedConsults EKG Healthcare Logo.png" class="h-8 w-auto object-contain [mix-blend-mode:multiply]" src="https://lh3.googleusercontent.com/aida/ALJJyrAS0BooVlk1FS0nYRMAyMP6keClrAC1ev791PChrPs-fwbadZKandphuFYVV_frsXYCrpDr_AF3D5Q5ZA1SiFSG4ogUgpWzma_6_L2ep_1rlczQFKTnWgXeYZhQINspy8PZO3kQz7hMAZs9W9MK3nBEfPkyO-R4RxrDcjkiHf9dIDMm2xZehQKTtgDGvzT7bbW2F3-Z9y0clw6KdF_iKDd1Sns9t5eVPgokyJFGSI4GSkAF3RyPyuVeoyM"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold leading-none">MedConsults</span><div class="flex items-center gap-1.5 mt-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Admin Portal</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[10px] font-semibold leading-none">PRO</span></div></div></div><nav class="flex flex-col gap-1.5" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-[0_4px_14px_rgba(11,31,58,0.12)]"><a aria-current="page" class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl transition-all bg-primary-container text-on-primary font-semibold shadow-[0_4px_14px_rgba(11,31,58,0.12)]" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Overview</a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="doctor-approvals" href="#"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-[20px]">verified_user</span>Doctor approvals</div><span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">4</span></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="doctors" href="#"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-[20px]">stethoscope</span><span>Doctors</span></div><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>18 Live</span></a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="users" href="#"><span class="material-symbols-outlined text-[20px]">groups</span>Users</a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="appointments" href="#"><span class="material-symbols-outlined text-[20px]">calendar_today</span>Appointments</a><a class="flex items-center gap-3 px-space-sm py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span>Settings</a></nav></div><div class="p-space-md"><div class="bg-surface-container-low p-space-sm rounded-xl mb-3 flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Clinical Node: US-East</span></div><span class="font-label-sm text-label-sm font-semibold text-secondary">Active</span></div><a class="flex items-center gap-2.5 px-space-sm py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span>Log out</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(11,31,58,0.03)] z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-lg"><div class="hidden md:flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Portal</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="hover:text-on-surface cursor-pointer">Admin Console</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="font-semibold text-primary">Overview</span></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-outline pointer-events-none">search</span><input class="w-72 lg:w-96 pl-9 pr-space-sm py-1.5 bg-surface-container-lowest rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all shadow-sm" placeholder="Search doctors, users, records..." type="text" fdprocessedid="kw3vbm"></div></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[15px]">science</span>Demo — sample data</div><button class="relative p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button" fdprocessedid="8tjbo"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span></button><div class="flex items-center gap-2.5 pl-2 py-1"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden lg:flex flex-col text-left"><div class="flex items-center gap-1.5"><span class="font-label-md text-label-md font-bold text-primary leading-none">Demo Admin</span><span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px] font-semibold leading-none">SUPER</span></div><span class="font-label-sm text-label-sm text-outline leading-tight mt-0.5">Administrator</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter py-space-lg"><div class="flex flex-col w-full gap-space-lg pb-12">
+<!-- Toast Notification Deck (Fixed in view context) -->
+<aside aria-live="polite" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-md w-full">
+<div class="pointer-events-auto bg-surface-container-lowest/95 backdrop-blur-md rounded-2xl p-4 shadow-[0_12px_32px_rgba(11,31,58,0.12)] flex items-start gap-3.5 transition-all duration-300" id="toast-approval">
+<div class="w-8 h-8 rounded-full bg-secondary-container/40 flex items-center justify-center text-on-secondary-container shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-label-md font-bold text-primary">Doctor Credentials Verified</span>
+<span class="font-label-sm text-[11px] text-outline">Just now</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-snug">
+          Dr. Sunita Kulkarni (KMC-2015-4421) has been approved for OPD tele-consultations across Karnataka &amp; Maharashtra hubs.
+        </p>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1 rounded-lg hover:bg-surface-container" onclick="document.getElementById('toast-approval').style.opacity='0'; setTimeout(()=&gt;document.getElementById('toast-approval').remove(), 300)" fdprocessedid="hsn91">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</aside>
+<!-- Section 1: Header & Global Controls -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-2xl shadow-[0_4px_20px_rgba(11,31,58,0.03)]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">All 4 Regional Hubs Online</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Latency 14ms (Mumbai Node)</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">System Overview &amp; Operations</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live operational telemetry • Thursday, October 24, 2024</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" type="button" fdprocessedid="0e4of4">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Export Audit Log</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-primary transition-all shadow-[0_4px_14px_rgba(11,31,58,0.18)] font-label-md text-label-md font-semibold" type="button" fdprocessedid="tr38q">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>System Preferences</span>
+</button>
+</div>
+</section>
+<!-- Section 2: Summary Row of 4 Metric Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- Total Patients -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_4px_12px_rgba(11,31,58,0.03)] flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(11,31,58,0.06)] transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Total Patients</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-headline-lg font-bold text-primary leading-none">12,480</span>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 bg-surface-container-low px-3 py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">+8.4%</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant truncate">new registrations this month</span>
+</div>
+</div>
+<!-- Total Doctors -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_4px_12px_rgba(11,31,58,0.03)] flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(11,31,58,0.06)] transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Total Doctors</span>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-headline-lg font-bold text-primary leading-none">342</span>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 bg-surface-container-low px-3 py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">+12 verified</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant truncate">across 18 specialties</span>
+</div>
+</div>
+<!-- Pending Approvals -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_4px_12px_rgba(11,31,58,0.03)] flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(11,31,58,0.06)] transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Pending Approvals</span>
+<div class="w-10 h-10 rounded-xl bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">assignment_late</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-headline-lg font-bold text-primary leading-none">18</span>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 bg-error-container/20 px-3 py-1.5 rounded-xl">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="font-label-sm text-label-sm font-semibold text-on-error-container">Requires Review</span>
+<span class="font-body-sm text-[13px] text-on-error-container/80 truncate">6 priority credential audits</span>
+</div>
+</div>
+<!-- Appointments Today -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_4px_12px_rgba(11,31,58,0.03)] flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(11,31,58,0.06)] transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Appointments Today</span>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/40 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]">event_available</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-headline-lg font-bold text-primary leading-none">184</span>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 bg-surface-container-low px-3 py-1.5 rounded-xl">
+<span class="font-label-sm text-label-sm font-semibold text-secondary">94 completed</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant truncate">28 in queue right now</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Dual Column Operations Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- LEFT / MAIN OPERATIONS COLUMN (8 cols) -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
+<!-- Module A: Doctor Approvals Queue -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_16px_rgba(11,31,58,0.03)] p-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Doctor Approvals</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[11px] font-bold">18 Total</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Medical council licensing verification queue &amp; onboarding requests</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[17px] text-outline pointer-events-none">search</span>
+<input class="w-56 pl-9 pr-3 py-1.5 bg-surface-container-low text-on-surface rounded-xl font-body-sm text-[13px] placeholder:text-outline focus:outline-none focus:bg-surface-container transition-all" placeholder="Filter doctor or clinic..." type="text" fdprocessedid="fmsl5">
+</div>
+</div>
+</div>
+<!-- Filter Sub-tabs -->
+<div class="flex items-center gap-1.5 pb-4 overflow-x-auto">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-1.5" fdprocessedid="ufl7xn">
+<span>All Requests</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-low text-primary text-[10px]">18</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" fdprocessedid="nd7v1o">
+<span>Pending Review</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">12</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" fdprocessedid="z1azvc">
+<span>Approved</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant text-[10px]">4</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" fdprocessedid="fm8qao">
+<span>Rejected</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant text-[10px]">2</span>
+</button>
+</div>
+<!-- High-density Doctor Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-[12px] uppercase tracking-wider">
+<th class="py-3 px-3.5 rounded-l-xl font-semibold">Doctor &amp; License</th>
+<th class="py-3 px-3 font-semibold">Specialty</th>
+<th class="py-3 px-3 font-semibold">Facility &amp; City</th>
+<th class="py-3 px-3 font-semibold">Submitted</th>
+<th class="py-3 px-3 font-semibold">Status</th>
+<th class="py-3 px-3.5 rounded-r-xl font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-[13px]">
+<!-- Doctor 1: Pending -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center font-headline-sm text-label-md font-bold text-primary shrink-0">
+                      RP
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[14px] font-bold text-primary group-hover:text-secondary transition-colors">Dr. Rajeshree Patel</span>
+<span class="font-label-sm text-[11px] text-outline font-mono">MMC-2016-1182</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-[12px] font-semibold text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    Cardiology
+                  </div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Apex Heart Center</span>
+<span class="text-[12px] text-outline">Bandra West, Mumbai</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 09:15 AM
+                </td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/30 text-on-error-container font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    Pending Review
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg text-primary hover:bg-surface-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="itz6m4">
+                      View Dossier
+                    </button>
+<button class="px-2.5 py-1 rounded-lg bg-secondary text-on-secondary hover:brightness-110 font-label-sm text-[12px] font-semibold transition-all shadow-sm" type="button" fdprocessedid="1wj4lj">
+                      Approve
+                    </button>
+<button class="px-2.5 py-1 rounded-lg bg-error-container/40 text-on-error-container hover:bg-error-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="2ygc68">
+                      Reject
+                    </button>
+</div>
+</td>
+</tr>
+<!-- Doctor 2: Pending -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center font-headline-sm text-label-md font-bold text-primary shrink-0">
+                      AG
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[14px] font-bold text-primary group-hover:text-secondary transition-colors">Dr. Amitav Ghosh</span>
+<span class="font-label-sm text-[11px] text-outline font-mono">MMC-2012-0941</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-[12px] font-semibold text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    General Medicine
+                  </div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Metro Care Clinic</span>
+<span class="text-[12px] text-outline">Andheri East, Mumbai</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 08:30 AM
+                </td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/30 text-on-error-container font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    Pending Review
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg text-primary hover:bg-surface-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="kjvxo">
+                      View Dossier
+                    </button>
+<button class="px-2.5 py-1 rounded-lg bg-secondary text-on-secondary hover:brightness-110 font-label-sm text-[12px] font-semibold transition-all shadow-sm" type="button" fdprocessedid="8nsad">
+                      Approve
+                    </button>
+<button class="px-2.5 py-1 rounded-lg bg-error-container/40 text-on-error-container hover:bg-error-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="7h81l">
+                      Reject
+                    </button>
+</div>
+</td>
+</tr>
+<!-- Doctor 3: Approved -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-secondary-container/40 flex items-center justify-center font-headline-sm text-label-md font-bold text-on-secondary-container shrink-0">
+                      SK
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[14px] font-bold text-primary group-hover:text-secondary transition-colors">Dr. Sunita Kulkarni</span>
+<span class="font-label-sm text-[11px] text-outline font-mono">KMC-2015-4421</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-[12px] font-semibold text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                    Pediatrics
+                  </div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Little Stars Clinic</span>
+<span class="text-[12px] text-outline">Indiranagar, Bengaluru</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Yesterday, 14:10
+                </td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg text-primary hover:bg-surface-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="4t6hy">
+                      View Dossier
+                    </button>
+<span class="px-2 py-1 text-outline font-label-sm text-[11px] font-medium">Licensed</span>
+</div>
+</td>
+</tr>
+<!-- Doctor 4: Approved System Demo -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-3.5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center font-headline-sm text-label-md font-bold text-primary shrink-0">
+                      U1
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[14px] font-bold text-primary group-hover:text-secondary transition-colors">Dr. user_dr1</span>
+<span class="font-label-sm text-[11px] text-outline font-mono">MMC-2014-08-3921</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-[12px] font-semibold text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    General Physician
+                  </div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Bandra West Facility</span>
+<span class="text-[12px] text-outline">Mumbai Metro</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  2 days ago
+                </td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Approved
+                  </span>
+</td>
+<td class="py-3.5 px-3.5 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg text-primary hover:bg-surface-container font-label-sm text-[12px] font-semibold transition-colors" type="button" fdprocessedid="jcj76">
+                      View Dossier
+                    </button>
+<span class="px-2 py-1 text-outline font-label-sm text-[11px] font-medium">Licensed</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Module B: Recent Consultations & Appointments Table -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_16px_rgba(11,31,58,0.03)] p-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Recent Patient Appointments</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Real-time scheduling pipeline across active clinic rooms &amp; telehealth</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[17px] text-outline pointer-events-none">filter_list</span>
+<input class="w-48 pl-9 pr-3 py-1.5 bg-surface-container-low text-on-surface rounded-xl font-body-sm text-[13px] placeholder:text-outline focus:outline-none focus:bg-surface-container transition-all" placeholder="Search patient or token..." type="text" fdprocessedid="e0fgmg">
+</div>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors" fdprocessedid="uikv15">
+              Filter
+            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-[12px] uppercase tracking-wider">
+<th class="py-3 px-3.5 rounded-l-xl font-semibold">Patient Name</th>
+<th class="py-3 px-3 font-semibold">Assigned Doctor</th>
+<th class="py-3 px-3 font-semibold">Specialty &amp; Clinic</th>
+<th class="py-3 px-3 font-semibold">Slot Schedule</th>
+<th class="py-3 px-3.5 rounded-r-xl font-semibold text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-[13px]">
+<!-- Appt 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-3.5 font-semibold text-primary">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span>Rahul Sharma</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface">Dr. user_dr1</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.2 rounded bg-surface-container text-outline">MMC</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">General Medicine</span>
+<span class="text-[12px] text-outline">Bandra West Facility</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 10:00 AM
+                </td>
+<td class="py-3.5 px-3.5 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                    Booked (In Consultation)
+                  </span>
+</td>
+</tr>
+<!-- Appt 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-3.5 font-semibold text-primary">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span>Pooja Verma</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface">Dr. user_dr1</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.2 rounded bg-surface-container text-outline">MMC</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">General Medicine</span>
+<span class="text-[12px] text-outline">Bandra West Facility</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 10:45 AM
+                </td>
+<td class="py-3.5 px-3.5 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                    Booked (Upcoming)
+                  </span>
+</td>
+</tr>
+<!-- Appt 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-3.5 font-semibold text-primary">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Rajesh Kulkarni</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface">Dr. user_dr1</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.2 rounded bg-surface-container text-outline">MMC</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Follow-up Consultation</span>
+<span class="text-[12px] text-outline">Bandra West Facility</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 09:00 AM
+                </td>
+<td class="py-3.5 px-3.5 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                    Completed
+                  </span>
+</td>
+</tr>
+<!-- Appt 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-3.5 font-semibold text-primary">
+<div class="flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span>Vikram Patil</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface">Dr. user_dr1</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.2 rounded bg-surface-container text-outline">MMC</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">General Medicine</span>
+<span class="text-[12px] text-outline">Bandra West Facility</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant font-medium">
+                  Today, 12:45 PM
+                </td>
+<td class="py-3.5 px-3.5 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                    Booked
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-5 mt-2">
+<span class="font-body-sm text-[13px] text-on-surface-variant">
+            Showing <span class="font-semibold text-primary">1 to 4</span> of 184 registered appointments
+          </span>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container text-label-sm font-semibold transition-colors disabled:opacity-40" disabled="">
+              Previous
+            </button>
+<button class="w-8 h-8 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center shadow-sm" fdprocessedid="c2a0lj">
+              1
+            </button>
+<button class="w-8 h-8 rounded-lg text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" fdprocessedid="e6ibbe">
+              2
+            </button>
+<button class="w-8 h-8 rounded-lg text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" fdprocessedid="5ibdpt">
+              3
+            </button>
+<span class="px-1 text-outline font-bold">...</span>
+<button class="w-8 h-8 rounded-lg text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition-colors" fdprocessedid="8qns92">
+              37
+            </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-label-sm font-semibold transition-colors" fdprocessedid="blsutf">
+              Next
+            </button>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT / SUPPORTING METRICS & USERS COLUMN (4 cols) -->
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
+<!-- Module C: Appointments 7-Day Velocity Chart (SVG) -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_16px_rgba(11,31,58,0.03)] p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">7-Day Trajectory</h2>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-bold">+14% vs lw</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Rolling appointment throughput</p>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-lg">
+<span class="font-label-sm text-[12px] font-semibold text-secondary">Avg 162/day</span>
+</div>
+</div>
+<!-- SVG Line Chart with Gradient Fill & Tooltip Highlight -->
+<div class="w-full relative pt-2">
+<svg class="w-full h-auto overflow-visible" viewBox="0 0 360 170" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#006972" stop-opacity="0.32"></stop>
+<stop offset="100%" stop-color="#006972" stop-opacity="0.00"></stop>
+</linearGradient>
+</defs>
+<!-- Horizontal Grid lines -->
+<line stroke="#E2E8F0" stroke-dasharray="3 3" x1="20" x2="340" y1="20" y2="20"></line>
+<text fill="#75777E" font-family="Inter" font-size="9" text-anchor="end" x="14" y="23">200</text>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" x1="20" x2="340" y1="55" y2="55"></line>
+<text fill="#75777E" font-family="Inter" font-size="9" text-anchor="end" x="14" y="58">150</text>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" x1="20" x2="340" y1="90" y2="90"></line>
+<text fill="#75777E" font-family="Inter" font-size="9" text-anchor="end" x="14" y="93">100</text>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" x1="20" x2="340" y1="125" y2="125"></line>
+<text fill="#75777E" font-family="Inter" font-size="9" text-anchor="end" x="14" y="128">50</text>
+<!-- Closed area fill under curve -->
+<!-- Data points approx: Fri:132, Sat:110, Sun:75, Mon:158, Tue:165, Wed:172, Today:184 -->
+<!-- Scaled Y (200=20px, 0=160px): Fri(30,68), Sat(80,83), Sun(130,108), Mon(180,49), Tue(230,44), Wed(280,39), Thu(330,31) -->
+<path d="M 30,68 
+                     C 55,68 65,83 80,83 
+                     C 100,83 115,108 130,108 
+                     C 150,108 165,49 180,49 
+                     C 200,49 215,44 230,44 
+                     C 250,44 265,39 280,39 
+                     C 305,39 315,31 330,31 
+                     L 330,145 L 30,145 Z" fill="url(#areaGradient)"></path>
+<!-- Main Stroke line -->
+<path d="M 30,68 
+                     C 55,68 65,83 80,83 
+                     C 100,83 115,108 130,108 
+                     C 150,108 165,49 180,49 
+                     C 200,49 215,44 230,44 
+                     C 250,44 265,39 280,39 
+                     C 305,39 315,31 330,31" fill="none" stroke="#006972" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Discrete Plot Points -->
+<circle cx="30" cy="68" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<circle cx="80" cy="83" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<circle cx="130" cy="108" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<circle cx="180" cy="49" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<circle cx="230" cy="44" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<circle cx="280" cy="39" fill="#FFFFFF" r="3.5" stroke="#006972" stroke-width="2"></circle>
+<!-- Current Node Pulse -->
+<circle class="animate-ping" cx="330" cy="31" fill="#006972" fill-opacity="0.2" r="7"></circle>
+<circle cx="330" cy="31" fill="#006972" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<!-- Callout Tooltip for Today -->
+<g transform="translate(260, 4)">
+<rect fill="#000615" height="22" rx="6" width="84"></rect>
+<text fill="#FFFFFF" font-family="Inter" font-size="9.5" font-weight="600" text-anchor="middle" x="42" y="14">Today: 184 (+14%)</text>
+</g>
+<!-- X-axis Labels -->
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="30" y="160">Fri</text>
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="80" y="160">Sat</text>
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="130" y="160">Sun</text>
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="180" y="160">Mon</text>
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="230" y="160">Tue</text>
+<text fill="#75777E" font-family="Inter" font-size="10" text-anchor="middle" x="280" y="160">Wed</text>
+<text fill="#000615" font-family="Inter" font-size="10.5" font-weight="700" text-anchor="middle" x="330" y="160">Today</text>
+</svg>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4 pt-3 border-t-0 bg-surface-container-low p-3 rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline uppercase font-semibold">Weekly Peak</span>
+<span class="font-headline-sm text-body-lg font-bold text-primary">184 consultations</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline uppercase font-semibold">Fill Capacity</span>
+<span class="font-headline-sm text-body-lg font-bold text-secondary">92.4% Utilization</span>
+</div>
+</div>
+</section>
+<!-- Module D: User Accounts & Governance Widget -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_16px_rgba(11,31,58,0.03)] p-6">
+<div class="flex items-center justify-between pb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">User Governance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">5,820 Active Auth Accounts</p>
+</div>
+<span class="material-symbols-outlined text-outline">admin_panel_settings</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-[11px] uppercase tracking-wider">
+<th class="py-2.5 px-3 rounded-l-lg font-semibold">Identity</th>
+<th class="py-2.5 px-2 font-semibold">Role</th>
+<th class="py-2.5 px-2 font-semibold">Email</th>
+<th class="py-2.5 px-3 rounded-r-lg font-semibold text-right">Access</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-[13px]">
+<!-- User 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Rahul Sharma</span>
+<span class="text-[11px] text-outline">UID: #90421</span>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-semibold">
+                    Patient
+                  </span>
+</td>
+<td class="py-3 px-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" title="Email Verified">check_circle</span>
+</td>
+<td class="py-3 px-3 text-right">
+<!-- Disabled demo action with visual bubble indicator -->
+<div class="relative inline-block group">
+<button class="px-2 py-1 rounded-md bg-surface-container-high text-outline text-[11px] font-semibold cursor-not-allowed flex items-center gap-1 opacity-75" disabled="" type="button">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                      Block
+                    </button>
+<!-- Tooltip Bubble on Hover -->
+<div class="absolute bottom-full right-0 mb-1.5 hidden group-hover:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-inverse-surface text-inverse-on-surface text-[10px] whitespace-nowrap shadow-md z-30 pointer-events-none">
+<span>🔒 Disabled in demo mode</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- User 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Dr. Amitav Ghosh</span>
+<span class="text-[11px] text-outline">UID: #88120</span>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+                    Doctor
+                  </span>
+</td>
+<td class="py-3 px-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" title="Email Verified">check_circle</span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="relative inline-block group">
+<button class="px-2 py-1 rounded-md bg-surface-container-high text-outline text-[11px] font-semibold cursor-not-allowed flex items-center gap-1 opacity-75" disabled="" type="button">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                      Block
+                    </button>
+<div class="absolute bottom-full right-0 mb-1.5 hidden group-hover:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-inverse-surface text-inverse-on-surface text-[10px] whitespace-nowrap shadow-md z-30 pointer-events-none">
+<span>🔒 Disabled in demo mode</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- User 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Ananya Sen</span>
+<span class="text-[11px] text-outline">UID: #77219</span>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-semibold">
+                    Patient
+                  </span>
+</td>
+<td class="py-3 px-2">
+<span class="material-symbols-outlined text-error text-[16px]" title="Email Unconfirmed">error</span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="relative inline-block group">
+<button class="px-2 py-1 rounded-md bg-surface-container-high text-outline text-[11px] font-semibold cursor-not-allowed flex items-center gap-1 opacity-75" disabled="" type="button">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                      Block
+                    </button>
+<div class="absolute bottom-full right-0 mb-1.5 hidden group-hover:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-inverse-surface text-inverse-on-surface text-[10px] whitespace-nowrap shadow-md z-30 pointer-events-none">
+<span>🔒 Disabled in demo mode</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- User 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Dr. user_dr1</span>
+<span class="text-[11px] text-outline">UID: #10041</span>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-semibold">
+                    Doctor
+                  </span>
+</td>
+<td class="py-3 px-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" title="Email Verified">check_circle</span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="relative inline-block group">
+<button class="px-2 py-1 rounded-md bg-surface-container-high text-outline text-[11px] font-semibold cursor-not-allowed flex items-center gap-1 opacity-75" disabled="" type="button">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                      Block
+                    </button>
+<div class="absolute bottom-full right-0 mb-1.5 hidden group-hover:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-inverse-surface text-inverse-on-surface text-[10px] whitespace-nowrap shadow-md z-30 pointer-events-none">
+<span>🔒 Disabled in demo mode</span>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+</div></main></div>
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
