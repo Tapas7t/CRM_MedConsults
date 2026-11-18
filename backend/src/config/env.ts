@@ -52,14 +52,61 @@ const envSchema = z
           .map((origin) => origin.trim())
           .filter(Boolean)
       ),
+    SMTP_HOST: z.string().optional(),
+    SMTP_PORT: z
+      .string()
+      .optional()
+      .transform((val) => (val ? parseInt(val, 10) : undefined)),
+    SMTP_USER: z.string().optional(),
+    SMTP_PASS: z.string().optional(),
+    EMAIL_FROM: z.string().optional(),
   })
-  .refine(
-    (data) => data.JWT_ACCESS_SECRET !== data.JWT_REFRESH_SECRET,
-    {
-      message: 'JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be different from each other',
-      path: ['JWT_REFRESH_SECRET'],
+  .superRefine((data, ctx) => {
+    if (data.JWT_ACCESS_SECRET === data.JWT_REFRESH_SECRET) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be different from each other',
+        path: ['JWT_REFRESH_SECRET'],
+      });
     }
-  );
+    if (data.NODE_ENV === 'production') {
+      if (!data.SMTP_HOST) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'SMTP_HOST is required in production',
+          path: ['SMTP_HOST'],
+        });
+      }
+      if (!data.SMTP_PORT) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'SMTP_PORT is required in production',
+          path: ['SMTP_PORT'],
+        });
+      }
+      if (!data.SMTP_USER) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'SMTP_USER is required in production',
+          path: ['SMTP_USER'],
+        });
+      }
+      if (!data.SMTP_PASS) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'SMTP_PASS is required in production',
+          path: ['SMTP_PASS'],
+        });
+      }
+      if (!data.EMAIL_FROM) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'EMAIL_FROM is required in production',
+          path: ['EMAIL_FROM'],
+        });
+      }
+    }
+  });
 
 export type Env = z.infer<typeof envSchema>;
 

@@ -219,7 +219,7 @@ Choose one home page variant and one patient dashboard variant before building t
 
 - Secrets only in `.env`; never committed. Env validated with Zod at startup.
 - Middleware order: request logging, helmet, cors (explicit list), body limit (10 kb), mongo-sanitize, global rate limit, stricter auth limit, routes, central error handler.
-- bcrypt for passwords (cost 10 or more) and refresh tokens; `timingSafeEqual` for token comparison; access token kept in memory on the client, never localStorage.
+- bcrypt for passwords; SHA-256 for random tokens (refresh, verification, reset); `timingSafeEqual` for token comparison; access token kept in memory on the client, never localStorage.
 - Zod on every route. Ownership or role check in every controller. Generic auth messages to prevent account enumeration.
 - Soft delete on primary resources; TTL indexes on tokens and login attempts.
 - Audit log for patient record views and changes, role changes, approvals and exports.

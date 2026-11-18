@@ -95,3 +95,4 @@ userSchema.index({ isDeleted: 1, role: 1 });
 userSchema.index({ isDeleted: 1, status: 1 });
 
 export const User = model<IUserDocument>('User', userSchema);
+export const UserModel = User;
