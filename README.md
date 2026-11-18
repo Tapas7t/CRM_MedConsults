@@ -111,7 +111,6 @@ Execute these commands from the project root:
 | MONGODB_URI | MongoDB connection string for development |
 | MONGODB_URI_TEST | MongoDB connection string for automated testing |
 | JWT_ACCESS_SECRET | Secret key for signing short-lived access tokens (minimum 32 characters) |
-| JWT_REFRESH_SECRET | Secret key for signing long-lived refresh tokens (minimum 32 characters) |
 | JWT_ACCESS_EXPIRES_IN | Expiration duration for access tokens |
 | JWT_REFRESH_EXPIRES_IN | Expiration duration for refresh tokens |
 | CLIENT_URL | URL of the frontend application for redirection |

@@ -31,9 +31,6 @@ const envSchema = z
     JWT_ACCESS_SECRET: z
       .string()
       .min(32, 'JWT_ACCESS_SECRET must be at least 32 characters'),
-    JWT_REFRESH_SECRET: z
-      .string()
-      .min(32, 'JWT_REFRESH_SECRET must be at least 32 characters'),
     JWT_ACCESS_EXPIRES_IN: z
       .string()
       .min(1, 'JWT_ACCESS_EXPIRES_IN is required')
@@ -62,13 +59,6 @@ const envSchema = z
     EMAIL_FROM: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.JWT_ACCESS_SECRET === data.JWT_REFRESH_SECRET) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'JWT_ACCESS_SECRET and JWT_REFRESH_SECRET must be different from each other',
-        path: ['JWT_REFRESH_SECRET'],
-      });
-    }
     if (data.NODE_ENV === 'production') {
       if (!data.SMTP_HOST) {
         ctx.addIssue({

@@ -136,6 +136,7 @@ All documents have `createdAt`, `updatedAt`. Primary resources use soft delete (
 | notifications | userId, type, title, message, read, link | userId + read |
 | auditLogs | actorId, role, action, entityType, entityId, ip, at | at, actorId (TTL optional) |
 | tokens | userId, type (verify, reset), tokenHash, expiresAt, usedAt | TTL on expiresAt |
+| rotatedRefreshTokens | userId, tokenHash, createdAt | tokenHash (unique), userId, TTL on createdAt (7 days) |
 
 ## 8. API specification
 
