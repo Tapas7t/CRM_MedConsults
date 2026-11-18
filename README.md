@@ -99,6 +99,26 @@ Execute these commands from the project root:
   ```bash
   npm --prefix backend test
   ```
+- Seed development database with demo data:
+  ```bash
+  npm --prefix backend run db:seed
+  ```
+- Reset and reseed development database:
+  ```bash
+  npm --prefix backend run db:seed:reset -- --confirm
+  ```
+
+## Demo Login Accounts
+
+For local development and testing, fictional accounts on the reserved domain `medconsults.example` are seeded. The password is set via `SEED_DEMO_PASSWORD` in your `backend/.env` file or generated randomly and printed once to the console during seed execution:
+
+| Role | Login ID (Email) | Name | Description |
+| --- | --- | --- | --- |
+| Admin | `admin@medconsults.example` (`admin`) | Admin User | Full clinic administration, doctor approvals, and user controls |
+| Staff | `staff@medconsults.example` (`staff`) | Pooja Sawant | Receptionist managing patient CRM records, walk-ins, and appointments |
+| Doctor | `dr1@medconsults.example` (`dr1`) | Dr. Rajesh Kulkarni | Senior Cardiologist with active schedule |
+| Doctor | `dr2@medconsults.example` (`dr2`) | Dr. Priya Nair | Consultant Dermatologist |
+| Patient | `patient@medconsults.example` (`patient`) | Aarav Sharma | Registered patient with verified email address |
 
 ## Environment Variables
 
@@ -133,6 +153,9 @@ Execute these commands from the project root:
 | start | node dist/server.js | Runs the compiled production server |
 | test | vitest run | Executes automated API test suite |
 | typecheck | tsc --noEmit | Validates TypeScript types across the backend |
+| db:indexes | tsx scripts/syncIndexes.ts | Synchronizes MongoDB collection schema indexes |
+| db:seed | tsx scripts/seed.ts | Seeds development database with fictional demo accounts |
+| db:seed:reset | tsx scripts/seed.ts --reset | Resets and reseeds development collections (requires --confirm) |
 
 ### Frontend Scripts
 

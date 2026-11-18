@@ -13,6 +13,7 @@ export type ErrorCode =
   | 'CONFLICT'
   | 'ACCOUNT_LOCKED'
   | 'RATE_LIMIT_EXCEEDED'
+  | 'CANNOT_SELF_DEMOTE'
   | 'INTERNAL_ERROR';
 
 export class AppError extends Error {

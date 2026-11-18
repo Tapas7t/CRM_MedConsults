@@ -10,7 +10,7 @@ This document tracks implementation progress, build phases, operational procedur
 | 1 | Backend skeleton: config, db, app, health, tests | /health returns ok; test passes | Done |
 | 2 | Models and indexes | Models load; indexes created | Done |
 | 3 | Auth, roles, email verification, lockout | Auth tests pass | Done |
-| 4 | Doctors, patients, leads, appointments, queue | Module tests pass | Not started |
+| 4 | Doctors, patients, leads, appointments, queue | Module tests pass | In progress (users, doctors, patients done; leads, appointments, queue next) |
 | 5 | Notes, tasks, activities, notifications, reports, audit | Tests pass; Postman collection runs | Not started |
 | 6 | Frontend foundation: design tokens, layouts, auth, routing | Login works for all roles | Not started |
 | 7 | Screens per role, wired to the API | Role flows work end to end | Not started |
@@ -37,6 +37,12 @@ All commands must be executed from the repository root:
 - Synchronize MongoDB indexes:
   npm --prefix backend run db:indexes
 
+- Seed development database with fictional demo accounts:
+  npm --prefix backend run db:seed
+
+- Reset and reseed development database (requires --confirm):
+  npm --prefix backend run db:seed:reset -- --confirm
+
 ## 3. Architecture & Technical Decisions Log
 
 - 2026-11-17: Database Isolation
@@ -59,6 +65,15 @@ All commands must be executed from the repository root:
 
 - 2026-11-18: Native Dependency Type Bundling
   Removed redundant @types/bcryptjs and @types/nodemailer packages after verifying that bcryptjs (version 3.0.3) and nodemailer (version 10.6.0) ship native TypeScript type definitions.
+
+- 2026-11-18: Seed Script Safety and Idempotency Guardrails
+  The database seed script strictly prohibits running in production or against the automated test database, and requires an explicit --confirm flag to wipe collections during reset. To avoid hardcoded secrets, it reads SEED_DEMO_PASSWORD from environment or generates a random demo password and prints it once. Seeding is idempotent and can run repeatedly without creating duplicates.
+
+- 2026-11-18: Doctor Slot Computation in Asia/Kolkata
+  Slot computation operates strictly within the Asia/Kolkata timezone (UTC+05:30) while persisting UTC timestamps. Free slots are derived from weekly availability minus blocked dates, minus active appointments (booked, checked_in, in_consultation, completed), minus times that have already elapsed today.
+
+- 2026-11-18: Doctor Confidentiality and Patient Ownership Isolation
+  A doctor may only read patient details and timeline if that doctor has an active or historical appointment with the patient; access attempts by other doctors return 404 NOT_FOUND rather than 403 to prevent record existence enumeration. Clinical notes and diagnoses are excluded from administrative and staff views.
 
 ## 4. Open Items & Decisions
 

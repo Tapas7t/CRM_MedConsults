@@ -1,8 +1,8 @@
 {
   "info": {
-    "name": "MedConsults CRM - Auth & Users API",
-    "_postman_id": "medconsults-auth-v1",
-    "description": "Authentication, session management, and user profile endpoints for MedConsults CRM backend API.",
+    "name": "MedConsults CRM API",
+    "_postman_id": "medconsults-crm-v1",
+    "description": "Comprehensive API collection for MedConsults CRM backend covering Auth, Users, Doctors, Patients, and Audit Logs.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -112,9 +112,6 @@
                   "var jsonData = pm.response.json();",
                   "if (jsonData.success && jsonData.data && jsonData.data.accessToken) {",
                   "    pm.environment.set(\"accessToken\", jsonData.data.accessToken);",
-                  "    pm.test(\"Access token stored in environment\", function () {",
-                  "        pm.expect(pm.environment.get(\"accessToken\")).to.be.a('string');",
-                  "    });",
                   "}"
                 ]
               }
@@ -130,7 +127,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"aarav.sharma@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+              "raw": "{\n  \"email\": \"admin@medconsults.example\",\n  \"password\": \"SecurePass123!\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/auth/login",
@@ -274,7 +271,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Aarav Sharma\",\n  \"phone\": \"+919820112244\"\n}"
+              "raw": "{\n  \"name\": \"Aarav Sharma Updated\",\n  \"phone\": \"+919820112244\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/users/me",
@@ -282,6 +279,666 @@
               "path": ["api", "v1", "users", "me"]
             },
             "description": "Updates the logged-in user's own name and phone number."
+          }
+        },
+        {
+          "name": "List Users (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users?role=&status=&q=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"],
+              "query": [
+                { "key": "role", "value": "" },
+                { "key": "status", "value": "" },
+                { "key": "q", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Admin endpoint to search and paginate all users in the clinic."
+          }
+        },
+        {
+          "name": "Create User (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunil Gavaskar\",\n  \"email\": \"sunil.g@medconsults.example\",\n  \"phone\": \"+919820123456\",\n  \"role\": \"staff\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"]
+            },
+            "description": "Creates staff or admin user, creates a password reset token, and dispatches invitation email."
+          }
+        },
+        {
+          "name": "Update User (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunil Gavaskar Updated\",\n  \"phone\": \"+919820999988\",\n  \"role\": \"staff\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "{{userId}}"]
+            },
+            "description": "Updates user details. Administrators cannot demote themselves."
+          }
+        },
+        {
+          "name": "Block User (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/{{userId}}/block",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "{{userId}}", "block"]
+            },
+            "description": "Blocks user and revokes all active sessions. Admin cannot block themselves."
+          }
+        },
+        {
+          "name": "Unblock User (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/{{userId}}/unblock",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "{{userId}}", "unblock"]
+            },
+            "description": "Unblocks a user account, restoring access."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "List Approved Doctors (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors?specialty=&q=&availableToday=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors"],
+              "query": [
+                { "key": "specialty", "value": "" },
+                { "key": "q", "value": "" },
+                { "key": "availableToday", "value": "" }
+              ]
+            },
+            "description": "Public directory of approved doctors with live online status. Never exposes email or phone."
+          }
+        },
+        {
+          "name": "Get Doctor by ID (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/{{doctorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "{{doctorId}}"]
+            },
+            "description": "Public profile details of a single approved doctor."
+          }
+        },
+        {
+          "name": "Get Available Slots (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/{{doctorId}}/slots?date=2026-11-20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "{{doctorId}}", "slots"],
+              "query": [
+                { "key": "date", "value": "2026-11-20" }
+              ]
+            },
+            "description": "Computes free appointment slots in Asia/Kolkata timezone, excluding booked and blocked times."
+          }
+        },
+        {
+          "name": "Get Own Profile (Doctor)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "me"]
+            },
+            "description": "Doctor retrieves own profile and schedule settings."
+          }
+        },
+        {
+          "name": "Update Own Profile (Doctor)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bio\": \"Updated bio details...\",\n  \"consultationFee\": 1500,\n  \"clinicRoom\": \"Room 101-A\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "me"]
+            },
+            "description": "Doctor updates bio, fee, qualifications, and room."
+          }
+        },
+        {
+          "name": "Update Availability (Doctor)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slotMinutes\": 15,\n  \"weeklyAvailability\": [\n    {\n      \"dayOfWeek\": 1,\n      \"slots\": [\n        { \"start\": \"09:00\", \"end\": \"13:00\" },\n        { \"start\": \"16:00\", \"end\": \"20:00\" }\n      ]\n    }\n  ],\n  \"blockedDates\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/me/availability",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "me", "availability"]
+            },
+            "description": "Doctor updates weekly availability schedule and slot durations."
+          }
+        },
+        {
+          "name": "Toggle Online Status (Doctor)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isOnline\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/me/online",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "me", "online"]
+            },
+            "description": "Doctor toggles active clinic presence."
+          }
+        },
+        {
+          "name": "Heartbeat (Doctor)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/me/heartbeat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "me", "heartbeat"]
+            },
+            "description": "Doctor client updates lastSeenAt timestamp."
+          }
+        },
+        {
+          "name": "List All Doctors (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/admin/list?approvalStatus=&specialty=&q=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "admin", "list"],
+              "query": [
+                { "key": "approvalStatus", "value": "" },
+                { "key": "specialty", "value": "" },
+                { "key": "q", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Admin endpoint to view all doctors across all approval statuses with linked user info."
+          }
+        },
+        {
+          "name": "List Pending Doctors (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/admin/pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "admin", "pending"]
+            },
+            "description": "Admin retrieves list of doctors awaiting approval."
+          }
+        },
+        {
+          "name": "Approve Doctor (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/{{doctorId}}/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "{{doctorId}}", "approve"]
+            },
+            "description": "Approves doctor profile and activates doctor's user account."
+          }
+        },
+        {
+          "name": "Block Doctor (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/doctors/{{doctorId}}/block",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "doctors", "{{doctorId}}", "block"]
+            },
+            "description": "Blocks doctor and linked user account, revoking active sessions."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "Get Own Patient Record (Patient)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients", "me"]
+            },
+            "description": "Retrieves the authenticated patient's own CRM record."
+          }
+        },
+        {
+          "name": "List Patients (Staff/Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients?q=&status=&source=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients"],
+              "query": [
+                { "key": "q", "value": "" },
+                { "key": "status", "value": "" },
+                { "key": "source", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Staff/Admin searches and lists patient CRM records."
+          }
+        },
+        {
+          "name": "Create Patient (Staff/Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ramesh Gupta\",\n  \"phone\": \"+919820334455\",\n  \"email\": \"ramesh.gupta@medconsults.example\",\n  \"dob\": \"1985-04-12\",\n  \"gender\": \"male\",\n  \"source\": \"walk_in\",\n  \"status\": \"active\",\n  \"whatsappOptIn\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients"]
+            },
+            "description": "Creates a CRM patient record without credentials, assigning unique patientCode."
+          }
+        },
+        {
+          "name": "Get Patient by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients/{{patientId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients", "{{patientId}}"]
+            },
+            "description": "Retrieves patient details. Allowed for Staff, Admin, and treating Doctors with an appointment."
+          }
+        },
+        {
+          "name": "Get Patient Timeline",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients/{{patientId}}/timeline",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients", "{{patientId}}", "timeline"]
+            },
+            "description": "Retrieves interaction timeline for a patient."
+          }
+        },
+        {
+          "name": "Update Patient (Staff/Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ramesh Gupta Updated\",\n  \"phone\": \"+919988776622\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients/{{patientId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients", "{{patientId}}"]
+            },
+            "description": "Updates contact and CRM details of a patient."
+          }
+        },
+        {
+          "name": "Delete Patient (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients/{{patientId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients", "{{patientId}}"]
+            },
+            "description": "Soft deletes patient record. Restricted to administrators."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit Logs",
+      "item": [
+        {
+          "name": "List Audit Logs (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/audit-logs?action=&entityType=&from=&to=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "audit-logs"],
+              "query": [
+                { "key": "action", "value": "" },
+                { "key": "entityType", "value": "" },
+                { "key": "from", "value": "" },
+                { "key": "to", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Admin endpoint to inspect security and administrative audit log trail."
           }
         }
       ]

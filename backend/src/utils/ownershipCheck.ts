@@ -1,5 +1,7 @@
 import { AppError } from '../middleware/errorHandler.js';
 import type { UserRole } from '../types/index.js';
+import { Doctor } from '../modules/doctor/doctor.model.js';
+import { Appointment } from '../modules/appointment/appointment.model.js';
 
 interface OwnershipCheckParams {
   resourceOwnerId: string | { toString(): string };
@@ -31,3 +33,24 @@ export function checkOwnershipOrRole({
     throw new AppError(404, 'NOT_FOUND', `${resourceName} not found`);
   }
 }
+
+/**
+ * Reusable helper verifying whether a doctor has an active or historical appointment
+ * with a patient. Doctors may only access records of patients they treat.
+ */
+export async function canDoctorAccessPatient(
+  doctorUserId: unknown,
+  patientId: unknown
+): Promise<boolean> {
+  const doctor = await Doctor.findOne({ userId: doctorUserId as any, isDeleted: false });
+  if (!doctor) return false;
+
+  const exists = await Appointment.exists({
+    doctorId: (doctor as any)._id,
+    patientId: patientId as any,
+    isDeleted: false,
+  });
+
+  return !!exists;
+}
+

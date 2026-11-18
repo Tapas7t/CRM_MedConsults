@@ -1,36 +1,13 @@
 import type { Request, Response, NextFunction } from 'express';
-import { Doctor } from '../doctor/doctor.model.js';
-import { Patient } from '../patient/patient.model.js';
+import { userService } from './user.service.js';
 
 export class UserController {
   async getMe(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = req.user!;
-      let approvalStatus: string | undefined;
-
-      if (user.role === 'doctor') {
-        const doctor = await Doctor.findOne({ userId: user._id });
-        approvalStatus = doctor?.approvalStatus;
-      }
-
-      const userData = {
-        _id: user._id.toString(),
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        role: user.role,
-        emailVerified: user.emailVerified,
-        status: user.status,
-        ...(approvalStatus ? { approvalStatus } : {}),
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-      };
-
+      const data = await userService.getMe(req.user!);
       res.status(200).json({
         success: true,
-        data: {
-          user: userData,
-        },
+        data: { user: data },
       });
     } catch (err) {
       next(err);
@@ -39,55 +16,70 @@ export class UserController {
 
   async updateMe(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = req.user!;
-      const { name, phone } = req.body;
-
-      if (name !== undefined) {
-        user.name = name;
-      }
-      if (phone !== undefined) {
-        user.phone = phone;
-      }
-
-      await user.save();
-
-      // If user is patient, sync name and phone to linked Patient record
-      if (user.role === 'patient') {
-        await Patient.updateOne(
-          { userId: user._id },
-          {
-            $set: {
-              ...(name !== undefined ? { name } : {}),
-              ...(phone !== undefined ? { phone } : {}),
-            },
-          }
-        );
-      }
-
-      let approvalStatus: string | undefined;
-      if (user.role === 'doctor') {
-        const doctor = await Doctor.findOne({ userId: user._id });
-        approvalStatus = doctor?.approvalStatus;
-      }
-
-      const userData = {
-        _id: user._id.toString(),
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        role: user.role,
-        emailVerified: user.emailVerified,
-        status: user.status,
-        ...(approvalStatus ? { approvalStatus } : {}),
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-      };
-
+      const data = await userService.updateMe(req.user!, req.body);
       res.status(200).json({
         success: true,
-        data: {
-          user: userData,
-        },
+        data: { user: data },
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getUsers(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await userService.getUsers(req.query as any);
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async createUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await userService.createUser(req.body, req.user!, req.ip);
+      res.status(201).json({
+        success: true,
+        data: { user: result },
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async updateUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await userService.updateUser(req.params.id as string, req.body, req.user!, req.ip);
+      res.status(200).json({
+        success: true,
+        data: { user: result },
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async blockUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await userService.blockUser(req.params.id as string, req.user!, req.ip);
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async unblockUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await userService.unblockUser(req.params.id as string, req.user!, req.ip);
+      res.status(200).json({
+        success: true,
+        data: result,
       });
     } catch (err) {
       next(err);

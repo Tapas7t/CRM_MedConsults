@@ -11,6 +11,9 @@ import { requireAuth } from './middleware/requireAuth.js';
 import { roleGuard } from './middleware/roleGuard.js';
 import { authRouter } from './modules/auth/auth.routes.js';
 import { userRouter } from './modules/user/user.routes.js';
+import { doctorRouter } from './modules/doctor/doctor.routes.js';
+import { patientRouter } from './modules/patient/patient.routes.js';
+import { auditLogRouter } from './modules/auditLog/auditLog.routes.js';
 
 export const app = express();
 
@@ -104,6 +107,9 @@ app.get('/api/v1', (_req: Request, res: Response) => {
 // 8. Module routers
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/doctors', doctorRouter);
+app.use('/api/v1/patients', patientRouter);
+app.use('/api/v1/audit-logs', auditLogRouter);
 
 // Test route for roleGuard verification during tests
 if (process.env.NODE_ENV === 'test') {

@@ -12,6 +12,7 @@ export interface IPatient {
   assignedStaffId?: Types.ObjectId;
   status: PatientStatus;
   whatsappOptIn: boolean;
+  whatsappOptInAt?: Date;
   patientCode: string;
   isDeleted: boolean;
   deletedAt?: Date;
@@ -69,6 +70,9 @@ const patientSchema = new Schema<IPatientDocument>(
     whatsappOptIn: {
       type: Boolean,
       default: false,
+    },
+    whatsappOptInAt: {
+      type: Date,
     },
     patientCode: {
       type: String,

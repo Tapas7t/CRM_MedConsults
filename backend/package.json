@@ -9,7 +9,9 @@
     "start": "node dist/server.js",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "db:indexes": "tsx scripts/syncIndexes.ts"
+    "db:indexes": "tsx scripts/syncIndexes.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:reset": "tsx scripts/seed.ts --reset"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
