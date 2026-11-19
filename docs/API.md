@@ -41,6 +41,7 @@ Session Cookie: `refreshToken` (HttpOnly, Secure in production, SameSite=Strict,
 | 401 | `TOKEN_INVALID` | Malformed or tampered token |
 | 401 | `REFRESH_TOKEN_INVALID` | Invalid refresh token or token reuse detected |
 | 403 | `FORBIDDEN` | Insufficient role permissions or blocked account |
+| 403 | `EMAIL_NOT_VERIFIED` | Patient email address must be verified prior to booking |
 | 404 | `NOT_FOUND` | Resource not found (also returned on wrong-owner access) |
 | 409 | `CONFLICT` | Resource identifier already in use (e.g. duplicate email) |
 | 423 | `ACCOUNT_LOCKED` | Account locked for 15 minutes due to 5 consecutive login failures |
@@ -764,4 +765,417 @@ Session Cookie: `refreshToken` (HttpOnly, Secure in production, SameSite=Strict,
     ```
   - `401 Unauthorized` (`UNAUTHORIZED`): Missing or invalid token.
   - `403 Forbidden` (`FORBIDDEN`): Requester is not an administrator.
+
+---
+
+## Public Enquiries Endpoints (`/api/v1/public/enquiries`)
+
+### 37. Submit Public Website Enquiry (`POST /public/enquiries`)
+- **Description**: Public website enquiry submission. Automatically normalizes Indian phone numbers, protects against spam via honeypot field (`websiteUrl`), rate limits to 5 requests per hour per IP, and appends an activity note to existing open leads instead of creating duplicates.
+- **Auth**: Public
+- **Rate Limit**: 5 requests per hour per IP (`RATE_LIMIT_EXCEEDED`).
+- **Request Body**:
+```json
+{
+  "name": "Sunil Deshmukh",
+  "phone": "+919820111222",
+  "concern": "Need opinion for recurring chest tightness",
+  "email": "sunil.d@example.com",
+  "preferredSpecialty": "Cardiology",
+  "websiteUrl": ""
+}
+```
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "message": "Thank you for contacting MedConsults. Our care coordination team will reach out shortly."
+    }
+    ```
+  - `400 Bad Request` (`VALIDATION_ERROR`): Name, phone, or concern validation failure.
+  - `429 Too Many Requests` (`RATE_LIMIT_EXCEEDED`): IP rate limit exceeded.
+
+---
+
+## Leads Module Endpoints (`/api/v1/leads`)
+
+### 38. List Leads (`GET /leads`)
+- **Description**: Paginated listing of sales leads with filters for stage, source, assigned owner, date range, and text search query.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Query Parameters**:
+  - `stage`: Lead stage (`new`, `contacted`, `consultation_booked`, `consulted`, `follow_up`, `closed`, `lost`)
+  - `source`: Lead source (`website`, `walk_in`, `referral`, `phone`, `campaign`, `other`)
+  - `ownerId`: User ID of assigned staff member
+  - `q`: Text search query matching lead name, phone, or email
+  - `from`: ISO start date
+  - `to`: ISO end date
+  - `page`: Page number (default: 1)
+  - `limit`: Items per page (default: 20, max: 100)
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "leads": [
+          {
+            "_id": "673b22e18d6a36bc6ad50301",
+            "name": "Sunil Deshmukh",
+            "phone": "+919820111222",
+            "email": "sunil.d@example.com",
+            "stage": "new",
+            "source": "website",
+            "interest": "Cardiology",
+            "createdAt": "2026-11-19T10:00:00.000Z"
+          }
+        ],
+        "pagination": {
+          "total": 1,
+          "page": 1,
+          "limit": 20,
+          "totalPages": 1
+        }
+      }
+    }
+    ```
+  - `401 Unauthorized` (`UNAUTHORIZED`): Missing or invalid token.
+  - `403 Forbidden` (`FORBIDDEN`): Role other than staff or admin.
+
+---
+
+### 39. Get Leads Kanban Board (`GET /leads/board`)
+- **Description**: Grouped pipeline representation of leads across all 7 stages (`new`, `contacted`, `consultation_booked`, `consulted`, `follow_up`, `closed`, `lost`), providing count per stage and the 20 newest cards per column.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "stages": {
+          "new": { "count": 12, "cards": [ ... ] },
+          "contacted": { "count": 8, "cards": [ ... ] },
+          "consultation_booked": { "count": 5, "cards": [ ... ] },
+          "consulted": { "count": 4, "cards": [ ... ] },
+          "follow_up": { "count": 3, "cards": [ ... ] },
+          "closed": { "count": 15, "cards": [ ... ] },
+          "lost": { "count": 2, "cards": [ ... ] }
+        }
+      }
+    }
+    ```
+
+---
+
+### 40. Create Lead (`POST /leads`)
+- **Description**: Creates a new CRM lead. Automatically normalizes Indian phone numbers loosely and writes an activity record.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Request Body**:
+```json
+{
+  "name": "Vikas Mehta",
+  "phone": "9820334455",
+  "email": "vikas.mehta@example.com",
+  "source": "website",
+  "interest": "Preventive Cardiac Checkup"
+}
+```
+- **Responses**:
+  - `201 Created`: Lead entity with normalized phone `+919820334455` and stage `new`.
+  - `400 Bad Request` (`VALIDATION_ERROR`): Invalid input format.
+
+---
+
+### 41. Get Lead by ID (`GET /leads/:id`)
+- **Description**: Fetches single lead details including owner and linked patient records.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Responses**:
+  - `200 OK`: Lead entity.
+  - `404 Not Found` (`NOT_FOUND`): Lead not found or soft deleted.
+
+---
+
+### 42. Update Lead (`PATCH /leads/:id`)
+- **Description**: Updates lead details (name, phone, email, interest, source, owner). Normalizes phone if updated.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Request Body**:
+```json
+{
+  "interest": "Comprehensive Cardiology + TMT",
+  "ownerId": "673b22e18d6a36bc6ad50210"
+}
+```
+- **Responses**:
+  - `200 OK`: Updated lead entity.
+  - `404 Not Found` (`NOT_FOUND`): Lead not found.
+
+---
+
+### 43. Change Lead Stage (`POST /leads/:id/stage`)
+- **Description**: Moves lead between stages on the pipeline board. Any transition between stages is permitted. Moving to `lost` strictly requires `lostReason`. Every stage move creates an `Activity` record with actor, from, and to details.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Request Body**:
+```json
+{
+  "stage": "lost",
+  "lostReason": "Selected a hospital closer to home"
+}
+```
+- **Responses**:
+  - `200 OK`: Updated lead entity.
+  - `400 Bad Request` (`INVALID_REQUEST`): Missing `lostReason` when transitioning to `lost`.
+  - `404 Not Found` (`NOT_FOUND`): Lead not found.
+
+---
+
+### 44. Convert Lead to Patient (`POST /leads/:id/convert`)
+- **Description**: Converts lead into a Patient CRM record. If a patient with matching phone or email exists, links to that patient; otherwise generates a new Patient with a unique `patientCode`. Links `patientId` on lead, marks lead stage `closed`, and sets `leadId` on activity trail. Returns the patient record. Converting twice returns `409 CONFLICT`.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Responses**:
+  - `200 OK`: `{ "success": true, "data": { "patient": { ... } } }`
+  - `404 Not Found` (`NOT_FOUND`): Lead not found.
+  - `409 Conflict` (`CONFLICT`): Lead has already been converted to a patient.
+
+---
+
+### 45. Soft Delete Lead (`DELETE /leads/:id`)
+- **Description**: Soft deletes a lead (`isDeleted: true`).
+- **Auth**: `Authorization: Bearer <accessToken>` (Admin only)
+- **Responses**:
+  - `200 OK`: Soft deletion confirmation.
+  - `403 Forbidden` (`FORBIDDEN`): Staff receives 403 Forbidden.
+  - `404 Not Found` (`NOT_FOUND`): Lead not found.
+
+---
+
+## Appointments Module Endpoints (`/api/v1/appointments`)
+
+### 46. Book Appointment (`POST /appointments`)
+- **Description**: Books an appointment slot. Patients book for themselves; staff and admin book for any patient (`patientId` required). Validates that doctor is approved, start time is a computed free slot, in future within 30 days. Patients with unverified email get `403 EMAIL_NOT_VERIFIED`. Overlapping active appointments return `409 CONFLICT`. Assigns atomic `tokenNumber` from daily doctor counter and short `appointmentCode`. Sends confirmation email and writes activity.
+- **Auth**: `Authorization: Bearer <accessToken>` (Patient, Staff, Admin)
+- **Rate Limit**: 20 requests per minute per user.
+- **Request Body**:
+```json
+{
+  "doctorId": "673b22e18d6a36bc6ad50220",
+  "start": "2026-11-20T09:00:00+05:30",
+  "reason": "Routine hypertension checkup",
+  "patientId": "673b22e18d6a36bc6ad50230"
+}
+```
+- **Responses**:
+  - `201 Created`:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "appointment": {
+          "_id": "673b22e18d6a36bc6ad50401",
+          "appointmentCode": "APT-7K9M2Q3X",
+          "tokenNumber": 4,
+          "status": "booked",
+          "start": "2026-11-20T03:30:00.000Z",
+          "end": "2026-11-20T03:45:00.000Z",
+          "queueDate": "2026-11-20",
+          "reason": "Routine hypertension checkup",
+          "isWalkIn": false
+        },
+        "tokenNumber": 4,
+        "appointmentCode": "APT-7K9M2Q3X"
+      }
+    }
+    ```
+  - `400 Bad Request` (`INVALID_REQUEST`): Slot unavailable, past time, or > 30 days.
+  - `403 Forbidden` (`EMAIL_NOT_VERIFIED`): Patient email address unverified.
+  - `409 Conflict` (`CONFLICT`): Slot concurrently booked or patient has overlapping active appointment.
+
+---
+
+### 47. List Appointments (`GET /appointments`)
+- **Description**: Role-scoped listing of appointments with filters (`date`, `from`, `to`, `doctorId`, `patientId`, `status`), sorted by start time ascending. Patients see own, doctors see own, staff and admin see all. Staff listing includes reception fields only. Admin responses omit reason.
+- **Auth**: `Authorization: Bearer <accessToken>`
+- **Query Parameters**:
+  - `date`: Filter by `YYYY-MM-DD` queueDate
+  - `from`: ISO start date
+  - `to`: ISO end date
+  - `doctorId`: Doctor ID filter
+  - `patientId`: Patient ID filter
+  - `status`: Appointment status filter
+  - `page`: Page number (default: 1)
+  - `limit`: Items per page (default: 20, max: 100)
+- **Responses**:
+  - `200 OK`: Array of appointments and pagination metadata.
+
+---
+
+### 48. Appointments Daily Summary (`GET /appointments/summary`)
+- **Description**: Returns count per appointment status for the given date (default today in Asia/Kolkata). Scoped to doctor's own appointments when called by a doctor.
+- **Auth**: `Authorization: Bearer <accessToken>` (Doctor, Staff, Admin)
+- **Query Parameters**:
+  - `date`: `YYYY-MM-DD` (optional, defaults to current Kolkata day)
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "date": "2026-11-20",
+        "counts": {
+          "booked": 10,
+          "checked_in": 4,
+          "in_consultation": 1,
+          "completed": 8,
+          "cancelled": 2,
+          "no_show": 1,
+          "total": 26
+        }
+      }
+    }
+    ```
+
+---
+
+### 49. Walk-In Registration (`POST /appointments/walk-in`)
+- **Description**: Registers a walk-in patient at clinic reception. Finds existing patient by phone or creates one. Creates an appointment with `isWalkIn: true`, `start: now`, `status: checked_in`, and the next atomic token number. Walk-ins do not consume bookable calendar slots.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Request Body**:
+```json
+{
+  "doctorId": "673b22e18d6a36bc6ad50220",
+  "name": "Ramesh Gupta",
+  "phone": "+919820334455",
+  "gender": "male",
+  "reason": "Acute fever and joint pain"
+}
+```
+- **Responses**:
+  - `201 Created`: Appointment entity, `tokenNumber`, and `appointmentCode`.
+
+---
+
+### 50. Get Appointment by ID (`GET /appointments/:id`)
+- **Description**: Returns full appointment details. Enforces ownership: patient of appointment, doctor of appointment, staff, and admin. Any other requester receives `404 NOT_FOUND`. Privacy rule: `reason` is omitted from admin responses.
+- **Auth**: `Authorization: Bearer <accessToken>`
+- **Responses**:
+  - `200 OK`: Appointment details with `tokenNumber` and `appointmentCode`.
+  - `404 Not Found` (`NOT_FOUND`): Nonexistent appointment or unauthorized owner.
+
+---
+
+### 51. Reschedule Appointment (`POST /appointments/:id/reschedule`)
+- **Description**: Reschedules an appointment to a new slot. Validates new slot availability. Completed, cancelled, in_consultation, and no_show appointments cannot be rescheduled (400). Patients must reschedule > 2 hours before scheduled start. Issues a new token for the new doctor and day.
+- **Auth**: `Authorization: Bearer <accessToken>` (Patient, Staff, Admin)
+- **Request Body**:
+```json
+{
+  "start": "2026-11-21T10:00:00+05:30",
+  "doctorId": "673b22e18d6a36bc6ad50220"
+}
+```
+- **Responses**:
+  - `200 OK`: Rescheduled appointment entity with new token number.
+  - `400 Bad Request` (`INVALID_REQUEST`): Within 2-hour window, invalid slot, or terminal status.
+
+---
+
+### 52. Cancel Appointment (`POST /appointments/:id/cancel`)
+- **Description**: Cancels an appointment and frees the slot so it can immediately be booked by other patients. Patients must cancel > 2 hours before scheduled start. Staff and admin may cancel until consultation starts.
+- **Auth**: `Authorization: Bearer <accessToken>` (Patient, Staff, Admin)
+- **Request Body**:
+```json
+{
+  "reason": "Unexpected schedule conflict"
+}
+```
+- **Responses**:
+  - `200 OK`: Cancellation confirmation and updated appointment entity.
+  - `400 Bad Request` (`INVALID_REQUEST`): Less than 2 hours before start for patients or terminal status.
+
+---
+
+### 53. Check-In Patient (`POST /appointments/:id/check-in`)
+- **Description**: Checks in a booked patient at clinic reception. Permitted strictly on the scheduled appointment date (`queueDate === todayKolkata`). Allowed transition: `booked -> checked_in`. Writes activity and audit log.
+- **Auth**: `Authorization: Bearer <accessToken>` (Staff or Admin)
+- **Responses**:
+  - `200 OK`: Updated appointment with status `checked_in`.
+  - `400 Bad Request` (`INVALID_REQUEST`): Not scheduled date or illegal state transition.
+
+---
+
+### 54. Start Consultation (`POST /appointments/:id/start`)
+- **Description**: Starts consultation for a checked-in patient. Permitted for the appointment's doctor or an admin. Enforces single consultation limit: only one active `in_consultation` appointment per doctor at a time (returns 409 if another consultation is in progress).
+- **Auth**: `Authorization: Bearer <accessToken>` (Doctor, Admin)
+- **Responses**:
+  - `200 OK`: Updated appointment with status `in_consultation`.
+  - `400 Bad Request` (`INVALID_REQUEST`): Illegal transition (e.g. from `booked` directly).
+  - `409 Conflict` (`CONFLICT`): Doctor already has an active consultation in progress.
+
+---
+
+### 55. Complete Consultation (`POST /appointments/:id/complete`)
+- **Description**: Completes the active consultation and sets consultation end timestamp to current time. Allowed transition: `in_consultation -> completed`.
+- **Auth**: `Authorization: Bearer <accessToken>` (Treating Doctor only)
+- **Responses**:
+  - `200 OK`: Updated appointment with status `completed`.
+  - `400 Bad Request` (`INVALID_REQUEST`): Appointment status is not `in_consultation`.
+
+---
+
+### 56. Mark No-Show (`POST /appointments/:id/no-show`)
+- **Description**: Marks appointment as no-show. Permitted strictly after the scheduled slot start time. Allowed transitions: `booked -> no_show`, `checked_in -> no_show`. Writes activity and audit log.
+- **Auth**: `Authorization: Bearer <accessToken>` (Doctor, Staff, Admin)
+- **Responses**:
+  - `200 OK`: Updated appointment with status `no_show`.
+  - `400 Bad Request` (`INVALID_REQUEST`): Before start time or illegal state transition.
+
+---
+
+## Queue Module Endpoints (`/api/v1/queue`)
+
+### 57. Today Live OPD Queue (`GET /queue/today`)
+- **Description**: Live OPD queue display for today in Asia/Kolkata timezone. Scoped to doctor's own queue when called by a doctor; staff and admin provide `doctorId` query parameter. Appointments are ordered strictly: `in_consultation` first, then `checked_in` ordered by token number ascending, then `booked` ordered by start time ascending, then finished appointments (`completed`, `cancelled`, `no_show`). Returns status counts, `nowServing` token, `next` token, and `estimatedWaitMinutes` for waiting patients (average consultation time today or doctor slot length multiplied by patients ahead).
+- **Auth**: `Authorization: Bearer <accessToken>` (Doctor, Staff, Admin)
+- **Query Parameters**:
+  - `doctorId`: Doctor ID (required for staff/admin, optional for doctors)
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "doctorId": "673b22e18d6a36bc6ad50220",
+        "date": "2026-11-20",
+        "counts": {
+          "waiting": 3,
+          "inConsultation": 1,
+          "done": 5,
+          "noShow": 1,
+          "total": 10
+        },
+        "nowServing": 5,
+        "next": 6,
+        "averageConsultationMinutes": 18,
+        "queue": [
+          {
+            "_id": "673b22e18d6a36bc6ad50501",
+            "tokenNumber": 5,
+            "status": "in_consultation",
+            "estimatedWaitMinutes": 0,
+            "patient": { "name": "Aarav Sharma", "phone": "+919820112233" }
+          },
+          {
+            "_id": "673b22e18d6a36bc6ad50502",
+            "tokenNumber": 6,
+            "status": "checked_in",
+            "estimatedWaitMinutes": 18,
+            "patient": { "name": "Meera Iyer", "phone": "+919820445566" }
+          }
+        ]
+      }
+    }
+    ```
+  - `400 Bad Request` (`VALIDATION_ERROR`): Missing `doctorId` for staff/admin requests.
+  - `401 Unauthorized` (`UNAUTHORIZED`): Missing or invalid token.
+  - `403 Forbidden` (`FORBIDDEN`): Role other than doctor, staff, or admin.
 

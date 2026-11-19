@@ -129,7 +129,8 @@ All documents have `createdAt`, `updatedAt`. Primary resources use soft delete (
 | doctors | userId, specialty, qualifications, registrationNo, experienceYears, languages, consultationFee, clinicRoom, bio, approvalStatus, isOnline, lastSeenAt, weeklyAvailability[], blockedDates[], slotMinutes | userId (unique), specialty, approvalStatus |
 | patients | userId (optional), name, phone, email, dob, gender, source, assignedStaffId, status, whatsappOptIn, patientCode | phone, email, patientCode (unique), text index on name |
 | leads | name, phone, email, interest, source (website, phone, walk_in, referral), stage, ownerId, patientId, lostReason | stage, ownerId, createdAt, phone |
-| appointments | patientId, doctorId, start, end, status, tokenNumber, queueDate, reason, source, createdBy, fee, paymentStatus (pay_at_clinic, paid, waived) | unique (doctorId, start) for active, (doctorId, queueDate, tokenNumber) unique, patientId, status |
+| appointments | appointmentCode, patientId, doctorId, start, end, status, tokenNumber, queueDate, reason, source, isWalkIn, createdBy, fee, paymentStatus (pay_at_clinic, paid, waived) | appointmentCode (unique), unique (doctorId, start) for active and isWalkIn false, (doctorId, queueDate, tokenNumber) unique, patientId, status, isWalkIn |
+| counters | key, value, expiresAt | key (unique), TTL on expiresAt |
 | notes | patientId, appointmentId, authorId, body, visibility (internal, shared, clinical), isDraft | patientId, appointmentId |
 | tasks | title, description, patientId or leadId, assignedTo, dueDate, priority, status | assignedTo, dueDate, status |
 | activities | entityType, entityId, type, actorId, meta, at | entityType + entityId + at |

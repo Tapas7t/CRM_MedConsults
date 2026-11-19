@@ -166,6 +166,69 @@ For local development and testing, fictional accounts on the reserved domain `me
 | preview | vite preview | Previews the production build locally |
 | typecheck | tsc -b --noEmit | Validates TypeScript types across the frontend |
 
+## API Endpoints Overview
+
+All endpoints are prefixed with `/api/v1` and return standard JSON response envelopes (`{ success: true, data: ... }`):
+
+| Module | Method | Endpoint | Description | Access |
+| --- | --- | --- | --- | --- |
+| **Auth** | POST | `/auth/register` | Register new patient | Public |
+| | POST | `/auth/register-doctor` | Register new doctor (pending approval) | Public |
+| | POST | `/auth/verify-email` | Verify email token | Public |
+| | POST | `/auth/resend-verification` | Resend verification email | Public |
+| | POST | `/auth/login` | Authenticate with email/password (lockout after 5 fails) | Public |
+| | POST | `/auth/refresh` | Rotate refresh token cookie | Public |
+| | POST | `/auth/logout` | Invalidate refresh token session | Public |
+| | POST | `/auth/forgot-password` | Request password reset token | Public |
+| | POST | `/auth/reset-password` | Set new password with reset token | Public |
+| **Users** | GET | `/users/me` | Fetch authenticated user profile | Authenticated |
+| | PATCH | `/users/me` | Update name / phone | Authenticated |
+| | POST | `/users/me/change-password` | Change user password | Authenticated |
+| | GET | `/users` | List users with filtering and pagination | Admin |
+| | POST | `/users/:id/block` | Block user account and revoke sessions | Admin |
+| | POST | `/users/:id/unblock` | Unblock user account | Admin |
+| | DELETE | `/users/:id` | Soft delete user account | Admin |
+| **Doctors** | GET | `/doctors` | Public approved doctor directory | Public |
+| | GET | `/doctors/:id` | Single approved doctor profile | Public |
+| | GET | `/doctors/:id/slots` | Live free slot calculation (Asia/Kolkata) | Public |
+| | GET | `/doctors/me` | Doctor own profile with availability | Doctor |
+| | PATCH | `/doctors/me` | Doctor update own profile and schedule | Doctor |
+| | POST | `/doctors/me/online` | Toggle doctor real-time online status | Doctor |
+| | POST | `/doctors/me/block-dates` | Block leaves or clinic closure dates | Doctor |
+| | DELETE | `/doctors/me/block-dates` | Unblock previously blocked date | Doctor |
+| | GET | `/doctors/admin/all` | List all doctors across approval statuses | Admin |
+| | POST | `/doctors/admin/:id/approve` | Approve registered doctor profile | Admin |
+| | POST | `/doctors/admin/:id/reject` | Reject pending doctor profile | Admin |
+| **Patients** | GET | `/patients/me` | Patient own CRM record | Patient |
+| | GET | `/patients` | Search and filter patients | Staff, Admin |
+| | POST | `/patients` | Create patient CRM record | Staff, Admin |
+| | GET | `/patients/:id` | Patient details (enforces doctor ownership) | Doctor, Staff, Admin |
+| | PATCH | `/patients/:id` | Update patient CRM details | Staff, Admin |
+| | GET | `/patients/:id/timeline` | Interaction timeline (appointments, activities) | Doctor, Staff, Admin |
+| | DELETE | `/patients/:id` | Soft delete patient record | Admin |
+| **Leads** | GET | `/leads` | List leads with stage, source, owner filters | Staff, Admin |
+| | GET | `/leads/board` | Kanban board grouped by pipeline stage | Staff, Admin |
+| | POST | `/leads` | Create new CRM lead | Staff, Admin |
+| | GET | `/leads/:id` | Lead details | Staff, Admin |
+| | PATCH | `/leads/:id` | Update lead contact or owner | Staff, Admin |
+| | POST | `/leads/:id/stage` | Move lead stage (requires reason for `lost`) | Staff, Admin |
+| | POST | `/leads/:id/convert` | Convert lead to patient CRM record | Staff, Admin |
+| | DELETE | `/leads/:id` | Soft delete lead | Admin |
+| **Enquiries**| POST | `/public/enquiries` | Public website enquiry (honeypot + rate limit) | Public |
+| **Appointments** | POST | `/appointments` | Book appointment slot (assigns token & code) | Patient, Staff, Admin |
+| | GET | `/appointments` | List appointments (role scoped) | Authenticated |
+| | GET | `/appointments/summary` | Daily appointment counts per status | Doctor, Staff, Admin |
+| | POST | `/appointments/walk-in` | Register walk-in with next OPD token | Staff, Admin |
+| | GET | `/appointments/:id` | Appointment details (reason omitted for admin) | Authenticated |
+| | POST | `/appointments/:id/reschedule` | Reschedule appointment slot (> 2h window) | Patient, Staff, Admin |
+| | POST | `/appointments/:id/cancel` | Cancel appointment and free slot (> 2h window) | Patient, Staff, Admin |
+| | POST | `/appointments/:id/check-in` | Reception check-in on appointment day | Staff, Admin |
+| | POST | `/appointments/:id/start` | Start consultation (enforces 1 at a time) | Doctor, Admin |
+| | POST | `/appointments/:id/complete` | Complete active consultation | Doctor |
+| | POST | `/appointments/:id/no-show` | Mark no-show after scheduled start | Doctor, Staff, Admin |
+| **Queue** | GET | `/queue/today` | Today's OPD queue ordered with wait estimates | Doctor, Staff, Admin |
+| **Audit Logs** | GET | `/audit-logs` | Query administrative and security audit trail | Admin |
+
 ## Testing
 
 Backend integration tests are executed using Vitest and Supertest. All tests run against the dedicated test database (medconsults_crm_test) and clean up after execution. Tests never connect to or modify development data.
@@ -184,9 +247,9 @@ For full product requirements, data models, business rules, and API specificatio
 
 - [x] Phase 0: Repository, git initialization, environment setup
 - [x] Phase 1: Backend skeleton, configuration, database connection, health endpoints, tests
-- [ ] Phase 2: MongoDB schemas, models, and indexing
-- [ ] Phase 3: Authentication, role verification, email validation, account lockout
-- [ ] Phase 4: Core modules (doctors, patients, leads, appointments, OPD queue)
+- [x] Phase 2: MongoDB schemas, models, and indexing
+- [x] Phase 3: Authentication, role verification, email validation, account lockout
+- [x] Phase 4: Core modules (doctors, patients, leads, appointments, OPD queue)
 - [ ] Phase 5: Secondary modules (notes, tasks, activities, notifications, reports, audit log)
 - [ ] Phase 6: Frontend design tokens, layout shell, routing, authentication state
 - [ ] Phase 7: Role-specific screen implementations wired to API

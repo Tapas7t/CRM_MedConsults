@@ -14,6 +14,7 @@ export type ErrorCode =
   | 'ACCOUNT_LOCKED'
   | 'RATE_LIMIT_EXCEEDED'
   | 'CANNOT_SELF_DEMOTE'
+  | 'EMAIL_NOT_VERIFIED'
   | 'INTERNAL_ERROR';
 
 export class AppError extends Error {

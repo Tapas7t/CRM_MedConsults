@@ -23,6 +23,7 @@ import {
   Notification,
   AuditLog,
   Token,
+  Counter,
 } from '../src/modules/index.js';
 
 const models = [
@@ -31,6 +32,7 @@ const models = [
   { name: 'Patient', model: Patient },
   { name: 'Lead', model: Lead },
   { name: 'Appointment', model: Appointment },
+  { name: 'Counter', model: Counter },
   { name: 'Note', model: Note },
   { name: 'Task', model: Task },
   { name: 'Activity', model: Activity },

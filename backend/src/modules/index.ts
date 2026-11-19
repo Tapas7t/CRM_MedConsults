@@ -9,3 +9,4 @@ export * from './activity/activity.model.js';
 export * from './notification/notification.model.js';
 export * from './auditLog/auditLog.model.js';
 export * from './token/token.model.js';
+export * from './appointment/counter.model.js';

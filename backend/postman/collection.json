@@ -942,6 +942,597 @@
           }
         }
       ]
+    },
+    {
+      "name": "Public Enquiries",
+      "item": [
+        {
+          "name": "Submit Public Website Enquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunil Deshmukh\",\n  \"phone\": \"+919820111222\",\n  \"concern\": \"Need opinion for chest tightness and palpitations\",\n  \"email\": \"sunil.d@example.com\",\n  \"preferredSpecialty\": \"Cardiology\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/public/enquiries",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "public", "enquiries"]
+            },
+            "description": "Public website enquiry endpoint with rate limiting (5/hr/IP) and honeypot spam protection."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leads",
+      "item": [
+        {
+          "name": "List Leads",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads?stage=&source=&ownerId=&q=&from=&to=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads"],
+              "query": [
+                { "key": "stage", "value": "" },
+                { "key": "source", "value": "" },
+                { "key": "ownerId", "value": "" },
+                { "key": "q", "value": "" },
+                { "key": "from", "value": "" },
+                { "key": "to", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Retrieves paginated leads list with stage, source, owner, date range, and text search filtering."
+          }
+        },
+        {
+          "name": "Get Leads Kanban Board",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/board",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "board"]
+            },
+            "description": "Returns Kanban board grouped by stage with count per stage and the newest 20 cards per column."
+          }
+        },
+        {
+          "name": "Create Lead",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vikas Mehta\",\n  \"phone\": \"9820334455\",\n  \"email\": \"vikas.mehta@example.com\",\n  \"interest\": \"Preventive Cardiac Checkup\",\n  \"source\": \"website\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads"]
+            },
+            "description": "Creates a new CRM sales lead. Normalizes Indian phone numbers automatically."
+          }
+        },
+        {
+          "name": "Get Lead by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/{{leadId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "{{leadId}}"]
+            },
+            "description": "Fetches single lead details with assigned owner and patient links."
+          }
+        },
+        {
+          "name": "Update Lead",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interest\": \"Comprehensive Cardiac Checkup + Echo\",\n  \"ownerId\": \"{{staffUserId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/{{leadId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "{{leadId}}"]
+            },
+            "description": "Updates lead contact info, interest, source, or assigned owner."
+          }
+        },
+        {
+          "name": "Change Lead Stage",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stage\": \"contacted\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/{{leadId}}/stage",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "{{leadId}}", "stage"]
+            },
+            "description": "Moves lead across stages. Moving to 'lost' requires 'lostReason'. Records activity."
+          }
+        },
+        {
+          "name": "Convert Lead to Patient",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/{{leadId}}/convert",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "{{leadId}}", "convert"]
+            },
+            "description": "Converts lead into Patient CRM record, linking by phone/email or creating new patient. Converting twice returns 409."
+          }
+        },
+        {
+          "name": "Delete Lead (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/leads/{{leadId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "leads", "{{leadId}}"]
+            },
+            "description": "Soft deletes lead record. Restricted to administrators."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Book Appointment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctorId\": \"{{doctorId}}\",\n  \"start\": \"2026-11-20T09:00:00+05:30\",\n  \"reason\": \"Routine hypertension and cholesterol review\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments"]
+            },
+            "description": "Books an appointment slot. Requires verified email for patients. Issues token number and appointmentCode."
+          }
+        },
+        {
+          "name": "List Appointments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments?date=&from=&to=&doctorId=&patientId=&status=&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments"],
+              "query": [
+                { "key": "date", "value": "" },
+                { "key": "from", "value": "" },
+                { "key": "to", "value": "" },
+                { "key": "doctorId", "value": "" },
+                { "key": "patientId", "value": "" },
+                { "key": "status", "value": "" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Role-scoped listing of appointments. Staff receives reception view; admin responses omit reason."
+          }
+        },
+        {
+          "name": "Get Appointments Summary",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/summary?date=2026-11-20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "summary"],
+              "query": [
+                { "key": "date", "value": "2026-11-20" }
+              ]
+            },
+            "description": "Counts appointments per status for a specific date in Asia/Kolkata timezone."
+          }
+        },
+        {
+          "name": "Register Walk-In Appointment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctorId\": \"{{doctorId}}\",\n  \"name\": \"Ramesh Gupta\",\n  \"phone\": \"+919820334455\",\n  \"gender\": \"male\",\n  \"reason\": \"Acute fever and headache\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/walk-in",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "walk-in"]
+            },
+            "description": "Registers a walk-in patient at clinic reception. Issues next queue token without consuming calendar slots."
+          }
+        },
+        {
+          "name": "Get Appointment by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}"]
+            },
+            "description": "Returns full appointment details. Enforces ownership (404 for unauthorized users). Reason is omitted for admin."
+          }
+        },
+        {
+          "name": "Reschedule Appointment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"2026-11-20T10:00:00+05:30\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/reschedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "reschedule"]
+            },
+            "description": "Reschedules an appointment to a new slot. Patients must reschedule > 2 hours ahead. Issues new token."
+          }
+        },
+        {
+          "name": "Cancel Appointment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Schedule conflict\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "cancel"]
+            },
+            "description": "Cancels an appointment and frees slot. Patients must cancel > 2 hours ahead."
+          }
+        },
+        {
+          "name": "Check-In Patient",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/check-in",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "check-in"]
+            },
+            "description": "Staff/Admin check-in on the scheduled appointment date."
+          }
+        },
+        {
+          "name": "Start Consultation",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "start"]
+            },
+            "description": "Doctor or Admin starts consultation. Enforces only one active in_consultation per doctor at a time (409)."
+          }
+        },
+        {
+          "name": "Complete Consultation",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/complete",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "complete"]
+            },
+            "description": "Treating doctor completes consultation and closes OPD session."
+          }
+        },
+        {
+          "name": "Mark No-Show",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/appointments/{{appointmentId}}/no-show",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "appointments", "{{appointmentId}}", "no-show"]
+            },
+            "description": "Marks appointment as no-show after scheduled start time."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Queue",
+      "item": [
+        {
+          "name": "Get Today Live OPD Queue",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/queue/today?doctorId={{doctorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "queue", "today"],
+              "query": [
+                { "key": "doctorId", "value": "{{doctorId}}" }
+              ]
+            },
+            "description": "Live queue for today ordered by in_consultation, checked_in tokens, booked, and finished, with wait times."
+          }
+        }
+      ]
     }
   ]
 }

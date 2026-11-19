@@ -133,6 +133,42 @@ describe('Appointment Model', () => {
     expect(secondApt.status).toBe('booked');
   });
 
+  it('allows walk-in appointment and regular appointment to share start time without collision', async () => {
+    const sharedDoctorId = new Types.ObjectId();
+    const sharedStartTime = new Date('2026-12-05T11:00:00.000Z');
+    const sharedEndTime = new Date('2026-12-05T11:15:00.000Z');
+
+    // Regular booking
+    await Appointment.create({
+      patientId: new Types.ObjectId(),
+      doctorId: sharedDoctorId,
+      start: sharedStartTime,
+      end: sharedEndTime,
+      queueDate: '2026-12-05',
+      tokenNumber: 20,
+      fee: 1000,
+      status: 'booked',
+      isWalkIn: false,
+    });
+
+    // Walk-in at the exact same start time does not trigger partial unique index
+    const walkInApt = await Appointment.create({
+      patientId: new Types.ObjectId(),
+      doctorId: sharedDoctorId,
+      start: sharedStartTime,
+      end: sharedEndTime,
+      queueDate: '2026-12-05',
+      tokenNumber: 21,
+      fee: 1000,
+      status: 'checked_in',
+      isWalkIn: true,
+    });
+
+    expect(walkInApt._id).toBeDefined();
+    expect(walkInApt.isWalkIn).toBe(true);
+    expect(walkInApt.appointmentCode).toMatch(/^APT-[A-Z0-9]{8}$/);
+  });
+
   it('rejects duplicate token numbers for the same doctor on the same day', async () => {
     const sharedDoctorId = new Types.ObjectId();
     const queueDate = '2026-12-05';
@@ -167,10 +203,14 @@ describe('Appointment Model', () => {
 
     expect(indexNames).toContain('doctorId_1_start_1');
     expect(indexNames).toContain('doctorId_1_queueDate_1_tokenNumber_1');
+    expect(indexNames).toContain('appointmentCode_1');
 
     const slotIndex = indexes.find((idx) => idx.name === 'doctorId_1_start_1');
     expect(slotIndex?.unique).toBe(true);
-    expect(slotIndex?.partialFilterExpression).toBeDefined();
+    expect(slotIndex?.partialFilterExpression).toEqual({
+      status: { $in: ['booked', 'checked_in', 'in_consultation', 'completed'] },
+      isWalkIn: false,
+    });
 
     const tokenIndex = indexes.find((idx) => idx.name === 'doctorId_1_queueDate_1_tokenNumber_1');
     expect(tokenIndex?.unique).toBe(true);

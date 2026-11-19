@@ -105,6 +105,42 @@ Bandra West, Mumbai`;
 
     await this.sendMail({ to, subject, text, link });
   }
+
+  /**
+   * Sends a booking confirmation email to the patient with OPD token and appointment code.
+   */
+  async sendBookingConfirmationEmail(
+    to: string,
+    patientName: string,
+    details: {
+      doctorName: string;
+      dateStr: string;
+      timeStr: string;
+      tokenNumber: number;
+      appointmentCode: string;
+      clinicRoom: string;
+    }
+  ): Promise<void> {
+    const subject = `Appointment Confirmed - Token #${details.tokenNumber} - MedConsults Clinic`;
+    const text = `Dear ${patientName},
+
+Your appointment with ${details.doctorName} has been confirmed.
+
+Details:
+Date: ${details.dateStr}
+Time: ${details.timeStr}
+OPD Token: #${details.tokenNumber}
+Appointment Code: ${details.appointmentCode}
+Location: ${details.clinicRoom}, MedConsults Clinic, Bandra West, Mumbai
+
+Payment of your consultation fee is due at the reception desk upon check-in.
+
+Warm regards,
+MedConsults Clinic Team
+Bandra West, Mumbai`;
+
+    await this.sendMail({ to, subject, text });
+  }
 }
 
 export const emailService = new EmailService();

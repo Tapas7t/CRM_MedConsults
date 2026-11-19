@@ -10,8 +10,8 @@ This document tracks implementation progress, build phases, operational procedur
 | 1 | Backend skeleton: config, db, app, health, tests | /health returns ok; test passes | Done |
 | 2 | Models and indexes | Models load; indexes created | Done |
 | 3 | Auth, roles, email verification, lockout | Auth tests pass | Done |
-| 4 | Doctors, patients, leads, appointments, queue | Module tests pass | In progress (users, doctors, patients done; leads, appointments, queue next) |
-| 5 | Notes, tasks, activities, notifications, reports, audit | Tests pass; Postman collection runs | Not started |
+| 4 | Doctors, patients, leads, appointments, queue | Module tests pass | Done |
+| 5 | Notes, tasks, activities, notifications, reports, audit | Tests pass; Postman collection runs | Next (notes, tasks, notifications, reports) |
 | 6 | Frontend foundation: design tokens, layouts, auth, routing | Login works for all roles | Not started |
 | 7 | Screens per role, wired to the API | Role flows work end to end | Not started |
 | 8 | Live OPD queue (Socket.io), reminders (cron) | Queue updates without refresh | Not started |
@@ -77,6 +77,18 @@ All commands must be executed from the repository root:
 
 - 2026-11-19: Comprehensive Test Coverage Gap Closure
   Audited all 39 implemented endpoints against Section 7 of DEVELOPMENT_GUIDE.md across success, 400 (validation), 401 (unauthorized), 403 (forbidden), 404 (not found), 409 (conflict), and 429 (rate limiting). Added automated integration tests covering doctor registration, immediate access token invalidation for blocked users, full validation error coverage, strict unauthenticated access rejections, role violations, resource non-existence, and seed script execution idempotency.
+
+- 2026-11-19: Appointment Codes & Walk-in Slot Isolation
+  Added `appointmentCode` as a unique, random 8-character Base32 identifier (format: `APT-XXXXXXXX`) suitable for QR codes without carrying personal data. Walk-in appointments (`isWalkIn: true`) are isolated from regular calendar slots via a partial unique index on `(doctorId, start)` filtered to `{ status: { $in: ACTIVE_APPOINTMENT_STATUSES }, isWalkIn: false }`, ensuring walk-ins never collide with or consume bookable slots.
+
+- 2026-11-19: Atomic Daily Queue Counters
+  Atomic daily token numbers per doctor per day are issued via `Counter.findOneAndUpdate({ key: "token:<doctorId>:<queueDate>" }, { $inc: { value: 1 } }, { upsert: true, new: true })` with a 30-day TTL index. Token numbers are strictly increasing per doctor and day; gaps resulting from aborted bookings are accepted and tokens are never reused.
+
+- 2026-11-19: Privacy-Preserving Reason Filtering
+  Appointment `reason` is visible only to the patient, treating doctor, and reception staff, and is omitted from all administrative responses. Clinic reception queue and list views return only reception-essential fields (`name`, `phone`, `token`, `status`, `time`, `doctor`).
+
+- 2026-11-19: OPD Queue Wait Time Estimation Algorithm
+  Estimated wait time per waiting patient in `/api/v1/queue/today` is dynamically computed as `(number of patients ahead + inConsultation.length) * averageConsultationMinutes`. If completed consultations exist today, their average actual duration is used; otherwise, the calculation falls back to the doctor's configured `slotMinutes`.
 
 ## 4. Open Items & Decisions
 

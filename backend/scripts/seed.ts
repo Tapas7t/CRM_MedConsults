@@ -14,8 +14,13 @@ import { env } from '../src/config/env.js';
 import { UserModel } from '../src/modules/user/user.model.js';
 import { Doctor } from '../src/modules/doctor/doctor.model.js';
 import { Patient } from '../src/modules/patient/patient.model.js';
+import { Lead } from '../src/modules/lead/lead.model.js';
+import { Appointment } from '../src/modules/appointment/appointment.model.js';
+import { Counter } from '../src/modules/appointment/counter.model.js';
 import { hashPassword } from '../src/utils/password.js';
 import { generateRandomToken } from '../src/utils/tokenHash.js';
+import { getKolkataDateString } from '../src/utils/date.js';
+import { generateAppointmentCode } from '../src/utils/appointmentCode.js';
 
 export interface SeedOptions {
   reset?: boolean;
@@ -102,6 +107,9 @@ export async function runSeed(options: SeedOptions = {}) {
     await UserModel.deleteMany({});
     await Doctor.deleteMany({});
     await Patient.deleteMany({});
+    await Lead.deleteMany({});
+    await Appointment.deleteMany({});
+    await Counter.deleteMany({});
   }
 
   // Determine demo password
@@ -511,6 +519,334 @@ export async function runSeed(options: SeedOptions = {}) {
     }
   }
 
+  // 6. Seed Leads across all stages
+  const leadCount = await Lead.countDocuments();
+  if (leadCount === 0) {
+    const leadsData = [
+      {
+        name: 'Sunil Deshmukh',
+        phone: '+919820111001',
+        email: 'sunil.deshmukh@example.com',
+        source: 'website',
+        stage: 'new',
+        interest: 'Cardiac Consultation',
+      },
+      {
+        name: 'Anita Roy',
+        phone: '+919820111002',
+        email: 'anita.roy@example.com',
+        source: 'phone',
+        stage: 'contacted',
+        interest: 'Skin Care & Dermatology',
+        ownerId: staff._id,
+      },
+      {
+        name: 'Vikas Mehta',
+        phone: '+919820111003',
+        email: 'vikas.mehta@example.com',
+        source: 'walk_in',
+        stage: 'consultation_booked',
+        interest: 'General Consultation',
+        ownerId: staff._id,
+      },
+      {
+        name: 'Pooja Hegde',
+        phone: '+919820111004',
+        email: 'pooja.hegde@example.com',
+        source: 'referral',
+        stage: 'consulted',
+        interest: 'Hypertension Checkup',
+        ownerId: staff._id,
+      },
+      {
+        name: 'Amitabh Sen',
+        phone: '+919820111005',
+        email: 'amitabh.sen@example.com',
+        source: 'website',
+        stage: 'follow_up',
+        interest: 'Holter Monitoring',
+        ownerId: staff._id,
+      },
+      {
+        name: 'Shalini Nair',
+        phone: '+919820111006',
+        email: 'shalini.nair@example.com',
+        source: 'website',
+        stage: 'closed',
+        interest: 'Skin Allergy Treatment',
+        ownerId: staff._id,
+      },
+      {
+        name: 'Karan Patel',
+        phone: '+919820111007',
+        email: 'karan.patel@example.com',
+        source: 'website',
+        stage: 'lost',
+        lostReason: 'Chose another clinic closer to residence',
+        interest: 'Cardiac Health Checkup',
+        ownerId: staff._id,
+      },
+    ];
+
+    for (const ld of leadsData) {
+      await Lead.create(ld);
+    }
+  }
+
+  // 7. Seed Appointments
+  const appointmentCount = await Appointment.countDocuments();
+  if (appointmentCount > 0) {
+    if (!options.silent) {
+      console.log('Appointments already exist; skipped appointment seeding.');
+    }
+  } else {
+    const docUser1 = await UserModel.findOne({ email: 'dr1@medconsults.example' });
+    const doc1 = await Doctor.findOne({ userId: docUser1?._id });
+    const docUser2 = await UserModel.findOne({ email: 'dr2@medconsults.example' });
+    const doc2 = await Doctor.findOne({ userId: docUser2?._id });
+    const patients = await Patient.find({ isDeleted: false }).limit(10);
+
+    if (doc1 && doc2 && patients.length >= 6) {
+      const todayStr = getKolkataDateString();
+
+      // Yesterday past completed
+      const yesterdayDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      const yesterdayStr = getKolkataDateString(yesterdayDate);
+      const pastStart = new Date(`${yesterdayStr}T10:00:00+05:30`);
+      const pastEnd = new Date(`${yesterdayStr}T10:15:00+05:30`);
+
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[0]._id,
+        doctorId: doc1._id,
+        start: pastStart,
+        end: pastEnd,
+        status: 'completed',
+        tokenNumber: 1,
+        queueDate: yesterdayStr,
+        reason: 'Routine annual checkup',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'paid',
+      });
+
+      // Today Doctor 1: 1 in_consultation, 2 checked_in, 1 booked, 1 cancelled, 1 no_show
+      const d1Start1 = new Date(`${todayStr}T09:00:00+05:30`);
+      const d1End1 = new Date(`${todayStr}T09:15:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[1]._id,
+        doctorId: doc1._id,
+        start: d1Start1,
+        end: d1End1,
+        status: 'in_consultation',
+        tokenNumber: 1,
+        queueDate: todayStr,
+        reason: 'Chest tightness evaluation',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d1Start2 = new Date(`${todayStr}T09:15:00+05:30`);
+      const d1End2 = new Date(`${todayStr}T09:30:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[2]._id,
+        doctorId: doc1._id,
+        start: d1Start2,
+        end: d1End2,
+        status: 'checked_in',
+        tokenNumber: 2,
+        queueDate: todayStr,
+        reason: 'BP medication adjustment',
+        source: 'reception',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d1Start3 = new Date(`${todayStr}T09:30:00+05:30`);
+      const d1End3 = new Date(`${todayStr}T09:45:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[3]._id,
+        doctorId: doc1._id,
+        start: d1Start3,
+        end: d1End3,
+        status: 'checked_in',
+        tokenNumber: 3,
+        queueDate: todayStr,
+        reason: 'Urgent palpitations review',
+        source: 'walk_in',
+        isWalkIn: true,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d1Start4 = new Date(`${todayStr}T10:00:00+05:30`);
+      const d1End4 = new Date(`${todayStr}T10:15:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[4]._id,
+        doctorId: doc1._id,
+        start: d1Start4,
+        end: d1End4,
+        status: 'booked',
+        tokenNumber: 4,
+        queueDate: todayStr,
+        reason: 'Cholesterol report review',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d1Start5 = new Date(`${todayStr}T10:15:00+05:30`);
+      const d1End5 = new Date(`${todayStr}T10:30:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[5]._id,
+        doctorId: doc1._id,
+        start: d1Start5,
+        end: d1End5,
+        status: 'cancelled',
+        tokenNumber: 5,
+        queueDate: todayStr,
+        reason: 'Routine check',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d1Start6 = new Date(`${todayStr}T08:30:00+05:30`);
+      const d1End6 = new Date(`${todayStr}T08:45:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[0]._id,
+        doctorId: doc1._id,
+        start: d1Start6,
+        end: d1End6,
+        status: 'no_show',
+        tokenNumber: 6,
+        queueDate: todayStr,
+        reason: 'Missed early consult',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      await Counter.create({
+        key: `token:${doc1._id.toString()}:${todayStr}`,
+        value: 6,
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      });
+
+      // Today Doctor 2: 1 in_consultation, 1 checked_in, 1 booked
+      const d2Start1 = new Date(`${todayStr}T09:00:00+05:30`);
+      const d2End1 = new Date(`${todayStr}T09:20:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[1]._id,
+        doctorId: doc2._id,
+        start: d2Start1,
+        end: d2End1,
+        status: 'in_consultation',
+        tokenNumber: 1,
+        queueDate: todayStr,
+        reason: 'Acute skin allergy',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc2.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d2Start2 = new Date(`${todayStr}T09:20:00+05:30`);
+      const d2End2 = new Date(`${todayStr}T09:40:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[2]._id,
+        doctorId: doc2._id,
+        start: d2Start2,
+        end: d2End2,
+        status: 'checked_in',
+        tokenNumber: 2,
+        queueDate: todayStr,
+        reason: 'Acne scar assessment',
+        source: 'reception',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc2.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      const d2Start3 = new Date(`${todayStr}T09:40:00+05:30`);
+      const d2End3 = new Date(`${todayStr}T10:00:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[3]._id,
+        doctorId: doc2._id,
+        start: d2Start3,
+        end: d2End3,
+        status: 'booked',
+        tokenNumber: 3,
+        queueDate: todayStr,
+        reason: 'Eczema follow up',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc2.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      await Counter.create({
+        key: `token:${doc2._id.toString()}:${todayStr}`,
+        value: 3,
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      });
+
+      // Upcoming booking tomorrow
+      const tomorrowDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      const tomorrowStr = getKolkataDateString(tomorrowDate);
+      const upStart = new Date(`${tomorrowStr}T11:00:00+05:30`);
+      const upEnd = new Date(`${tomorrowStr}T11:15:00+05:30`);
+      await Appointment.create({
+        appointmentCode: generateAppointmentCode(),
+        patientId: patients[4]._id,
+        doctorId: doc1._id,
+        start: upStart,
+        end: upEnd,
+        status: 'booked',
+        tokenNumber: 1,
+        queueDate: tomorrowStr,
+        reason: 'Cardio follow-up',
+        source: 'website',
+        isWalkIn: false,
+        createdBy: staff._id,
+        fee: doc1.consultationFee,
+        paymentStatus: 'pay_at_clinic',
+      });
+
+      await Counter.create({
+        key: `token:${doc1._id.toString()}:${tomorrowStr}`,
+        value: 1,
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      });
+    }
+  }
+
   if (!options.silent) {
     console.log('\n--- Seed Execution Completed Successfully ---');
     console.log('Seeded Accounts:');
@@ -518,6 +854,8 @@ export async function runSeed(options: SeedOptions = {}) {
     console.log(`  Staff:        ${staffEmail} (Pooja Sawant)`);
     console.log(`  Doctors:      7 approved (dr1..dr7@medconsults.example), 1 pending (pending.dr@medconsults.example)`);
     console.log(`  Patients:     12 total (1 verified, 1 unverified, 10 CRM walk-in/referrals)`);
+    console.log(`  Leads:        7 leads across all pipeline stages`);
+    console.log(`  Appointments: Today queues for 2 doctors, past completed, upcoming, cancelled, no-show`);
 
     if (isGeneratedPassword) {
       console.log('\n======================================================');

@@ -14,6 +14,9 @@ import { userRouter } from './modules/user/user.routes.js';
 import { doctorRouter } from './modules/doctor/doctor.routes.js';
 import { patientRouter } from './modules/patient/patient.routes.js';
 import { auditLogRouter } from './modules/auditLog/auditLog.routes.js';
+import { leadRouter, publicEnquiryRouter } from './modules/lead/lead.routes.js';
+import { appointmentRouter } from './modules/appointment/appointment.routes.js';
+import { queueRouter } from './modules/queue/queue.routes.js';
 
 export const app = express();
 
@@ -80,7 +83,7 @@ app.get('/ready', (_req: Request, res: Response) => {
 // 6. Global rate limiter on /api
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: process.env.NODE_ENV === 'test' ? 10000 : 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -110,6 +113,10 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/doctors', doctorRouter);
 app.use('/api/v1/patients', patientRouter);
 app.use('/api/v1/audit-logs', auditLogRouter);
+app.use('/api/v1/leads', leadRouter);
+app.use('/api/v1/public/enquiries', publicEnquiryRouter);
+app.use('/api/v1/appointments', appointmentRouter);
+app.use('/api/v1/queue', queueRouter);
 
 // Test route for roleGuard verification during tests
 if (process.env.NODE_ENV === 'test') {
