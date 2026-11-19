@@ -75,6 +75,9 @@ All commands must be executed from the repository root:
 - 2026-11-18: Doctor Confidentiality and Patient Ownership Isolation
   A doctor may only read patient details and timeline if that doctor has an active or historical appointment with the patient; access attempts by other doctors return 404 NOT_FOUND rather than 403 to prevent record existence enumeration. Clinical notes and diagnoses are excluded from administrative and staff views.
 
+- 2026-11-19: Comprehensive Test Coverage Gap Closure
+  Audited all 39 implemented endpoints against Section 7 of DEVELOPMENT_GUIDE.md across success, 400 (validation), 401 (unauthorized), 403 (forbidden), 404 (not found), 409 (conflict), and 429 (rate limiting). Added automated integration tests covering doctor registration, immediate access token invalidation for blocked users, full validation error coverage, strict unauthenticated access rejections, role violations, resource non-existence, and seed script execution idempotency.
+
 ## 4. Open Items & Decisions
 
 - Production Email Provider: Final selection between Resend, Brevo, and standard Gmail SMTP when moving toward deployment.

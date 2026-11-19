@@ -90,6 +90,10 @@ describe('Database Seed Script Safety and Idempotency', () => {
       }).toThrow(/requires the --confirm flag/i);
     });
 
+    it('refuses to run when runSeed is invoked against the test database without bypass', async () => {
+      await expect(runSeed({ silent: true })).rejects.toThrow(/cannot target the test database/i);
+    });
+
     it('passes safety checks for legitimate development seed', () => {
       expect(() => {
         validateSeedSafety(
@@ -104,49 +108,29 @@ describe('Database Seed Script Safety and Idempotency', () => {
   });
 
   describe('Seed Idempotency', () => {
-    it('is idempotent: running seed repeatedly updates existing records without creating duplicates', async () => {
-      // In this test, we run the seeding steps against the test DB by temporarily bypassing safety for unit verification
-      // Run pass 1:
-      const adminEmail = 'admin@medconsults.example';
-      const staffEmail = 'staff@medconsults.example';
+    it('is idempotent: running seed script twice creates zero duplicates and updates existing records', async () => {
+      // Pass 1: Run full seed script
+      await runSeed({ skipSafetyCheckForTesting: true, silent: true });
 
-      // Seed admin and staff
-      await UserModel.create({
-        name: 'Admin User',
-        email: adminEmail,
-        passwordHash: 'dummy',
-        role: 'admin',
-        status: 'active',
-        emailVerified: true,
-      });
+      const usersAfterPass1 = await UserModel.countDocuments();
+      const doctorsAfterPass1 = await Doctor.countDocuments();
+      const patientsAfterPass1 = await Patient.countDocuments();
 
-      await UserModel.create({
-        name: 'Pooja Sawant',
-        email: staffEmail,
-        passwordHash: 'dummy',
-        role: 'staff',
-        status: 'active',
-        emailVerified: true,
-      });
+      expect(usersAfterPass1).toBeGreaterThan(0);
+      expect(doctorsAfterPass1).toBeGreaterThan(0);
+      expect(patientsAfterPass1).toBeGreaterThan(0);
 
-      // Verify count after pass 1
-      const initialUsersCount = await UserModel.countDocuments();
-      expect(initialUsersCount).toBe(2);
+      // Pass 2: Run full seed script a second time
+      await runSeed({ skipSafetyCheckForTesting: true, silent: true });
 
-      // Simulate idempotent re-seed pass:
-      const existingAdmin = await UserModel.findOne({ email: adminEmail });
-      expect(existingAdmin).not.toBeNull();
-      existingAdmin!.name = 'Admin User Updated';
-      await existingAdmin!.save();
+      const usersAfterPass2 = await UserModel.countDocuments();
+      const doctorsAfterPass2 = await Doctor.countDocuments();
+      const patientsAfterPass2 = await Patient.countDocuments();
 
-      const existingStaff = await UserModel.findOne({ email: staffEmail });
-      expect(existingStaff).not.toBeNull();
-      existingStaff!.name = 'Pooja Sawant Updated';
-      await existingStaff!.save();
-
-      // Count must still be 2 (no duplicate users created)
-      const afterSecondPassCount = await UserModel.countDocuments();
-      expect(afterSecondPassCount).toBe(2);
+      // Counts must be identical: zero duplicate records created
+      expect(usersAfterPass2).toBe(usersAfterPass1);
+      expect(doctorsAfterPass2).toBe(doctorsAfterPass1);
+      expect(patientsAfterPass2).toBe(patientsAfterPass1);
     });
   });
 });

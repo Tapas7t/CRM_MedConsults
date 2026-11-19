@@ -22,6 +22,7 @@ export interface SeedOptions {
   confirm?: boolean;
   overrideUri?: string;
   silent?: boolean;
+  skipSafetyCheckForTesting?: boolean;
 }
 
 /**
@@ -79,13 +80,15 @@ export async function runSeed(options: SeedOptions = {}) {
   }
 
   const dbName = mongoose.connection.db?.databaseName;
-  validateSeedSafety(
-    uri,
-    dbName,
-    env.NODE_ENV === 'production',
-    isReset,
-    isConfirmed
-  );
+  if (!options.skipSafetyCheckForTesting) {
+    validateSeedSafety(
+      uri,
+      dbName,
+      env.NODE_ENV === 'production',
+      isReset,
+      isConfirmed
+    );
+  }
 
   if (!options.silent) {
     console.log(`Connected to database: ${dbName}`);
